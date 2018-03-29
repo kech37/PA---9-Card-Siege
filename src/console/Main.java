@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Engine;
+package console;
 
+
+import engine.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 
 /**
  *
  * @author a21220528
  */
-public class Engine {
-    public static void main(String[] args) {
+public class Main {
+        public static void main(String[] args) {
         List<EventCard> cards = new ArrayList<>();
         for(int i = 0; i < 3; i++){
             cards.add(new EventCard());

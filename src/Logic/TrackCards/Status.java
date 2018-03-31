@@ -1,14 +1,12 @@
-package Logic.Cartas;
+package Logic.TrackCards;
 
 import Logic.Track;
 
-
 public class Status {
-    
+
     private boolean SupliesLevel;
     private Track WallStrenght, Morale, Supplies;
     private int Tunnel;
-
 
     public Status() {
         WallStrenght = new Track();
@@ -55,6 +53,5 @@ public class Status {
     public void setTunnel(int Tunnel) {
         this.Tunnel = Tunnel;
     }
-     
-}
 
+}

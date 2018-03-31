@@ -4,10 +4,10 @@ package Logic;
 import java.util.ArrayList;
 import java.io.Serializable;
 
-public class GameData implements  Serializable {
+public class GameData implements Serializable {
 
     public GameData() {
 
     }
-   
+
 }

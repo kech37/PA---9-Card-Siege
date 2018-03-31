@@ -2,27 +2,23 @@ package Logic;
 
 import java.io.Serializable;
 
+public class Track {
 
-public class Track{
     int posicao;
-    
-    public Track()
-    {
+
+    public Track() {
         posicao = 5;
     }
-    
-    public void Forward()
-    {
+
+    public void Forward() {
         posicao++;
     }
-    
-    public void Backward()
-    {
+
+    public void Backward() {
         posicao--;
     }
-    
-    public void Reset()
-    {
+
+    public void Reset() {
         posicao = 1;
     }
 }

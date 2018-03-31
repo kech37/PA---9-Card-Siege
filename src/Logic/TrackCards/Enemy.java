@@ -1,11 +1,10 @@
-package Logic.Cartas;
+package Logic.TrackCards;
 
 import Logic.Track;
 
-
 public class Enemy {
-    
-    private Track Trebuchet, SiegeTower, BatteringRam; 
+
+    private Track Trebuchet, SiegeTower, BatteringRam;
     private Track TrebuchetCount;
 
     public Enemy() {
@@ -46,9 +45,5 @@ public class Enemy {
     public void setTrebuchetCount(Track TrebuchetCount) {
         this.TrebuchetCount = TrebuchetCount;
     }
-    
-    
-    
-    
-    
+
 }

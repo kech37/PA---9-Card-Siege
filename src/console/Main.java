@@ -26,7 +26,7 @@ public class Main {
         cards.get(0).addEvent(new Event("Gate Fortified", new ArrayList<>(Arrays.asList("+1 to attacks on the Battering Ram")), 2, new ArrayList<>(Arrays.asList(Event.LADDERS_MOVEMENT, Event.BATTERING_RAM_MOVEMENT))));
         cards.get(0).addEvent(new Event("Flaming Arrows", new ArrayList<>(Arrays.asList("+1 to attacks on the Siege Engine")), 3, new ArrayList<>(Arrays.asList(Event.SIEGE_TOWER_MOVEMENT))));
         
-        System.out.println(cards.get(0));
+        //System.out.println(cards.get(0));
        
     }
 }

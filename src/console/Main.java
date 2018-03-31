@@ -6,7 +6,8 @@
 package console;
 
 
-import engine.*;
+import Logic.Event;
+import Logic.EventCard;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

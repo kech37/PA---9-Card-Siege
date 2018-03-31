@@ -19,7 +19,7 @@ public class Main {
         public static void main(String[] args) {
         List<EventCard> cards = new ArrayList<>();
         for(int i = 0; i < 3; i++){
-            cards.add(new EventCard());
+            cards.add(new EventCard()); 
         }
         
         cards.get(0).addEvent(new Event("Death of a Leader", new ArrayList<>(Arrays.asList("Reduce morale by 1")), 2, new ArrayList<>(Arrays.asList(Event.LADDERS_MOVEMENT, Event.SIEGE_TOWER_MOVEMENT))));

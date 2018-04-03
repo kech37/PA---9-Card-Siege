@@ -5,9 +5,9 @@
  */
 package console;
 
-
 import Logic.Event;
 import Logic.EventCard;
+import View.TextUI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,8 +17,9 @@ import java.util.List;
  * @author a21220528
  */
 public class Main {
-        public static void main(String[] args) {
-        List<EventCard> cards = new ArrayList<>();
+
+    public static void main(String[] args) {
+        /*  List<EventCard> cards = new ArrayList<>();
         for(int i = 0; i < 3; i++){
             cards.add(new EventCard()); 
         }
@@ -27,7 +28,9 @@ public class Main {
         cards.get(0).addEvent(new Event("Gate Fortified", new ArrayList<>(Arrays.asList("+1 to attacks on the Battering Ram")), 2, new ArrayList<>(Arrays.asList(Event.LADDERS_MOVEMENT, Event.BATTERING_RAM_MOVEMENT))));
         cards.get(0).addEvent(new Event("Flaming Arrows", new ArrayList<>(Arrays.asList("+1 to attacks on the Siege Engine")), 3, new ArrayList<>(Arrays.asList(Event.SIEGE_TOWER_MOVEMENT))));
         
-        System.out.println(cards.get(0));
-       
+        System.out.println(cards.get(0));*/
+
+        TextUI textUI = new TextUI();
+
     }
 }

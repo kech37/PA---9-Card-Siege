@@ -1,4 +1,4 @@
-package Logic.Cartas;
+package Logic.Cards;
 
 import Logic.Track;
 

@@ -8,9 +8,7 @@ package Logic.States;
 
 
 public interface IStates {
-    //  Await beginning
-   /* IStates setStartingArea(int area);
-    IStates setDifficultLevel(int level);
-    IStates start();*/
+    //  AWAIT BEGINIG 
+    IStates start();
 
 }

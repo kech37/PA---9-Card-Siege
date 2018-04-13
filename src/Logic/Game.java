@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import Logic.States.AwaitBegining;
 import Logic.States.IStates;
 import java.io.Serializable;
 
@@ -16,11 +17,22 @@ public class Game implements Serializable {
 
     private GameData gameData;
     private IStates state;
-    
-    
-       public Game() {
+
+    public Game() {
         gameData = new GameData();
-        //setState(new AwaitBegining(gameData));
+        setState(new AwaitBegining(gameData));
+    }
+
+    public GameData getGame() {
+        return gameData;
+    }
+
+    public IStates getState() {
+        return state;
+    }
+
+    public void setState(IStates s) {
+        state = s;
     }
 
 }

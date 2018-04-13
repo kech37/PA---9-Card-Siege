@@ -7,6 +7,7 @@ package console;
 
 import Logic.Event;
 import Logic.EventCard;
+import Logic.Game;
 import View.TextUI;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,9 @@ public class Main {
         
         System.out.println(cards.get(0));*/
 
-        TextUI textUI = new TextUI();
+        TextUI textUI = new TextUI(new Game());
+        
+        textUI.run();
 
     }
 }

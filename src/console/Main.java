@@ -6,7 +6,7 @@
 package console;
 
 import Logic.Event;
-import Logic.EventCard;
+import Logic.Cards.EventCard;
 import Logic.Game;
 import View.TextUI;
 import java.util.ArrayList;

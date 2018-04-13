@@ -49,19 +49,19 @@ public class Event {
         this.enemyAdvancementOrders = new ArrayList<>(movementOrders);
     }
 
-    String getName() {
+    public String getName() {
         return this.eventName;
     }
 
-    List<String> getDescription() {
+    public List<String> getDescription() {
         return this.eventDescription;
     }
 
-    int getActionPointAllowance() {
+    public int getActionPointAllowance() {
         return this.actionPointAllowance;
     }
 
-    List<Integer> getMovement() {
+    public List<Integer> getMovement() {
         if (this.enemyAdvancementOrders.isEmpty()) {
             return null;
         } else {

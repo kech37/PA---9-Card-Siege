@@ -14,13 +14,7 @@ import java.util.List;
  * @author a21220528
  */
 public class EventCard {
-    
-    /*
-        Cada carta convem ter um ID unico. Temos é que descobrir como fazemos
-        para que este id seja automaticamente incrementado na criação de cada
-        objeto do tipo.
-    */
-    private int id;
+
     /*
         Irá guardar os eventos que esta carta de eventos tem. É obrigatorio ter 3.
     */

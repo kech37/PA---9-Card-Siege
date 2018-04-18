@@ -2,21 +2,27 @@ package Logic;
 
 public class Track {
 
-    int posicao;
+    int position ;
 
     public Track() {
-        posicao = 5;
+        position  = 5;
     }
 
     public void Forward() {
-        posicao++;
+        if(position  > 0)
+              position --;
+        else
+            throw new IndexOutOfBoundsException();
     }
 
     public void Backward() {
-        posicao--;
+        if(position  < 5)
+             position ++;
+        else
+             throw new IndexOutOfBoundsException();
     }
 
     public void Reset() {
-        posicao = 1;
+        position  = 5;
     }
 }

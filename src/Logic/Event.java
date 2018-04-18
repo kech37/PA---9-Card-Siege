@@ -35,6 +35,7 @@ public class Event {
         Quantas ações é possivel fazer neste evento (turno)
     */
     private final int actionPointAllowance;
+   
     /*
         Que tipo de movimento as tropas inimigas puderão fazer.
         Utilizamos uma list, pq cada evento tem um numero variados de tipos
@@ -47,6 +48,7 @@ public class Event {
         this.eventDescription = new ArrayList<>(description);
         this.actionPointAllowance = actionPoints;
         this.enemyAdvancementOrders = new ArrayList<>(movementOrders);
+        
     }
 
     public String getName() {

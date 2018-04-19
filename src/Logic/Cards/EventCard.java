@@ -8,7 +8,7 @@ package Logic.Cards;
 import Logic.Event;
 import java.util.ArrayList;
 import java.util.List;
-
+import Logic.Constants;
 /**
  *
  * @author a21220528
@@ -47,16 +47,16 @@ public class EventCard {
             if (!event.getMovement().isEmpty()) {
                 for (int i = 0; i < event.getMovement().size(); i++) {
                     switch (event.getMovement().get(i)) {
-                        case Event.LADDERS_MOVEMENT:
+                        case Constants.LADDERS_MOVEMENT:
                             toPrint += " Ladders";
                             break;
-                        case Event.BATTERING_RAM_MOVEMENT:
+                        case Constants.BATTERING_RAM_MOVEMENT:
                             toPrint += " Battering Ram";
                             break;
-                        case Event.SIEGE_TOWER_MOVEMENT:
+                        case Constants.SIEGE_TOWER_MOVEMENT:
                             toPrint += " Siege Tower";
                             break;
-                        case Event.SWORD_MOVEMENT:
+                        case Constants.SWORD_MOVEMENT:
                             toPrint += " Sword";
                             break;
                     }

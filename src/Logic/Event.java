@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import Logic.Cards.Status;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,42 +16,14 @@ import java.util.List;
 public class Event {
 
     /*
-        Flags que servirão para melhor indentificar o algo de efeito a aplicar.
-     */
-    public static final int TARGET_EFFECT_TREBUCHET_ATTACK = 0;
-    public static final int TARGET_EFFECT_MORALE = 1;
-    public static final int TARGET_EFFECT_SUPPLIES = 2;
-    public static final int TARGET_EFFECT_SABOTAGE_ACTION = 3;
-    public static final int TARGET_EFFECT_ATTACK_ALL_CIRCLE = 4;
-    public static final int TARGET_EFFECT_ATTACK_ALL = 5;
-    public static final int TARGET_EFFECT_RAID_SABOTAGE = 6;
-    public static final int TARGET_EFFECT_BATTERING_RAM = 7;
-    public static final int TARGET_EFFECT_SIEGE_TOWER_REMOVED = 8;
-    public static final int TARGET_EFFECT_COUPUTE_RAID_SABOTAGE = 9;
-    public static final int TARGET_EFFECT_SIEGE_ENGINE = 10;
-    public static final int TARGET_EFFECT_TREBUCHET = 11;
-    public static final int TARGET_EFFECT_COUPURE = 12;
-    public static final int TARGET_EFFECT_CLOSE_OR_CIRCLE = 13;
-    public static final int TARGET_EFFECT_SIEGE_TOWER = 14;
-    public static final int TARGET_EFFECT_LADDERS = 15;
-
-    /*
         Indica o alvo a afetar
      */
     private final int effectTarget;
-    
+
     /*
         Indica qual é o valor a afetar
      */
-    private final int effectValue;
-
-    /*
-        Flags que servirão para melhor indentificar o movimento que o evento terá.
-     */
-    public static final int LADDERS_MOVEMENT = 1;
-    public static final int BATTERING_RAM_MOVEMENT = 2;
-    public static final int SIEGE_TOWER_MOVEMENT = 3;
-    public static final int SWORD_MOVEMENT = 4;
+    private int effectValue;
 
     /*
         Nome do Evento
@@ -66,7 +39,7 @@ public class Event {
         Quantas ações é possivel fazer neste evento (turno)
      */
     private final int actionPointAllowance;
-   
+
     /*
         Que tipo de movimento as tropas inimigas puderão fazer.
         Utilizamos uma list, pq cada evento tem um numero variados de tipos
@@ -79,7 +52,7 @@ public class Event {
         this.eventDescription = new ArrayList<>(description);
         this.actionPointAllowance = actionPoints;
         this.enemyAdvancementOrders = new ArrayList<>(movementOrders);
-      
+
         this.effectTarget = effectTarget;
         this.effectValue = effectValue;
 
@@ -111,5 +84,88 @@ public class Event {
 
     public int getEffectValue() {
         return this.effectValue;
+    }
+
+    public GameData setEffect(GameData g) {
+        switch (effectTarget) {
+            case 0:
+                g.getStatus().ModifyMorale(effectValue);
+                g.getStatus().ModifySupplies(effectValue);
+                break;
+            case 1:
+                g.getStatus().ModifyWallStrenght(effectValue);//VAI TER UM VALOR TEMPORARIO DEPENDENDO DO D6
+                effectValue = 0;
+                break;
+            case 2:
+                g.getDRM().setSabotageAction(effectValue);
+                g.getDRM().setMoraleAction(effectValue);
+                break;
+            case 3:
+                g.getStatus().ModifySupplies(effectValue);
+                break;
+            case 4:
+                g.setJustRaidSabotage(true);
+                break;
+            case 5:
+                if (g.getEnemy().getBatteringRam().CircleSpace()) {
+                    g.getDRM().setBatteringRam(effectValue);
+                }
+                if (g.getEnemy().getLadders().CircleSpace()) {
+                    g.getDRM().setLadders(effectValue);
+                }
+                if (g.getEnemy().getSiegeTower().CircleSpace()) {
+                    g.getDRM().setSiegeTower(effectValue);
+                }
+                break;
+            case 6:
+                g.getStatus().ModifyMorale(effectValue);
+                break;
+            case 7:
+                g.getDRM().setSiegeTower(effectValue);
+                g.getDRM().setLadders(effectValue);
+                g.getDRM().setBatteringRam(effectValue);
+                break;
+            case 8:
+                g.getDRM().setRaid(effectValue);
+                g.getDRM().setSabotageAction(effectValue);
+                break;
+            case 9:
+                 g.getDRM().setBatteringRam(effectValue);
+                break;
+            case 10:
+                if (g.getEnemy().getSiegeTower().getPosition() == 4) {
+                    g.getEnemy().getSiegeTower().Remove();
+                }
+                break;
+            case 11:
+                g.getDRM().setRaid(effectValue);
+                g.getDRM().setSabotageAction(effectValue);
+                g.getDRM().setCoupure(effectValue);
+                break;
+            case 12:
+                //TODO
+                break;
+            case 13:
+                g.getEnemy().getTrebuchet().Forward();
+                g.getDRM().setCoupure(effectValue);
+                break;
+            case 14:
+                g.getDRM().setCloseCombat(effectValue);
+                g.getDRM().setCircleSpaces(effectValue);
+                break;
+            case 15:
+                g.getDRM().setBatteringRam(effectValue);
+                break;
+            case 16:
+                g.getDRM().setSiegeTower(effectValue);
+                break;
+            case 17:
+                g.getDRM().setBatteringRam(effectValue);
+                g.getDRM().setLadders(effectValue);
+                g.getDRM().setMoraleAction(effectValue);
+                break;
+
+        }
+        return g;
     }
 }

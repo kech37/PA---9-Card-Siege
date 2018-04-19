@@ -8,12 +8,14 @@ package View;
 import Logic.Game;
 import Logic.States.AwaitBegining;
 import Logic.States.IStates;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
-/**
- *
- * @author andre
- */
+
 public class TextUI {
 
     private Game game;
@@ -25,9 +27,9 @@ public class TextUI {
     }
 
     public void uiAwaitBeggining() {
-        String op1, option2;
-        char c, d;
-        int f;
+        String op1;
+        char c;
+        
         Scanner sc = new Scanner(System.in);
         while (true) {
             do {
@@ -49,11 +51,45 @@ public class TextUI {
                 case '0':
                     exit = true;
                     return;
-                    
+
             }
 
         }
 
+    }
+
+    /////// GRAVA JOGO NUM FICHEIRO
+    private void SaveGameToFile(String fileName) throws IOException {
+        ObjectOutputStream oout = null;
+
+        try {
+            oout = new ObjectOutputStream(new FileOutputStream(fileName));
+
+            oout.writeObject(game);
+
+        } finally {
+
+            if (oout != null) {
+                oout.close();
+            }
+        }
+    }
+    
+    ////// DEVOLVE O JOGO QUE ESTÁ GUARDADO NO FICHEIRO
+    private Game GetGameFromFile(String fileName) throws IOException, ClassNotFoundException {
+        ObjectInputStream oin = null;
+
+        try {
+
+            oin = new ObjectInputStream(new FileInputStream(fileName));
+
+            return (Game) oin.readObject();
+
+        } finally {
+            if (oin != null) {
+                oin.close();
+            }
+        }
     }
 
     public void run() {

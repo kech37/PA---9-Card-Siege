@@ -10,10 +10,14 @@ package Logic;
  * @author andre
  */
 public class TrebuchetTrack {
-        int position ;
+       private  int position ;
 
     public TrebuchetTrack() {
         position  = 3;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     public void Forward() {

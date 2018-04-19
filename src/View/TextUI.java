@@ -15,10 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
-/**
- *
- * @author andre
- */
+
 public class TextUI {
 
     private Game game;
@@ -30,9 +27,9 @@ public class TextUI {
     }
 
     public void uiAwaitBeggining() {
-        String op1, option2;
-        char c, d;
-        int f;
+        String op1;
+        char c;
+        
         Scanner sc = new Scanner(System.in);
         while (true) {
             do {

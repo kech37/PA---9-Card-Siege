@@ -1,60 +1,61 @@
 package Logic.Cards;
 
-import Logic.Track;
-
 
 public class Status {
     
-    private boolean SupliesLevel;
-    private Track WallStrenght, Morale, Supplies;
+    private int SuppliesLevel;
+    private int WallStrenght, Morale, Supplies;
     private int Tunnel;
 
 
     public Status() {
-        WallStrenght = new Track();
-        Morale = new Track();
-        Supplies = new Track();
+        WallStrenght =  4;
+        Morale = 4;
+        Supplies = 4;
+        Tunnel = 0;
+        SuppliesLevel = 0;
     }
 
-    public boolean isSupliesLevel() {
-        return SupliesLevel;
+    public int getSuppliesLevel() {
+        return SuppliesLevel;
     }
 
-    public void setSupliesLevel(boolean SupliesLevel) {
-        this.SupliesLevel = SupliesLevel;
-    }
-
-    public Track getWallStrenght() {
+    public int getWallStrenght() {
         return WallStrenght;
     }
 
-    public void setWallStrenght(Track WallStrenght) {
-        this.WallStrenght = WallStrenght;
-    }
-
-    public Track getMorale() {
+    public int getMorale() {
         return Morale;
     }
 
-    public void setMorale(Track Morale) {
-        this.Morale = Morale;
-    }
-
-    public Track getSupplies() {
+    public int getSupplies() {
         return Supplies;
-    }
-
-    public void setSupplies(Track Supplies) {
-        this.Supplies = Supplies;
     }
 
     public int getTunnel() {
         return Tunnel;
     }
 
-    public void setTunnel(int Tunnel) {
-        this.Tunnel = Tunnel;
+    public void ModifySuppliesLevel(int SuppliesLevel) {
+        this.SuppliesLevel += SuppliesLevel;
     }
-     
+
+    public void ModifyWallStrenght(int WallStrenght) {
+        this.WallStrenght += WallStrenght;
+    }
+
+    public void ModifyMorale(int Morale) {
+        this.Morale += Morale;
+    }
+
+    public void ModifySupplies(int Supplies) {
+        this.Supplies += Supplies;
+    }
+
+    public void ModifyTunnel(int Tunnel) {
+        this.Tunnel += Tunnel;
+    }
+
+   
 }
 

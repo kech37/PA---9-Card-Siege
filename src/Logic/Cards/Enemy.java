@@ -3,12 +3,12 @@ package Logic.Cards;
 import Logic.Track;
 import Logic.TrebuchetTrack;
 
-
 public class Enemy {
-    
-    private Track SiegeTower, BatteringRam, Ladders; 
+
+    private Track SiegeTower, BatteringRam, Ladders;
     private TrebuchetTrack Trebuchet;
     private int SiegeTowerStrength, BatteringRamStrength, LaddersStrength;
+   
 
     public Enemy() {
         Trebuchet = new TrebuchetTrack();
@@ -18,7 +18,6 @@ public class Enemy {
         SiegeTowerStrength = 4;
         BatteringRamStrength = 3;
         LaddersStrength = 2;
-                
     }
 
     public Track getSiegeTower() {
@@ -48,30 +47,29 @@ public class Enemy {
     public int getLaddersStrength() {
         return LaddersStrength;
     }
-    
-    public void ModifySiegeTowerStrength(int c)
-    {
-        if((SiegeTowerStrength + c) > 0)
+
+    public void ModifySiegeTowerStrength(int c) {
+        if ((SiegeTowerStrength + c) > 0) {
             SiegeTowerStrength += c;
-        else
+        } else {
             SiegeTowerStrength = 0;
+        }
     }
-    
-    public void ModifyBatteringRamStrength(int c)
-    {
-        if((BatteringRamStrength + c) > 0)
+
+    public void ModifyBatteringRamStrength(int c) {
+        if ((BatteringRamStrength + c) > 0) {
             BatteringRamStrength += c;
-        else
+        } else {
             BatteringRamStrength = 0;
+        }
     }
-    
-     public void ModifyLaddersStrength(int c)
-    {
-        if((LaddersStrength + c) > 0)
+
+    public void ModifyLaddersStrength(int c) {
+        if ((LaddersStrength + c) > 0) {
             LaddersStrength += c;
-        else
+        } else {
             LaddersStrength = 0;
+        }
     }
-    
-    
+
 }

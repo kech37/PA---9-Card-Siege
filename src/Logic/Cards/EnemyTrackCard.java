@@ -1,15 +1,18 @@
 package Logic.Cards;
 
-import Logic.Track;
-import Logic.TrebuchetTrack;
+import Logic.Cards.Tracks.Track;
+import Logic.Cards.Tracks.TrebuchetTrack;
 
-public class Enemy {
+public class EnemyTrackCard {
 
-    private Track SiegeTower, BatteringRam, Ladders;
-    private TrebuchetTrack Trebuchet;
+    private final Track SiegeTower;
+
+    private final Track BatteringRam;
+    private final Track Ladders;
+    private final TrebuchetTrack Trebuchet;
     private int SiegeTowerStrength, BatteringRamStrength, LaddersStrength;
 
-    public Enemy() {
+    public EnemyTrackCard() {
         Trebuchet = new TrebuchetTrack();
         Ladders = new Track();
         SiegeTower = new Track();

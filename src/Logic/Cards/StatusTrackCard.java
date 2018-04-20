@@ -1,12 +1,12 @@
 package Logic.Cards;
 
-public class Status {
+public class StatusTrackCard {
 
     private int SuppliesLevel;
     private int WallStrenght, Morale, Supplies;
     private int Tunnel;
 
-    public Status() {
+    public StatusTrackCard() {
         WallStrenght = 4;
         Morale = 4;
         Supplies = 4;

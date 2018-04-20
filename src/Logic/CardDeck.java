@@ -6,8 +6,8 @@
 package Logic;
 
 import Logic.Cards.EventCard;
+import Logic.Cards.EventCards.Events.Event;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 import java.util.Random;
 
 /**

@@ -1,4 +1,4 @@
-package Logic;
+package Logic.Cards.Tracks;
 
 public class Track {
 

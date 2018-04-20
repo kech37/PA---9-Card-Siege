@@ -5,7 +5,6 @@
  */
 package Logic;
 
-import Logic.Cards.Status;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,25 +87,25 @@ public class Event {
 
     public GameData setEffect(GameData g) {
         switch (effectTarget) {
-            case 0:
+            case Constants.EFFECT_ILLESS:
                 g.getStatus().ModifyMorale(effectValue);
                 g.getStatus().ModifySupplies(effectValue);
                 break;
-            case 1:
+            case Constants.EFFECT_TREBUCHET_ATTACK:
                 g.getStatus().ModifyWallStrenght(effectValue);//VAI TER UM VALOR TEMPORARIO DEPENDENDO DO D6
                 effectValue = 0;
                 break;
-            case 2:
+            case Constants.EFFECT_GUARDS_DISTRACTED:
                 g.getDRM().setSabotageAction(effectValue);
                 g.getDRM().setMoraleAction(effectValue);
                 break;
-            case 3:
+            case Constants.EFFECT_SUPPLIES_SPOILED:
                 g.getStatus().ModifySupplies(effectValue);
                 break;
-            case 4:
+            case Constants.EFFECT_BAD_WEATHER:
                 g.setJustRaidSabotage(true);
                 break;
-            case 5:
+            case Constants.EFFECT_BOILING_OIL:
                 if (g.getEnemy().getBatteringRam().CircleSpace()) {
                     g.getDRM().setBatteringRam(effectValue);
                 }
@@ -117,49 +116,49 @@ public class Event {
                     g.getDRM().setSiegeTower(effectValue);
                 }
                 break;
-            case 6:
+            case Constants.EFFECT_DEATH_OF_A_LEADER:
                 g.getStatus().ModifyMorale(effectValue);
                 break;
-            case 7:
+            case Constants.EFFECT_VOLLEY_OF_ARROWS:
                 g.getDRM().setSiegeTower(effectValue);
                 g.getDRM().setLadders(effectValue);
                 g.getDRM().setBatteringRam(effectValue);
                 break;
-            case 8:
+            case Constants.EFFECT_CORVER_OF_DARKNESS:
                 g.getDRM().setRaid(effectValue);
                 g.getDRM().setSabotageAction(effectValue);
                 break;
-            case 9:
-                 g.getDRM().setBatteringRam(effectValue);
+            case Constants.EFFECT_GATE_FORTIDIED:
+                g.getDRM().setBatteringRam(effectValue);
                 break;
-            case 10:
+            case Constants.EFFECT_COLLAPSED:
                 if (g.getEnemy().getSiegeTower().getPosition() == 4) {
                     g.getEnemy().getSiegeTower().Remove();
                 }
                 break;
-            case 11:
+            case Constants.EFFECT_ENEMY_FATIGUE:
                 g.getDRM().setRaid(effectValue);
                 g.getDRM().setSabotageAction(effectValue);
                 g.getDRM().setCoupure(effectValue);
                 break;
-            case 12:
+            case Constants.EFFECT_FLAMING_ARROWS:
                 //TODO
                 break;
-            case 13:
+            case Constants.EFFECT_REPAIRED_TREBUCHET:
                 g.getEnemy().getTrebuchet().Forward();
                 g.getDRM().setCoupure(effectValue);
                 break;
-            case 14:
+            case Constants.EFFECT_RALLY:
                 g.getDRM().setCloseCombat(effectValue);
                 g.getDRM().setCircleSpaces(effectValue);
                 break;
-            case 15:
+            case Constants.EFFECT_DETERMINED_ENEMY:
                 g.getDRM().setBatteringRam(effectValue);
                 break;
-            case 16:
+            case Constants.EFFECT_IRON_SHIELDS:
                 g.getDRM().setSiegeTower(effectValue);
                 break;
-            case 17:
+            case Constants.EFFECT_FAITH:
                 g.getDRM().setBatteringRam(effectValue);
                 g.getDRM().setLadders(effectValue);
                 g.getDRM().setMoraleAction(effectValue);

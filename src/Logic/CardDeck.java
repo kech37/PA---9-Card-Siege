@@ -15,40 +15,38 @@ import java.util.Random;
  * @author andre
  */
 public class CardDeck {
+
     ArrayList<EventCard> Cards;
     ArrayList<EventCard> UsedCards;
-    
-    
-    public void Shuffle()
-    {
-        AddCards();
+
+    public void Shuffle() {
+        //AddCards();
         UsedCards.clear();
         ArrayList<EventCard> temp = Cards;
-        
+
         Cards.clear();
         Random r = new Random();
-        
-        while(!temp.isEmpty())
-        {
+
+        while (!temp.isEmpty()) {
             int x = r.nextInt(temp.size());
-            
+
             Cards.add(temp.get(x));
             temp.remove(x);
         }
     }
-    
-    public EventCard getCard() throws NoSuchElementException
-    {
-        if(Cards.isEmpty()) throw new NoSuchElementException();
+
+    public boolean addCard(Event day1, Event day2, Event day3) {
+        return this.Cards.add(new EventCard(day1, day2, day3));
+    }
+
+    /*public EventCard getCard() throws NoSuchElementException {
+        if (Cards.isEmpty()) {
+            throw new NoSuchElementException();
+        }
         UsedCards.add(Cards.get(0));
         Cards.remove(0);
-        return UsedCards.get(UsedCards.size() -1);
-    }
+        return UsedCards.get(UsedCards.size() - 1);
+    }*/
     
-    ///ADICIONAR AS CARTAS AO BARALHO 
-    private void AddCards()
-    {
-        
-    }
-    
+
 }

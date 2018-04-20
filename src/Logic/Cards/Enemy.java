@@ -8,7 +8,6 @@ public class Enemy {
     private Track SiegeTower, BatteringRam, Ladders;
     private TrebuchetTrack Trebuchet;
     private int SiegeTowerStrength, BatteringRamStrength, LaddersStrength;
-   
 
     public Enemy() {
         Trebuchet = new TrebuchetTrack();
@@ -25,27 +24,27 @@ public class Enemy {
     }
 
     public Track getBatteringRam() {
-        return BatteringRam;
+        return this.BatteringRam;
     }
 
     public Track getLadders() {
-        return Ladders;
+        return this.Ladders;
     }
 
     public TrebuchetTrack getTrebuchet() {
-        return Trebuchet;
+        return this.Trebuchet;
     }
 
     public int getSiegeTowerStrength() {
-        return SiegeTowerStrength;
+        return this.SiegeTowerStrength;
     }
 
     public int getBatteringRamStrength() {
-        return BatteringRamStrength;
+        return this.BatteringRamStrength;
     }
 
     public int getLaddersStrength() {
-        return LaddersStrength;
+        return this.LaddersStrength;
     }
 
     public void ModifySiegeTowerStrength(int c) {

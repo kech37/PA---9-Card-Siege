@@ -1,15 +1,13 @@
 package Logic.Cards;
 
-
 public class Status {
-    
+
     private int SuppliesLevel;
     private int WallStrenght, Morale, Supplies;
     private int Tunnel;
 
-
     public Status() {
-        WallStrenght =  4;
+        WallStrenght = 4;
         Morale = 4;
         Supplies = 4;
         Tunnel = 0;
@@ -56,6 +54,4 @@ public class Status {
         this.Tunnel += Tunnel;
     }
 
-   
 }
-

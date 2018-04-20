@@ -18,9 +18,8 @@ public class LaddersMovement extends Movement{
     }
 
     @Override
-    public boolean applyEffect() {
-        //Alterar aqui a posição do ladders movement
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void applyMovement() {
+        getGameData().getEnemy().getLadders().Forward();
     }
     
 }

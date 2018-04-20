@@ -5,9 +5,7 @@
  */
 package Logic.Cards.EventCards.Events;
 
-import Logic.Cards.EventCards.Movement.Movement;
 import Logic.GameData;
-import java.util.List;
 
 /**
  *
@@ -18,27 +16,15 @@ public abstract class Event {
     // Nome do Evento
     private final String eventName;
 
-    //Descrição do evento. Utilizamos uma List<String> pq pode haver duas descrições.
-    private final List<String> eventDescription;
-
     //Quantas ações é possivel fazer neste evento (turno)
     private final int actionPointAllowance;
 
-    //Que tipo de movimentos pode efetuar
-    private final List<Movement> enemyAdvancementOrders;
-
     private GameData gameData;
 
-    public Event(String eventName, List<String> eventDescription, int actionPointAllowance, List<Movement> enemyAdvancementOrders, GameData gameData) {
+    public Event(String eventName, int actionPointAllowance, GameData gameData) {
         this.eventName = eventName;
-        this.eventDescription = eventDescription;
         this.actionPointAllowance = actionPointAllowance;
-        this.enemyAdvancementOrders = enemyAdvancementOrders;
         this.gameData = gameData;
-    }
-
-    public List<Movement> getEnemyAdvancementOrders() {
-        return enemyAdvancementOrders;
     }
 
     public GameData getGameData() {
@@ -47,10 +33,6 @@ public abstract class Event {
 
     public String getEventName() {
         return eventName;
-    }
-
-    public List<String> getEventDescription() {
-        return eventDescription;
     }
 
     public int getActionPointAllowance() {

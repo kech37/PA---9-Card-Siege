@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventSuppliesSpoiled extends Event {
+public class EventSuppliesSpoiled extends RegularEvents {
 
     public EventSuppliesSpoiled(GameData gameData) {
         super(

@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventEnemyFatigue extends Event {
+public class EventEnemyFatigue extends RegularEvents {
 
     public EventEnemyFatigue(GameData gameData) {
         super(

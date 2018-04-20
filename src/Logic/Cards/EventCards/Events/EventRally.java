@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventRally extends Event {
+public class EventRally extends RegularEvents {
 
     public EventRally(GameData gameData) {
         super(

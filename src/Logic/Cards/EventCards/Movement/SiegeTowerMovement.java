@@ -18,9 +18,10 @@ public class SiegeTowerMovement extends Movement{
     }
 
     @Override
-    public boolean applyEffect() {
-        //Alterar aqui a posição do siege tower movement
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void applyMovement() {
+        if(getGameData().getEnemy().getSiegeTower().getPosition() != -1){
+            getGameData().getEnemy().getSiegeTower().Forward();
+        }
     }
 
 }

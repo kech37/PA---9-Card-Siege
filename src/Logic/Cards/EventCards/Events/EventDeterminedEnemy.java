@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventDeterminedEnemy extends Event {
+public class EventDeterminedEnemy extends RegularEvents {
 
     public EventDeterminedEnemy(GameData gameData) {
         super(

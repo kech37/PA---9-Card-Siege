@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventFaith extends Event{
+public class EventFaith extends RegularEvents{
     
     public EventFaith(GameData gameData) {
         super(

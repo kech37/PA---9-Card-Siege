@@ -29,6 +29,6 @@ public abstract class Movement {
         return gameData;
     }
     
-    public abstract boolean applyEffect();
+    public abstract void applyMovement();
     
 }

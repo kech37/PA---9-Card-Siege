@@ -13,7 +13,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventBadWeather extends Event {
+public class EventBadWeather extends RegularEvents {
 
     public EventBadWeather(GameData gameData) {
         super(

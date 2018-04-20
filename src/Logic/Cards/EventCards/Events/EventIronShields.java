@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventIronShields extends Event {
+public class EventIronShields extends RegularEvents {
 
     public EventIronShields(GameData gameData) {
         super(

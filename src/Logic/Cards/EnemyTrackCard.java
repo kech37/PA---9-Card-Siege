@@ -23,7 +23,7 @@ public class EnemyTrackCard {
     }
 
     public Track getSiegeTower() {
-        return SiegeTower;
+        return this.SiegeTower;
     }
 
     public Track getBatteringRam() {

@@ -18,9 +18,8 @@ public class SwordMovement extends Movement{
     }
 
     @Override
-    public boolean applyEffect() {
-        //Alterar aqui a posição do sword movement
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void applyMovement() {
+        //TODo
     }
     
 }

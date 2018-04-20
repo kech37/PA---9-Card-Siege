@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventDeathOfLeader extends Event{
+public class EventDeathOfLeader extends RegularEvents{
 
     public EventDeathOfLeader(GameData gameData) {
         super(

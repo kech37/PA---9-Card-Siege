@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventCoverDarkness extends Event {
+public class EventCoverDarkness extends RegularEvents {
 
     public EventCoverDarkness(GameData gameData) {
         super(

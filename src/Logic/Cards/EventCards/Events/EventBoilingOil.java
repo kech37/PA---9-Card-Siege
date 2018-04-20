@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventBoilingOil extends Event {
+public class EventBoilingOil extends RegularEvents {
 
     public EventBoilingOil(GameData gameData) {
         super(

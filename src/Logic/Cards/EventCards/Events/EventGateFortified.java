@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventGateFortified extends Event {
+public class EventGateFortified extends RegularEvents {
 
     public EventGateFortified(GameData gameData) {
         super(

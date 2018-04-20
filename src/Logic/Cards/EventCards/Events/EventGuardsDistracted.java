@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventGuardsDistracted extends Event {
+public class EventGuardsDistracted extends RegularEvents {
 
     public EventGuardsDistracted(GameData gameData) {
         super(

@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventVolleyArrows extends Event {
+public class EventVolleyArrows extends RegularEvents {
 
     public EventVolleyArrows(GameData gameData) {
         super(

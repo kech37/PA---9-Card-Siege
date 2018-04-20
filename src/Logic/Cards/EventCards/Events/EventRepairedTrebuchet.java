@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventRepairedTrebuchet extends Event {
+public class EventRepairedTrebuchet extends RegularEvents {
 
     public EventRepairedTrebuchet(GameData gameData) {
         super(

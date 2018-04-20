@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventCollapsed extends Event {
+public class EventCollapsed extends RegularEvents {
 
     public EventCollapsed(GameData gameData) {
         super(

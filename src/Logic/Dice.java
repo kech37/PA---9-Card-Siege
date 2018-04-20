@@ -23,7 +23,7 @@ public class Dice {
         this(6);
     }
 
-    int rollDice() {
+    public int rollDice() {
         Random random = new Random();
         return random.nextInt(this.sidesNumber) + 1;
     }

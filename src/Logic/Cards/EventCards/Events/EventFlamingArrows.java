@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventFlamingArrows extends Event {
+public class EventFlamingArrows extends RegularEvents {
 
     public EventFlamingArrows(GameData gameData) {
         super(

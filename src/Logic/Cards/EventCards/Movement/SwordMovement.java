@@ -19,7 +19,7 @@ public class SwordMovement extends Movement{
 
     @Override
     public void applyMovement() {
-        //TODo
+        //TODO
     }
     
 }

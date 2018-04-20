@@ -5,7 +5,7 @@
  */
 package Logic.Cards.EventCards.Events;
 
-import Logic.Cards.EventCards.Movement.*;
+import Logic.Cards.EventCards.Movement.SwordMovement;
 import Logic.GameData;
 import java.util.ArrayList;
 import java.util.Arrays;

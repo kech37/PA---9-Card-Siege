@@ -1,6 +1,7 @@
 package Logic;
 
 //import Logic.Cartas.Carta;
+import Logic.Cards.CardDeck;
 import Logic.Cards.EnemyTrackCard;
 import Logic.Cards.StatusTrackCard;
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public class GameData implements  Serializable {
     
     
     public GameData() {
-        deck = new CardDeck();
+        deck = new CardDeck(this);
         enemy = new EnemyTrackCard();
         status = new StatusTrackCard();     
         drm = new DRM();

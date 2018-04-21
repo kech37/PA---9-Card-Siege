@@ -1,32 +1,25 @@
 package Logic;
 
 //import Logic.Cartas.Carta;
-import Logic.Cards.Enemy;
-import Logic.Cards.EventCard;
-import Logic.Cards.Status;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import Logic.Cards.CardDeck;
+import Logic.Cards.EnemyTrackCard;
+import Logic.Cards.StatusTrackCard;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class GameData implements  Serializable {
 
-    private CardDeck deck;
-    private Enemy enemy;
-    private Status status;
-    private DRM drm;
+    private final CardDeck deck;
+    private final EnemyTrackCard enemy;
+    private final StatusTrackCard status;
+    private final DRM drm;
     private boolean  justRaidSabotage;
     
     
     
     public GameData() {
-        deck = new CardDeck();
-        enemy = new Enemy();
-        status = new Status();     
+        deck = new CardDeck(this);
+        enemy = new EnemyTrackCard();
+        status = new StatusTrackCard();     
         drm = new DRM();
         justRaidSabotage = false;
     }
@@ -49,11 +42,11 @@ public class GameData implements  Serializable {
         return deck;
     }
 
-    public Enemy getEnemy() {
+    public EnemyTrackCard getEnemy() {
         return enemy;
     }
 
-    public Status getStatus() {
+    public StatusTrackCard getStatus() {
         return status;
     }
     

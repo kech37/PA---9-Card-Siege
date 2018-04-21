@@ -15,7 +15,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
-
 public class TextUI {
 
     private Game game;
@@ -29,7 +28,7 @@ public class TextUI {
     public void uiAwaitBeggining() {
         String op1;
         char c;
-        
+
         Scanner sc = new Scanner(System.in);
         while (true) {
             do {
@@ -74,7 +73,7 @@ public class TextUI {
             }
         }
     }
-    
+
     ////// DEVOLVE O JOGO QUE ESTÁ GUARDADO NO FICHEIRO
     private Game GetGameFromFile(String fileName) throws IOException, ClassNotFoundException {
         ObjectInputStream oin = null;

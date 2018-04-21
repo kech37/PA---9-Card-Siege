@@ -1,16 +1,18 @@
 package Logic.Cards;
 
-import Logic.Track;
-import Logic.TrebuchetTrack;
+import Logic.Cards.Tracks.Track;
+import Logic.Cards.Tracks.TrebuchetTrack;
 
-public class Enemy {
+public class EnemyTrackCard {
 
-    private Track SiegeTower, BatteringRam, Ladders;
-    private TrebuchetTrack Trebuchet;
+    private final Track SiegeTower;
+
+    private final Track BatteringRam;
+    private final Track Ladders;
+    private final TrebuchetTrack Trebuchet;
     private int SiegeTowerStrength, BatteringRamStrength, LaddersStrength;
-   
 
-    public Enemy() {
+    public EnemyTrackCard() {
         Trebuchet = new TrebuchetTrack();
         Ladders = new Track();
         SiegeTower = new Track();
@@ -21,31 +23,31 @@ public class Enemy {
     }
 
     public Track getSiegeTower() {
-        return SiegeTower;
+        return this.SiegeTower;
     }
 
     public Track getBatteringRam() {
-        return BatteringRam;
+        return this.BatteringRam;
     }
 
     public Track getLadders() {
-        return Ladders;
+        return this.Ladders;
     }
 
     public TrebuchetTrack getTrebuchet() {
-        return Trebuchet;
+        return this.Trebuchet;
     }
 
     public int getSiegeTowerStrength() {
-        return SiegeTowerStrength;
+        return this.SiegeTowerStrength;
     }
 
     public int getBatteringRamStrength() {
-        return BatteringRamStrength;
+        return this.BatteringRamStrength;
     }
 
     public int getLaddersStrength() {
-        return LaddersStrength;
+        return this.LaddersStrength;
     }
 
     public void ModifySiegeTowerStrength(int c) {

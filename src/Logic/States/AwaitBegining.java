@@ -12,9 +12,9 @@ import java.io.Serializable;
  *
  * @author andre
  */
-public class AwaitBegining extends StateAdapter implements IStates, Serializable{
-    
-     public AwaitBegining(GameData g){
+public class AwaitBegining extends StateAdapter implements IStates, Serializable {
+
+    public AwaitBegining(GameData g) {
         super(g);
     }
 
@@ -22,6 +22,5 @@ public class AwaitBegining extends StateAdapter implements IStates, Serializable
     public IStates start() {
         return super.start(); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

@@ -5,9 +5,8 @@
  */
 package Logic.States;
 
-
-
 public interface IStates {
+
     //  AWAIT BEGINIG 
     IStates start();
 

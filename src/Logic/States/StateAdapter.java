@@ -12,21 +12,18 @@ import Logic.GameData;
  * @author andre
  */
 public class StateAdapter implements IStates {
- 
-     private GameData game;
 
-    public StateAdapter(GameData g)
-    {
-        this.game =g;
+    private GameData game;
+
+    public StateAdapter(GameData g) {
+        this.game = g;
     }
-    
-      public GameData getGame() 
-    {
+
+    public GameData getGame() {
         return game;
     }
-    
-    public void setGame(GameData game) 
-    {
+
+    public void setGame(GameData game) {
         this.game = game;
     }
 

@@ -9,16 +9,18 @@ import Logic.GameData;
 
 /**
  *
- * @author andre
+ * @author a21220528
  */
-public class AwaitBegining extends StateAdapter {
+public class AwaitTopCardToBeDraw extends StateAdapter {
 
-    public AwaitBegining(GameData gameData) {
-        super(gameData);
+    public AwaitTopCardToBeDraw(GameData dataGame) {
+        super(dataGame);
     }
+
 
     @Override
-    public IStates start() {
-        return new AwaitTopCardToBeDraw(getDataGame());
+    public IStates finish() {
+        return new GameOver(getDataGame());
     }
+    
 }

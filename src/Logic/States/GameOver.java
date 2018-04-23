@@ -5,10 +5,16 @@
  */
 package Logic.States;
 
+import Logic.GameData;
+
 /**
  *
- * @author andre
+ * @author a21220528
  */
-public class AwaitEnemyTrackSelectionForArchersAttack {
+public class GameOver extends StateAdapter{
+    
+    public GameOver(GameData g) {
+        super(g);
+    }
     
 }

@@ -5,16 +5,10 @@
  */
 package Logic.States;
 
-public interface IStates {
-
-    //  AWAIT BEGINIG 
-    IStates start();
-    
-    // AWAIT TOP CARD TO BE DRAWN
-    IStates CheckEnemyLines();
-
-    
-    
-   
+/**
+ *
+ * @author andre
+ */
+public class AwaitActionSelection {
 
 }

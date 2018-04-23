@@ -66,8 +66,6 @@ public class DRM {
         this.SabotageAction = SabotageAction;
     }
 
-    
-
     public int getCoupure() {
         return Coupure;
     }

@@ -20,14 +20,14 @@ public class TrebuchetAttackEvent extends Event {
 
     @Override
     public void applyEffect() {
-        switch (getGameData().getEnemy().getTrebuchet().getPosition()) {
-            case 1: //tem as 3
+        switch (getGameData().getEnemy().getTrebuchet().getHowMany()) {
+            case 3:
                 getGameData().getStatus().ModifyWallStrenght(-2);
                 break;
-            case 2: //tem as 2
+            case 2:
                 getGameData().getStatus().ModifyWallStrenght(-1);
                 break;
-            case 3:
+            case 1:
                 int roll = new Dice(6).rollDice();
                 if (roll >= 4) {
                     getGameData().getStatus().ModifyWallStrenght(-1);

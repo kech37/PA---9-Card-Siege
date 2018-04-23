@@ -13,9 +13,9 @@ import java.io.Serializable;
  *
  * @author andre
  */
-public class Game implements Serializable {
+public final class Game implements Serializable {
 
-    private GameData gameData;
+    private final GameData gameData;
     private IStates state;
 
     public Game() {

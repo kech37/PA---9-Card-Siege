@@ -27,6 +27,6 @@ public class EventFlamingArrows extends RegularEvents {
 
     @Override
     public void applyEffect() {
-        //TODO
+        getGameData().getDRM().setSiegeTower(1);
     }
 }

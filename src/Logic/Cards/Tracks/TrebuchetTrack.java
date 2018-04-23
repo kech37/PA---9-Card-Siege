@@ -10,31 +10,34 @@ package Logic.Cards.Tracks;
  * @author andre
  */
 public class TrebuchetTrack {
-       private  int position ;
+
+    private int count;
 
     public TrebuchetTrack() {
-        position  = 3;
+        count = 1;
     }
 
-    public int getPosition() {
-        return position;
+    public int getHowMany() {
+        return this.count;
     }
 
-    public void Forward() {
-        if(position  > 0)
-              position --;
-        else
+    public void addOne() {
+        if (count <= 3) {
+            count++;
+        } else {
             throw new IndexOutOfBoundsException();
+        }
     }
 
-    public void Backward() {
-        if(position  < 3)
-             position ++;
-        else
-             throw new IndexOutOfBoundsException();
+    public void removeOne() {
+        if (count >= 1) {
+            count--;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
-    public void Reset() {
-        position  = 3;
+    public void resetHowMany() {
+        count = 1;
     }
 }

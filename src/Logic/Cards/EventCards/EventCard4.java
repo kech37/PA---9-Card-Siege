@@ -24,7 +24,7 @@ public class EventCard4 extends BaseEventCard{
                 new EventDeathOfLeader(gameData),
                 new EventGateFortified(gameData),
                 new EventFlamingArrows(gameData)
-        )));
+        )),gameData);
     }
     
 }

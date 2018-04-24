@@ -12,6 +12,7 @@ public class GameData implements  Serializable {
     private final EnemyTrackCard enemy;
     private final StatusTrackCard status;
     private final DRM drm;
+    private int day;
     private boolean  justRaidSabotage;
     
     
@@ -48,6 +49,10 @@ public class GameData implements  Serializable {
 
     public StatusTrackCard getStatus() {
         return status;
+    }
+
+    public void intialize() {
+        day = 1;
     }
     
     

@@ -34,5 +34,10 @@ public class Game implements Serializable {
     public void setState(IStates s) {
         state = s;
     }
-
+    
+    public void Start()
+    {
+         setState(getState().start());     
+    }
+    
 }

@@ -20,7 +20,9 @@ public class AwaitBegining extends StateAdapter implements IStates, Serializable
 
     @Override
     public IStates start() {
-        return super.start(); //To change body of generated methods, choose Tools | Templates.
+        getGame().intialize();
+        return new AwaitTopCardToBeDrawn(getGame());
+
     }
 
     @Override

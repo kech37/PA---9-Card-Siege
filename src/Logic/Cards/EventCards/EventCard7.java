@@ -23,7 +23,7 @@ public class EventCard7 extends BaseEventCard{
                 new EventDeterminedEnemy(gameData),
                 new EventIronShields(gameData),
                 new EventFaith(gameData)
-        )));
+        )), gameData);
     }
     
 }

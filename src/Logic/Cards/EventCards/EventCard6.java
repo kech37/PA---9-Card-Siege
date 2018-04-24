@@ -23,7 +23,7 @@ public class EventCard6 extends BaseEventCard{
                 new EventCoverDarkness(gameData),
                 new EventEnemyFatigue(gameData),
                 new EventRally(gameData)
-        )));
+        )),gameData);
     }
     
 }

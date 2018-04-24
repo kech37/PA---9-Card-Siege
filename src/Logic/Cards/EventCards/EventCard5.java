@@ -23,7 +23,7 @@ public class EventCard5 extends BaseEventCard{
                 new EventVolleyArrows(gameData),
                 new EventCollapsed(gameData),
                 new EventRepairedTrebuchet(gameData)
-        )));
+        )),gameData);
     }
     
 }

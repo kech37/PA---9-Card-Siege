@@ -7,6 +7,7 @@ package View;
 
 import Logic.Game;
 import Logic.States.AwaitBegining;
+import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.IStates;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -50,13 +51,23 @@ public class TextUI {
                 case '0':
                     exit = true;
                     return;
+                case '1':
+                    game.Start();
+                    return;
+                            
 
             }
 
         }
 
     }
+    
+    private void iuAwaitTopCardToBeDrawn() {
+       System.out.println("A verificar linhas Inimigas...");
+       game.
 
+    }
+    
     /////// GRAVA JOGO NUM FICHEIRO
     private void SaveGameToFile(String fileName) throws IOException {
         ObjectOutputStream oout = null;
@@ -90,6 +101,8 @@ public class TextUI {
             }
         }
     }
+    
+    
 
     public void run() {
         while (!exit) {
@@ -98,6 +111,13 @@ public class TextUI {
 
             if (state instanceof AwaitBegining) {
                 uiAwaitBeggining();
+            }
+            else
+            {
+                if(state instanceof AwaitTopCardToBeDrawn)
+                {
+                    iuAwaitTopCardToBeDrawn();
+                }
             }
         }
     }

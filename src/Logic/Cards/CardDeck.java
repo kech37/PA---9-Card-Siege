@@ -17,16 +17,26 @@ import java.util.Collections;
 public final class CardDeck {
 
     ArrayList<BaseEventCard> Cards;
-
+    private BaseEventCard onUseEventCard;
+    
     public CardDeck(GameData gameData) {
         this.Cards = new ArrayList<>();
         this.reset(gameData);
     }
 
-    public BaseEventCard getOneCard() {
-        return this.Cards.remove(0);
+    public void removeOneCard()
+    { 
+        onUseEventCard = this.Cards.remove(0);
     }
 
+    public BaseEventCard getOnUseEventCard() {
+        return onUseEventCard;
+    }
+    
+    public boolean isEmpty()
+    {
+        return Cards.isEmpty();
+    }
     public void reset(GameData gameData) {
         this.Cards.clear();
 

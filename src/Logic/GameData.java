@@ -31,7 +31,7 @@ public class GameData implements Serializable {
     public boolean nextDay() {
         if(day < 3){
             day++;
-            deck = new CardDeck(this);
+            deck.reset(this);          
             return true;
         }else{
             return false;
@@ -61,6 +61,5 @@ public class GameData implements Serializable {
     public StatusTrackCard getStatus() {
         return status;
     }
-
-   
+       
 }

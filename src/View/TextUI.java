@@ -62,8 +62,11 @@ public class TextUI {
         }
     }
 
-    private void getUserInputWhileAwaitTopCardToBeDraw() {
-
+    private void getUserInputWhileAwaitTopCardToBeDraw() {  
+        game.getState().CheckingEnemyLines();
+        game.getState().CheckExistingCards();
+        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(0).getEventName());
+        
     }
 
 /////// GRAVA JOGO NUM FICHEIRO

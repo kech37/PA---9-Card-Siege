@@ -9,7 +9,9 @@ public interface IStates {
 
     //  AWAIT BEGINIG 
     IStates start();
-
     IStates finish();
+    
+    IStates CheckingEnemyLines();
+    
 
 }

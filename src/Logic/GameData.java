@@ -62,8 +62,5 @@ public class GameData implements Serializable {
         return status;
     }
 
-    public void intialize() {
-        day = 1;
-    }
    
 }

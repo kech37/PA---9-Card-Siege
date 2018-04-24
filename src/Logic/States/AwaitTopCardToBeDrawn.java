@@ -9,28 +9,18 @@ import Logic.GameData;
 
 /**
  *
- * @author andre
+ * @author a21220528
  */
-public class AwaitTopCardToBeDrawn extends StateAdapter  implements IStates   {
+public class AwaitTopCardToBeDrawn extends StateAdapter {
 
-    public AwaitTopCardToBeDrawn(GameData g) {
-        super(g);
+    public AwaitTopCardToBeDrawn(GameData dataGame) {
+        super(dataGame);
     }
+
 
     @Override
-    public IStates start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public IStates CheckEnemyLines() {
-        if(getDataGame().getStatus().getTunnel() != 0)
-        {
-            //if(getGame().getDeck().Shuffle())
-            return null;
-        }
-        else
-          //  DrawnTopCard();
-            return null;
+    public IStates finish() {
+        return new GameOver(getDataGame());
     }
     
 }

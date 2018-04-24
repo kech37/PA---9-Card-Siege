@@ -11,10 +11,10 @@ import Logic.GameData;
  *
  * @author a21220528
  */
-public class GameOver extends StateAdapter{
-    
-    public GameOver(GameData g) {
-        super(g);
+public class GameOver extends StateAdapter {
+
+    public GameOver(GameData dataGame) {
+        super(dataGame);
     }
-    
+
 }

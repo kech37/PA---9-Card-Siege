@@ -63,9 +63,9 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitTopCardToBeDraw() {  
-        game.getState().CheckingEnemyLines();
-        game.getState().CheckExistingCards();
-        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(0).getEventName());
+        game.CheckingEnemyLines();
+        game.CheckExistingCards();
+        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()-1).getEventName());
         
     }
 

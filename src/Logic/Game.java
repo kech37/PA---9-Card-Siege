@@ -39,10 +39,6 @@ public final class Game implements Serializable {
         setState(getState().start());
     }
 
-    public void finish() {
-        setState(getState().finish());
-    }
-
     public void leaveGame() {
         setState(getState().finish());
     }

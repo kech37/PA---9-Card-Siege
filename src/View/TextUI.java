@@ -5,7 +5,6 @@
  */
 package View;
 
-import Logic.Dice;
 import Logic.Game;
 import Logic.States.*;
 import java.io.FileInputStream;
@@ -63,6 +62,7 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitTopCardToBeDraw() {  
+
         game.CheckingEnemyLines();
         game.CheckExistingCards();
         System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()-1).getEventName());

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class GameData implements Serializable {
 
-    private final CardDeck deck;
+    private CardDeck deck;
     private final EnemyTrackCard enemy;
     private final StatusTrackCard status;
     private final DRM drm;

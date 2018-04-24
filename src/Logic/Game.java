@@ -20,7 +20,7 @@ public final class Game implements Serializable {
 
     public Game() {
         gameData = new GameData();
-        setState(new AwaitBegining(gameData));
+        state = new AwaitBegining(gameData);
     }
 
     public GameData getGame() {
@@ -31,8 +31,16 @@ public final class Game implements Serializable {
         return state;
     }
 
-    public void setState(IStates s) {
+    private void setState(IStates s) {
         state = s;
+    }
+
+    public void start() {
+        setState(getState().start());
+    }
+
+    public void finish() {
+        setState(getState().finish());
     }
 
 }

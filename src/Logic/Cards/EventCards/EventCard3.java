@@ -23,7 +23,7 @@ public class EventCard3 extends BaseEventCard{
                 new EventSuppliesSpoiled(gameData),
                 new EventBadWeather(gameData),
                 new EventBoilingOil(gameData)
-        )));
+        )),gameData);
     }
     
 }

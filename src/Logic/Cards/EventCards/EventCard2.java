@@ -23,7 +23,7 @@ public class EventCard2 extends BaseEventCard{
                 new EventIllness(gameData),
                 new EventGuardsDistracted(gameData),
                 new TrebuchetAttackEvent(1, gameData)
-        )));
+        )), gameData);
     }
     
 }

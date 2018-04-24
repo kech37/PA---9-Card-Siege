@@ -19,6 +19,8 @@ public class AwaitBegining extends StateAdapter {
 
     @Override
     public IStates start() {
-        return new AwaitTopCardToBeDraw(getDataGame());
+        getDataGame().intialize();
+        return new AwaitTopCardToBeDrawn(getDataGame());
+
     }
 }

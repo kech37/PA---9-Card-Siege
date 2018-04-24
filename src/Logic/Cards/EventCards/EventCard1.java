@@ -21,7 +21,8 @@ public class EventCard1 extends BaseEventCard{
                 new TrebuchetAttackEvent(3, gameData),
                 new TrebuchetAttackEvent(2, gameData),
                 new TrebuchetAttackEvent(1, gameData)
-        )));
+        )),gameData);
+
     }
     
 }

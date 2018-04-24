@@ -42,5 +42,4 @@ public final class Game implements Serializable {
     public void finish() {
         setState(getState().finish());
     }
-
 }

@@ -7,7 +7,11 @@ package View;
 
 import Logic.Dice;
 import Logic.Game;
-import Logic.States.*;
+import Logic.States.AwaitBegining;
+import Logic.States.AwaitTopCardToBeDraw;
+import Logic.States.AwaitTopCardToBeDrawn;
+import Logic.States.GameOver;
+import Logic.States.IStates;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,6 +39,10 @@ public class TextUI {
         }
         System.out.println("\n******************** Game Over ********************");
 //        showGame();
+    }
+    
+    private void iuAwaitTopCardToBeDrawn() {
+       System.out.println("A verificar linhas Inimigas...");
     }
 
     private void getUserInputWhileAwaitingBegining() {
@@ -99,4 +107,5 @@ public class TextUI {
             }
         }
     }
+   
 }

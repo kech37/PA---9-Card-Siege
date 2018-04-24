@@ -73,5 +73,19 @@ public class StatusTrackCard {
     public void ModifyTunnel(int Tunnel) {
         this.Tunnel += Tunnel;
     }
+    
+           
+    public boolean isOnEnemyLines()
+    {
+        if(Tunnel == 3)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 }

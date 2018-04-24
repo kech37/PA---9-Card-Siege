@@ -25,13 +25,36 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
 
     @Override
     public IStates CheckingEnemyLines() {
-
-        if (new Dice(6).rollDice() == 1 && getDataGame().getStatus().getTunnel() > 0) {
+        if (new Dice(6).rollDice() == 1 && getDataGame().getStatus().isOnEnemyLines()) {
             getDataGame().getStatus().setTunnel(0); ///SOLDADOS NO CASTELO
             getDataGame().getStatus().setSuppliesLevel(0);
             getDataGame().getStatus().ModifyMorale(-1);///REDUZ MORAL EM 1
-        } 
+        }
         return this;
+    }
+
+    @Override
+    public IStates CheckExistingCards() {
+        if (getDataGame().getDeck().isEmpty()) {
+            if (!getDataGame().nextDay()) {
+                return new GameOver(getDataGame()); //TODO: Estado Ganhar  
+            } else {
+                getDataGame().getStatus().ModifySupplies(-1);
+                if (!getDataGame().getStatus().isOnEnemyLines()) {
+                    getDataGame().getStatus().setTunnel(0);
+                    return this;
+                } else {
+                    getDataGame().getStatus().ModifySupplies(getDataGame().getStatus().getSuppliesLevel());
+                    return this;//
+                }
+            }
+        }
+        else
+        {
+           getDataGame().getDeck().removeOneCard();
+           getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay() - 1).applyEffect();
+           return this; 
+        }
     }
 
 }

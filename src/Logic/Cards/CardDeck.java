@@ -22,6 +22,7 @@ public final class CardDeck {
     public CardDeck(GameData gameData) {
         this.Cards = new ArrayList<>();
         this.reset(gameData);
+        onUseEventCard = null;
     }
 
     public void removeOneCard()
@@ -47,7 +48,8 @@ public final class CardDeck {
         this.Cards.add(new EventCard5(gameData));
         this.Cards.add(new EventCard6(gameData));
         this.Cards.add(new EventCard7(gameData));
-
+        
+        onUseEventCard = null;
         Collections.shuffle(this.Cards);
     }
 

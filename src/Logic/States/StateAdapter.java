@@ -39,11 +39,11 @@ public class StateAdapter implements IStates {
 
     @Override
     public IStates CheckingEnemyLines() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
 
     @Override
     public IStates CheckExistingCards() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
 }

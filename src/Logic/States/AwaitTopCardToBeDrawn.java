@@ -30,7 +30,7 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
             getDataGame().getStatus().setTunnel(0); ///SOLDADOS NO CASTELO
             getDataGame().getStatus().setSuppliesLevel(0);
             getDataGame().getStatus().ModifyMorale(-1);///REDUZ MORAL EM 1
-        }
+        } 
         return this;
     }
 

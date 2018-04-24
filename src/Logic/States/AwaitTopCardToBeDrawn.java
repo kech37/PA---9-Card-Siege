@@ -5,32 +5,33 @@
  */
 package Logic.States;
 
+import Logic.Dice;
 import Logic.GameData;
 
 /**
  *
- * @author andre
+ * @author a21220528
  */
-public class AwaitTopCardToBeDrawn extends StateAdapter  implements IStates   {
+public class AwaitTopCardToBeDrawn extends StateAdapter {
 
-    public AwaitTopCardToBeDrawn(GameData g) {
-        super(g);
+    public AwaitTopCardToBeDrawn(GameData dataGame) {
+        super(dataGame);
     }
 
     @Override
-    public IStates start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public IStates finish() {
+        return new GameOver(getDataGame());
     }
 
-    public IStates CheckEnemyLines() {
-        if(getDataGame().getStatus().getTunnel() != 0)
-        {
-            //if(getGame().getDeck().Shuffle())
-            return null;
+    @Override
+    public IStates CheckingEnemyLines() {
+
+        if (new Dice(6).rollDice() == 1 && getDataGame().getStatus().getTunnel() > 0) {
+            getDataGame().getStatus().setTunnel(0); ///SOLDADOS NO CASTELO
+            getDataGame().getStatus().setSuppliesLevel(0);
+            getDataGame().getStatus().ModifyMorale(-1);///REDUZ MORAL EM 1
         }
-        else
-          //  DrawnTopCard();
-            return null;
+        return this;
     }
-    
+
 }

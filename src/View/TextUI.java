@@ -8,7 +8,7 @@ package View;
 import Logic.Dice;
 import Logic.Game;
 import Logic.States.AwaitBegining;
-import Logic.States.AwaitTopCardToBeDraw;
+import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.GameOver;
 import Logic.States.IStates;
@@ -33,7 +33,7 @@ public class TextUI {
         while (!(game.getState() instanceof GameOver)) {
             if (game.getState() instanceof AwaitBegining) {
                 getUserInputWhileAwaitingBegining();
-            }else if(game.getState() instanceof AwaitTopCardToBeDraw){
+            }else if(game.getState() instanceof AwaitTopCardToBeDrawn){
                 getUserInputWhileAwaitTopCardToBeDraw();
             }
         }

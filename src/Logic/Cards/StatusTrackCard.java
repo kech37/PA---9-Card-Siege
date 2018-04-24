@@ -34,6 +34,26 @@ public class StatusTrackCard {
         return Tunnel;
     }
 
+    public void setSuppliesLevel(int SuppliesLevel) {
+        this.SuppliesLevel = SuppliesLevel;
+    }
+
+    public void setWallStrenght(int WallStrenght) {
+        this.WallStrenght = WallStrenght;
+    }
+
+    public void setMorale(int Morale) {
+        this.Morale = Morale;
+    }
+
+    public void setSupplies(int Supplies) {
+        this.Supplies = Supplies;
+    }
+
+    public void setTunnel(int Tunnel) {
+        this.Tunnel = Tunnel;
+    }
+
     public void ModifySuppliesLevel(int SuppliesLevel) {
         this.SuppliesLevel += SuppliesLevel;
     }

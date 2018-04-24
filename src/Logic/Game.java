@@ -13,14 +13,14 @@ import java.io.Serializable;
  *
  * @author andre
  */
-public class Game implements Serializable {
+public final class Game implements Serializable {
 
-    private GameData gameData;
+    private final GameData gameData;
     private IStates state;
 
     public Game() {
         gameData = new GameData();
-        setState(new AwaitBegining(gameData));
+        state = new AwaitBegining(gameData);
     }
 
     public GameData getGame() {
@@ -31,13 +31,15 @@ public class Game implements Serializable {
         return state;
     }
 
-    public void setState(IStates s) {
+    private void setState(IStates s) {
         state = s;
     }
-    
-    public void Start()
-    {
-         setState(getState().start());     
+
+    public void start() {
+        setState(getState().start());
     }
-    
+
+    public void finish() {
+        setState(getState().finish());
+    }
 }

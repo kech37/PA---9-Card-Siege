@@ -5,9 +5,12 @@
  */
 package View;
 
+import Logic.Dice;
 import Logic.Game;
 import Logic.States.AwaitBegining;
+import Logic.States.AwaitTopCardToBeDraw;
 import Logic.States.AwaitTopCardToBeDrawn;
+import Logic.States.GameOver;
 import Logic.States.IStates;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,57 +21,60 @@ import java.util.Scanner;
 
 public class TextUI {
 
-    private Game game;
-    private boolean exit;
+    private final Game game;
+    private final Scanner scan;
 
     public TextUI(Game g) {
         this.game = g;
-        exit = false;
+        this.scan = new Scanner(System.in);
     }
 
-    public void uiAwaitBeggining() {
-        String op1;
-        char c;
-
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            do {
-                System.out.println("\n----> 9CardSiege <----\n");
-                System.out.println("0 - Sair");
-                System.out.println("1 - Comecar Novo Jogo");
-                System.out.println("2 - Continuar Jogo");
-
-                op1 = sc.next();
-
-                if (op1.length() >= 1) {
-                    c = op1.charAt(0);
-                } else {
-                    c = ' ';
-                }
-            } while (c < '0' || c > '4');
-
-            switch (c) {
-                case '0':
-                    exit = true;
-                    return;
-                case '1':
-                    game.Start();
-                    return;
-                            
-
+    public void run() {
+        while (!(game.getState() instanceof GameOver)) {
+            if (game.getState() instanceof AwaitBegining) {
+                getUserInputWhileAwaitingBegining();
+            }else if(game.getState() instanceof AwaitTopCardToBeDraw){
+                getUserInputWhileAwaitTopCardToBeDraw();
             }
-
         }
-
+        System.out.println("\n******************** Game Over ********************");
+//        showGame();
     }
     
     private void iuAwaitTopCardToBeDrawn() {
        System.out.println("A verificar linhas Inimigas...");
-       game.
-
     }
-    
-    /////// GRAVA JOGO NUM FICHEIRO
+
+    private void getUserInputWhileAwaitingBegining() {
+        int value;
+        
+        System.out.println("----> 9CardSiege <----");
+        System.out.println("1 - Começar");
+        
+        while(!scan.hasNextInt()){
+            scan.next();
+        }
+        value = scan.nextInt();
+        
+        if(value == 1){
+            game.start();
+        }
+    }
+
+    private void getUserInputWhileAwaitTopCardToBeDraw() {
+        if(true){ //Verifica se há soldados nas linhas inimigas
+            if(new Dice(6).rollDice() == 1){
+                //Vai para o estado "Fase das cartas"
+            }else{
+                //Soldados capturados 
+                //Vai para o estado "Fase das cartas"
+            }
+        }else{
+                //Vai para o estado "Fase das cartas"
+        }
+    }
+
+/////// GRAVA JOGO NUM FICHEIRO
     private void SaveGameToFile(String fileName) throws IOException {
         ObjectOutputStream oout = null;
 
@@ -101,24 +107,5 @@ public class TextUI {
             }
         }
     }
-    
-    
-
-    public void run() {
-        while (!exit) {
-
-            IStates state = game.getState();
-
-            if (state instanceof AwaitBegining) {
-                uiAwaitBeggining();
-            }
-            else
-            {
-                if(state instanceof AwaitTopCardToBeDrawn)
-                {
-                    iuAwaitTopCardToBeDrawn();
-                }
-            }
-        }
-    }
+   
 }

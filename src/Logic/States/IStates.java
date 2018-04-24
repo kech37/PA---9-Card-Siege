@@ -9,12 +9,7 @@ public interface IStates {
 
     //  AWAIT BEGINIG 
     IStates start();
-    
-    // AWAIT TOP CARD TO BE DRAWN
-    IStates CheckEnemyLines();
 
-    
-    
-   
+    IStates finish();
 
 }

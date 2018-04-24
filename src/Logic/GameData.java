@@ -6,23 +6,36 @@ import Logic.Cards.EnemyTrackCard;
 import Logic.Cards.StatusTrackCard;
 import java.io.Serializable;
 
-public class GameData implements  Serializable {
+public class GameData implements Serializable {
 
     private final CardDeck deck;
     private final EnemyTrackCard enemy;
     private final StatusTrackCard status;
     private final DRM drm;
     private int day;
-    private boolean  justRaidSabotage;
-    
-    
-    
+    private boolean justRaidSabotage;
+
     public GameData() {
         deck = new CardDeck(this);
         enemy = new EnemyTrackCard();
-        status = new StatusTrackCard();     
+        status = new StatusTrackCard();
         drm = new DRM();
         justRaidSabotage = false;
+        day = 1;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public boolean nextDay() {
+        if(day < 3){
+            day++;
+            deck = new CardDeck(this);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean isJustRaidSabotage() {
@@ -34,10 +47,8 @@ public class GameData implements  Serializable {
     }
 
     public DRM getDRM() {
-        
         return drm;
     }
-
 
     public CardDeck getDeck() {
         return deck;
@@ -54,8 +65,5 @@ public class GameData implements  Serializable {
     public void intialize() {
         day = 1;
     }
-    
-    
-    
    
 }

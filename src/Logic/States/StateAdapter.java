@@ -13,27 +13,27 @@ import Logic.GameData;
  */
 public class StateAdapter implements IStates {
 
-    private GameData game;
+    private GameData dataGame;
 
-    public StateAdapter(GameData g) {
-        this.game = g;
+    public StateAdapter(GameData dataGame) {
+        this.dataGame = dataGame;
     }
 
-    public GameData getGame() {
-        return game;
+    public GameData getDataGame() {
+        return dataGame;
     }
 
-    public void setGame(GameData game) {
-        this.game = game;
+    public void setDataGame(GameData dataGame) {
+        this.dataGame = dataGame;
     }
 
     @Override
     public IStates start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
 
     @Override
-    public IStates CheckEnemyLines() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public IStates finish() {
+        return this;
     }
 }

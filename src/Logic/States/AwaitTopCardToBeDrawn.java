@@ -22,9 +22,8 @@ public class AwaitTopCardToBeDrawn extends StateAdapter  implements IStates   {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public IStates CheckEnemyLines() {
-        if(getGame().getStatus().getTunnel() != 0)
+        if(getDataGame().getStatus().getTunnel() != 0)
         {
             //if(getGame().getDeck().Shuffle())
             return null;

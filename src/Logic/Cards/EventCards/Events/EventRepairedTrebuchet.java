@@ -27,7 +27,7 @@ public class EventRepairedTrebuchet extends RegularEvents {
 
     @Override
     public void applyEffect() {
-        getGameData().getEnemy().getTrebuchet().Forward();
+        getGameData().getEnemy().getTrebuchet().addOne();
         getGameData().getDRM().setCoupure(1);
     }
 }

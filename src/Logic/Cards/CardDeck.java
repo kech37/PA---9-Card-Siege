@@ -8,18 +8,28 @@ package Logic.Cards;
 import Logic.Cards.EventCards.*;
 import Logic.GameData;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Collections;
 
 /**
  *
  * @author andre
  */
-public class CardDeck {
+public final class CardDeck {
 
     ArrayList<BaseEventCard> Cards;
-    ArrayList<BaseEventCard> UsedCards;
 
     public CardDeck(GameData gameData) {
+        this.Cards = new ArrayList<>();
+        this.reset(gameData);
+    }
+
+    public BaseEventCard getOneCard() {
+        return this.Cards.remove(0);
+    }
+
+    public void reset(GameData gameData) {
+        this.Cards.clear();
+
         this.Cards.add(new EventCard1(gameData));
         this.Cards.add(new EventCard2(gameData));
         this.Cards.add(new EventCard3(gameData));
@@ -27,21 +37,8 @@ public class CardDeck {
         this.Cards.add(new EventCard5(gameData));
         this.Cards.add(new EventCard6(gameData));
         this.Cards.add(new EventCard7(gameData));
-    }
 
-    public void Shuffle() {
-        UsedCards.clear();
-        ArrayList<BaseEventCard> temp = Cards;
-
-        Cards.clear();
-        Random r = new Random();
-
-        while (!temp.isEmpty()) {
-            int x = r.nextInt(temp.size());
-
-            Cards.add(temp.get(x));
-            temp.remove(x);
-        }
+        Collections.shuffle(this.Cards);
     }
 
 }

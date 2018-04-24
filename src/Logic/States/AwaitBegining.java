@@ -6,28 +6,21 @@
 package Logic.States;
 
 import Logic.GameData;
-import java.io.Serializable;
 
 /**
  *
  * @author andre
  */
-public class AwaitBegining extends StateAdapter implements IStates, Serializable {
+public class AwaitBegining extends StateAdapter {
 
-    public AwaitBegining(GameData g) {
-        super(g);
+    public AwaitBegining(GameData gameData) {
+        super(gameData);
     }
 
     @Override
     public IStates start() {
-        getGame().intialize();
-        return new AwaitTopCardToBeDrawn(getGame());
+        getDataGame().intialize();
+        return new AwaitTopCardToBeDrawn(getDataGame());
 
     }
-
-    @Override
-    public IStates CheckEnemyLines() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

@@ -42,4 +42,8 @@ public final class Game implements Serializable {
     public void finish() {
         setState(getState().finish());
     }
+
+    public void leaveGame() {
+        setState(getState().finish());
+    }
 }

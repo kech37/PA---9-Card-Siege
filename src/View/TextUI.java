@@ -7,11 +7,7 @@ package View;
 
 import Logic.Dice;
 import Logic.Game;
-import Logic.States.AwaitBegining;
-import Logic.States.AwaitTopCardToBeDrawn;
-import Logic.States.AwaitTopCardToBeDrawn;
-import Logic.States.GameOver;
-import Logic.States.IStates;
+import Logic.States.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,48 +26,44 @@ public class TextUI {
     }
 
     public void run() {
-        while (!(game.getState() instanceof GameOver)) {
+        while (!(game.getState() instanceof GameOver) && !(game.getState() instanceof LeaveGame)) {
             if (game.getState() instanceof AwaitBegining) {
                 getUserInputWhileAwaitingBegining();
-            }else if(game.getState() instanceof AwaitTopCardToBeDrawn){
+            } else if (game.getState() instanceof AwaitTopCardToBeDrawn) {
                 getUserInputWhileAwaitTopCardToBeDraw();
             }
         }
-        System.out.println("\n******************** Game Over ********************");
-//        showGame();
     }
-    
+
     private void iuAwaitTopCardToBeDrawn() {
-       System.out.println("A verificar linhas Inimigas...");
+        System.out.println("A verificar linhas Inimigas...");
     }
 
     private void getUserInputWhileAwaitingBegining() {
         int value;
-        
+
         System.out.println("----> 9CardSiege <----");
-        System.out.println("1 - Começar");
-        
-        while(!scan.hasNextInt()){
+        System.out.println("0 - Sair");
+        System.out.println("1 - Começar novo jogo");
+        System.out.println("2 - Continuar antigo jogo");
+
+        while (!scan.hasNextInt()) {
             scan.next();
         }
         value = scan.nextInt();
-        
-        if(value == 1){
-            game.start();
+
+        switch (value) {
+            case 0:
+                game.leaveGame();
+                break;
+            case 1:
+                game.start();
+                break;
         }
     }
 
     private void getUserInputWhileAwaitTopCardToBeDraw() {
-        if(true){ //Verifica se há soldados nas linhas inimigas
-            if(new Dice(6).rollDice() == 1){
-                //Vai para o estado "Fase das cartas"
-            }else{
-                //Soldados capturados 
-                //Vai para o estado "Fase das cartas"
-            }
-        }else{
-                //Vai para o estado "Fase das cartas"
-        }
+
     }
 
 /////// GRAVA JOGO NUM FICHEIRO
@@ -107,5 +99,5 @@ public class TextUI {
             }
         }
     }
-   
+
 }

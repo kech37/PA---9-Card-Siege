@@ -77,7 +77,7 @@ public class TextUI {
             oout = new ObjectOutputStream(new FileOutputStream(fileName));
 
             oout.writeObject(game);
-
+  
         } finally {
 
             if (oout != null) {

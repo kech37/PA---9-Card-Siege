@@ -52,7 +52,7 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
         else
         {
            getDataGame().getDeck().removeOneCard();
-           getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay() - 1).applyEffect();
+           getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).applyEffect();
            return this; 
         }
     }

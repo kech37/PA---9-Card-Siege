@@ -21,7 +21,7 @@ public class GameData implements Serializable {
         status = new StatusTrackCard();
         drm = new DRM();
         justRaidSabotage = false;
-        day = 1;
+        day = 0;
     }
 
     public int getDay() {
@@ -29,7 +29,7 @@ public class GameData implements Serializable {
     }
 
     public boolean nextDay() {
-        if(day < 3){
+        if(day < 2){
             day++;
             deck.reset(this);          
             return true;

@@ -61,12 +61,12 @@ public class TextUI {
         }
     }
 
-    private void getUserInputWhileAwaitTopCardToBeDraw() {  
+    private void getUserInputWhileAwaitTopCardToBeDraw() {
 
         game.CheckingEnemyLines();
         game.CheckExistingCards();
-        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()-1).getEventName());
-        
+        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).getEventName());
+
     }
 
 /////// GRAVA JOGO NUM FICHEIRO

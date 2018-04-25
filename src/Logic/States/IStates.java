@@ -14,7 +14,12 @@ public interface IStates {
     //AWAIT TOP CARD TO BE DOWN
     IStates CheckingEnemyLines();
     IStates CheckExistingCards();
+    IStates AdvanceEnemies();
     
+    
+    //AWAIT ACTION SELECTION
+    IStates ArcherAttack();
+    IStates ArchersAttackTrackSelection(int value);
     
 
 }

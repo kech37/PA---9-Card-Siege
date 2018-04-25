@@ -53,6 +53,21 @@ public final class Game implements Serializable {
         setState(getState().CheckExistingCards());
     }
     
+    public void AdvanceEnemies()
+    {
+         setState(getState().AdvanceEnemies());
+    }
+    
+    public void ArchersAttack()
+    {
+         setState(getState().ArcherAttack());
+    }
+    
+    public void ArchersAttackTrackSelection(int value)
+    {
+        setState(getState().ArchersAttackTrackSelection(value));
+    }
+    
     
     
 }

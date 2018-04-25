@@ -28,4 +28,5 @@ public class EventBadWeather extends RegularEvents {
     public void applyEffect() {
         getGameData().setJustRaidSabotage(true);
     }
+
 }

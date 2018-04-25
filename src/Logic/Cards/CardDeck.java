@@ -18,6 +18,7 @@ public final class CardDeck {
 
     ArrayList<BaseEventCard> Cards;
     private BaseEventCard onUseEventCard;
+    GameData gameData;
     
     public CardDeck(GameData gameData) {
         this.Cards = new ArrayList<>();
@@ -28,6 +29,7 @@ public final class CardDeck {
     public void removeOneCard()
     { 
         onUseEventCard = this.Cards.remove(0);
+        
     }
 
     public BaseEventCard getOnUseEventCard() {

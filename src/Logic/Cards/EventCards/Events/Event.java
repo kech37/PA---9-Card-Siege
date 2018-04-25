@@ -17,7 +17,7 @@ public abstract class Event {
     private final String eventName;
 
     //Quantas ações é possivel fazer neste evento (turno)
-    private final int actionPointAllowance;
+    private int actionPointAllowance;
 
     private GameData gameData;
 
@@ -38,6 +38,10 @@ public abstract class Event {
     public int getActionPointAllowance() {
         return actionPointAllowance;
     }
-
+    
+     public void modifyActionPointAllowance(int actionpoint) {
+        actionPointAllowance += actionpoint;
+    }
     public abstract void applyEffect();
+    
 }

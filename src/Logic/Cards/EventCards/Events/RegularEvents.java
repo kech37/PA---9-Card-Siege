@@ -27,4 +27,13 @@ public abstract class RegularEvents extends Event {
         this.eventDescription = eventDescription;
     }
 
+    public List<Movement> getEnemyAdvancementOrders() {
+        return enemyAdvancementOrders;
+    }
+
+    public void applyMovements() {
+        for (Movement m : getEnemyAdvancementOrders()) {
+            m.applyMovement();
+        }
+    }
 }

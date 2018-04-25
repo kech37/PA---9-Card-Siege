@@ -5,8 +5,8 @@
  */
 package Logic.Cards.EventCards;
 
-
 import Logic.Cards.EventCards.Events.Event;
+import Logic.Cards.EventCards.Movement.Movement;
 import Logic.GameData;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +19,16 @@ public abstract class BaseEventCard {
 
     //Irá guardar os eventos que esta carta de eventos tem. É obrigatorio ter 3.
     private final List<Event> events;
+    
     private final GameData gamedata;
 
     public BaseEventCard(ArrayList eventsInput, GameData g) {
         this.events = new ArrayList<>(eventsInput);
-       gamedata = g;
+        gamedata = g;
     }
 
     public List<Event> getEvents() {
         return events;
     }
-    
-    
 
 }

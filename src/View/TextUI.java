@@ -25,11 +25,15 @@ public class TextUI {
     }
 
     public void run() {
-        while (!(game.getState() instanceof GameOver) && !(game.getState() instanceof LeaveGame)) {
+        while (!(game.getState() instanceof GameOver) && !(game.getState() instanceof LeaveGame) && !(game.getState() instanceof Victory)) {
             if (game.getState() instanceof AwaitBegining) {
                 getUserInputWhileAwaitingBegining();
             } else if (game.getState() instanceof AwaitTopCardToBeDrawn) {
                 getUserInputWhileAwaitTopCardToBeDraw();
+            } else if (game.getState() instanceof AwaitActionSelection) {
+                getUserInputWhileAwaitActionSelection();
+            } else if (game.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
+                getUserInputWhileAwaitEnemyTrackSelectionForArchersAttack();
             }
         }
     }
@@ -62,10 +66,61 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitTopCardToBeDraw() {
-
         game.CheckingEnemyLines();
         game.CheckExistingCards();
-        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).getEventName());
+        if (game.getGame().getDeck().getOnUseEventCard() != null) {
+            System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).getEventName());
+            game.AdvanceEnemies();
+        }
+    }
+
+    private void showEnemyCard() {
+        System.out.println("--> Carta Inimiga\n <--");
+        System.out.println("-> Battering: " + game.getGame().getEnemy().getBatteringRam().getPosition());
+        System.out.println("-> Ladders: " + game.getGame().getEnemy().getLadders().getPosition());
+        System.out.println("-> Siege Tower: " + game.getGame().getEnemy().getSiegeTower().getPosition());
+    }
+
+    private void getUserInputWhileAwaitActionSelection() {
+        int value;
+
+        System.out.println("----> Ação do Jogador <----");
+        System.out.println("1 - Archers Attack");
+        System.out.println("2 - Boling Water Attack");
+        System.out.println("3 - Close Combat Attack");
+        System.out.println("4 - Coupure");
+        System.out.println("3 - Rally Troops");
+        System.out.println("3 - Tunel Movement");
+        System.out.println("3 - Supply Raid");
+        System.out.println("3 - Sabotage");
+
+        while (!scan.hasNextInt()) {
+            scan.next();
+        }
+        value = scan.nextInt();
+
+        switch (value) {
+            case 1:
+                game.ArchersAttack();
+                break;
+        }
+
+    }
+
+    private void getUserInputWhileAwaitEnemyTrackSelectionForArchersAttack() {
+        int value;
+
+        System.out.println("----> Archers Attack <----");
+        System.out.println("1 - Ladders Track");
+        System.out.println("2 - Battering Ram");
+        System.out.println("3 - Siege Tower");
+
+        while (!scan.hasNextInt()) {
+            scan.next();
+        }
+        value = scan.nextInt();
+
+        game.ArchersAttackTrackSelection(value);
 
     }
 
@@ -77,7 +132,7 @@ public class TextUI {
             oout = new ObjectOutputStream(new FileOutputStream(fileName));
 
             oout.writeObject(game);
-  
+
         } finally {
 
             if (oout != null) {

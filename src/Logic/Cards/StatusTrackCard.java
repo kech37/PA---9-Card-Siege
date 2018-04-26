@@ -1,6 +1,8 @@
 package Logic.Cards;
 
-public class StatusTrackCard {
+import java.io.Serializable;
+
+public class StatusTrackCard implements Serializable {
 
     private int SuppliesLevel;
     private int WallStrenght, Morale, Supplies;

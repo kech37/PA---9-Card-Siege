@@ -7,6 +7,7 @@ package Logic.Cards;
 
 import Logic.Cards.EventCards.*;
 import Logic.GameData;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -14,7 +15,7 @@ import java.util.Collections;
  *
  * @author andre
  */
-public final class CardDeck {
+public final class CardDeck implements Serializable {
 
     ArrayList<BaseEventCard> Cards;
     private BaseEventCard onUseEventCard;

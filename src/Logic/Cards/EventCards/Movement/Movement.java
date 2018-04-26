@@ -6,12 +6,13 @@
 package Logic.Cards.EventCards.Movement;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author a21220528
  */
-public abstract class Movement {
+public abstract class Movement implements Serializable {
 
     private final GameData gameData;
     private final String name;

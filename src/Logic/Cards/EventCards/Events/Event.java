@@ -6,12 +6,13 @@
 package Logic.Cards.EventCards.Events;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author a21220528
  */
-public abstract class Event {
+public abstract class Event implements Serializable {
 
     // Nome do Evento
     private final String eventName;

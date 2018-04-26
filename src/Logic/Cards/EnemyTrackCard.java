@@ -2,8 +2,9 @@ package Logic.Cards;
 
 import Logic.Cards.Tracks.Track;
 import Logic.Cards.Tracks.TrebuchetTrack;
+import java.io.Serializable;
 
-public class EnemyTrackCard {
+public class EnemyTrackCard implements Serializable {
 
     private final Track SiegeTower;
 

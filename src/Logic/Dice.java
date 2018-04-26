@@ -5,13 +5,14 @@
  */
 package Logic;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author a21220528
  */
-public class Dice {
+public class Dice implements Serializable {
 
     private final int sidesNumber;
     private int value;

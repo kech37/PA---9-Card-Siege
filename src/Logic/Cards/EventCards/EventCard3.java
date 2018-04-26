@@ -9,6 +9,8 @@ import Logic.Cards.EventCards.Events.Event;
 import Logic.Cards.EventCards.Events.EventBadWeather;
 import Logic.Cards.EventCards.Events.EventBoilingOil;
 import Logic.Cards.EventCards.Events.EventSuppliesSpoiled;
+import Logic.Cards.EventCards.Movement.BatteringRamMovement;
+import Logic.Cards.EventCards.Movement.LaddersMovement;
 import Logic.GameData;
 import java.util.ArrayList;
 import java.util.Arrays;

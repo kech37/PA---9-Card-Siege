@@ -17,4 +17,28 @@ public interface IStates {
 
     IStates CheckExistingCards();
 
+    IStates AdvanceEnemies();
+
+    //AWAIT ACTION SELECTION
+    IStates ArcherAttack();
+    IStates CloseCombatAttack();
+    IStates Coupure();
+    IStates RallyTroops();
+    IStates SupplieRaidAttack();
+    IStates SabotageAttack();
+    IStates BoilingWaterAttack();
+    IStates CheckActionPoints();
+    IStates TunnelMovement();
+    IStates VerifyGameOver();
+
+
+    //AWAIT ARCHERS ATACK ACTION SELECTION
+    IStates ArchersAttackTrackSelection(int value);
+    
+    //AWAIT BOILING WATER  ACTION SELECTION
+     IStates BoilingWatterTrackSelection(int value);
+     
+     /// TUNNEL MOVEMENT SELECTION
+     IStates TunnelMovementOptionSelection(int value);
+
 }

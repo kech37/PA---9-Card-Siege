@@ -27,7 +27,7 @@ public class EventIllness extends RegularEvents {
 
     @Override
     public void applyEffect() {
-        getGameData().getStatus().ModifyMorale(1);
-        getGameData().getStatus().ModifySupplies(1);
+        getGameData().getStatus().ModifyMorale(-1);
+        getGameData().getStatus().ModifySupplies(-1);
     }
 }

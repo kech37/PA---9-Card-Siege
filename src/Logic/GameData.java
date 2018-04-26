@@ -13,15 +13,31 @@ public class GameData implements Serializable {
     private final StatusTrackCard status;
     private final DRM drm;
     private int day;
+    private Dice dice;
     private boolean justRaidSabotage;
+    private boolean freeMovement;
 
     public GameData() {
         deck = new CardDeck(this);
         enemy = new EnemyTrackCard();
         status = new StatusTrackCard();
         drm = new DRM();
+        dice = new Dice();
         justRaidSabotage = false;
         day = 0;
+        freeMovement = false;
+    }
+
+    public boolean isFreeMovement() {
+        return freeMovement;
+    }
+
+    public void setFreeMovement(boolean freeMovement) {
+        this.freeMovement = freeMovement;
+    }
+
+    public Dice getDice() {
+        return dice;
     }
 
     public int getDay() {

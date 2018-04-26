@@ -50,5 +50,58 @@ public final class Game implements Serializable {
     public void CheckExistingCards() {
         setState(getState().CheckExistingCards());
     }
+    
+    public void AdvanceEnemies()
+    {
+         setState(getState().AdvanceEnemies());
+    }
+    
+    public void ArchersAttack()
+    {
+         setState(getState().ArcherAttack());
+    }
+    
+    public void BoilingWaterAttack()
+    {
+        setState(getState().BoilingWaterAttack());
+    }
+    
+    public void ArchersAttackTrackSelection(int value)
+    {
+        setState(getState().ArchersAttackTrackSelection(value));
+    }
 
+    public void BoilingWaterAttackTrackSelection(int value) {
+       setState(getState().BoilingWatterTrackSelection(value));
+    }
+
+    public void CloseCombatAreaAtack() {
+       setState(getState().CloseCombatAttack());
+    }
+
+    public void Coupure() {
+        setState(getState().Coupure());
+    }
+
+    public void RallyTroops() {
+        setState(getState().RallyTroops());
+    }
+
+    public void CheckActionPoints() {
+          setState(getState().CheckActionPoints());
+    }
+
+    public void TunnelMovement() {
+       setState(getState().TunnelMovement());
+    }
+    
+    public void VerifyGameOver()
+    {
+        setState(getState().VerifyGameOver());
+    }
+    
+    public void TunnelMovementOptionSelection(int value) {
+       setState(getState().TunnelMovementOptionSelection(value));
+    }
+    
 }

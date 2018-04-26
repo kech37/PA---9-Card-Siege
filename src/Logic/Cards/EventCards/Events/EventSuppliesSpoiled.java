@@ -27,6 +27,6 @@ public class EventSuppliesSpoiled extends RegularEvents {
 
     @Override
     public void applyEffect() {
-        getGameData().getStatus().ModifySupplies(1);
+        getGameData().getStatus().ModifySupplies(-1);
     }
 }

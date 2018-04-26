@@ -15,6 +15,7 @@ public abstract class Movement {
  
     private GameData gameData;
     private String name;
+    private int day;
 
     public Movement(String name, GameData gameData) {
         this.gameData = gameData;
@@ -30,5 +31,6 @@ public abstract class Movement {
     }
     
     public abstract void applyMovement();
+   
     
 }

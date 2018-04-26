@@ -5,6 +5,7 @@
  */
 package Logic.Cards.EventCards.Events;
 
+import Logic.Cards.EventCards.Movement.Movement;
 import Logic.GameData;
 
 /**
@@ -17,7 +18,7 @@ public abstract class Event {
     private final String eventName;
 
     //Quantas ações é possivel fazer neste evento (turno)
-    private final int actionPointAllowance;
+    private int actionPointAllowance;
 
     private GameData gameData;
 
@@ -38,6 +39,15 @@ public abstract class Event {
     public int getActionPointAllowance() {
         return actionPointAllowance;
     }
-
+    
+     public void modifyActionPointAllowance(int actionpoint) {
+        actionPointAllowance += actionpoint;
+    }
+     
+     public abstract boolean hasEnemyAdvancementOrders();
+                          
     public abstract void applyEffect();
+       
+     public abstract void applyMovements();
+    
 }

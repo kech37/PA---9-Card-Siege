@@ -36,4 +36,14 @@ public class TrebuchetAttackEvent extends Event {
         }
     }
 
+    @Override
+    public boolean hasEnemyAdvancementOrders() {
+        return false;
+    }
+
+    @Override
+    public void applyMovements() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

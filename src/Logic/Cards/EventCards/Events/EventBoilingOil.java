@@ -5,6 +5,7 @@
  */
 package Logic.Cards.EventCards.Events;
 
+import Logic.Cards.EnemyTrackCard;
 import Logic.Cards.EventCards.Movement.*;
 import Logic.GameData;
 import java.util.ArrayList;
@@ -36,5 +37,5 @@ public class EventBoilingOil extends RegularEvents {
         if (getGameData().getEnemy().getSiegeTower().CircleSpace()) {
             getGameData().getDRM().setSiegeTower(2);
         }
-    }
+    }  
 }

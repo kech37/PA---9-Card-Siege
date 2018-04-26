@@ -42,17 +42,13 @@ public final class Game implements Serializable {
     public void leaveGame() {
         setState(getState().finish());
     }
-    
-    public void CheckingEnemyLines()
-    {
+
+    public void CheckingEnemyLines() {
         setState(getState().CheckingEnemyLines());
     }
-    
-    public void CheckExistingCards()
-    {
+
+    public void CheckExistingCards() {
         setState(getState().CheckExistingCards());
     }
-    
-    
-    
+
 }

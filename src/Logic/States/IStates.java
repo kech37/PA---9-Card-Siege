@@ -25,6 +25,9 @@ public interface IStates {
     IStates SabotageAttack();
     IStates BoilingWaterAttack();
     IStates CheckActionPoints();
+    IStates TunnelMovement();
+    IStates VerifyGameOver();
+
 
     //AWAIT ARCHERS ATACK ACTION SELECTION
     IStates ArchersAttackTrackSelection(int value);
@@ -32,8 +35,8 @@ public interface IStates {
     //AWAIT BOILING WATER  ACTION SELECTION
      IStates BoilingWatterTrackSelection(int value);
      
-     /// TUNNEL MOVEMENT WATER  ACTION SELECTION
-     IStates TunnelMovementTrackSelection(int value);
+     /// TUNNEL MOVEMENT SELECTION
+     IStates TunnelMovementOptionSelection(int value);
 
     
 

@@ -92,6 +92,19 @@ public final class Game implements Serializable {
     public void CheckActionPoints() {
           setState(getState().CheckActionPoints());
     }
+
+    public void TunnelMovement() {
+       setState(getState().TunnelMovement());
+    }
+    
+    public void VerifyGameOver()
+    {
+        setState(getState().VerifyGameOver());
+    }
+    
+    public void TunnelMovementOptionSelection(int value) {
+       setState(getState().TunnelMovementOptionSelection(value));
+    }
     
     
     

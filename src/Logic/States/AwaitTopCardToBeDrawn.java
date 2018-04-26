@@ -35,7 +35,7 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
         }
         return this;
     }
-         
+
     @Override
     public IStates CheckExistingCards() {
         if (getDataGame().getDeck().isEmpty()) {
@@ -64,8 +64,9 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
 
     @Override
     public IStates AdvanceEnemies() {
-        if(getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).hasEnemyAdvancementOrders())
-             getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).applyMovements();
+        if (getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).hasEnemyAdvancementOrders()) {
+            getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).applyMovements();
+        }
 
         int nEnemy = 0;
         if (getDataGame().getEnemy().getBatteringRam().getPosition() == 0) {
@@ -88,6 +89,28 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
 
         getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(-1);
         return new AwaitActionSelection(getDataGame());
+    }
+
+    @Override
+    public IStates VerifyGameOver() {
+        int nEnemy = 0;
+        if (getDataGame().getEnemy().getBatteringRam().getPosition() == 0) {
+            nEnemy++;
+        }
+        if (getDataGame().getEnemy().getLadders().getPosition() == 0) {
+            nEnemy++;
+        }
+        if (getDataGame().getEnemy().getSiegeTower().getPosition() == 0) {
+            nEnemy++;
+        }
+
+        if (nEnemy >= 2) {
+            return new GameOver(getDataGame());
+        }
+        if (getDataGame().getStatus().getMorale() == 0 || getDataGame().getStatus().getSupplies() == 0 || getDataGame().getStatus().getWallStrenght() == 0) {
+            return new GameOver(getDataGame());
+        }
+        return this;
     }
 
 }

@@ -15,6 +15,7 @@ public class GameData implements Serializable {
     private int day;
     private Dice dice;
     private boolean justRaidSabotage;
+    private boolean freeMovement;
 
     public GameData() {
         deck = new CardDeck(this);
@@ -24,6 +25,15 @@ public class GameData implements Serializable {
         dice = new Dice();
         justRaidSabotage = false;
         day = 0;
+        freeMovement = false;
+    }
+
+    public boolean isFreeMovement() {
+        return freeMovement;
+    }
+
+    public void setFreeMovement(boolean freeMovement) {
+        this.freeMovement = freeMovement;
     }
 
     public Dice getDice() {

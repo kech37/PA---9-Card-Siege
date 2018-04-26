@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TextUI {
 
@@ -28,14 +30,21 @@ public class TextUI {
         while (!(game.getState() instanceof GameOver) && !(game.getState() instanceof LeaveGame) && !(game.getState() instanceof Victory)) {
             if (game.getState() instanceof AwaitBegining) {
                 getUserInputWhileAwaitingBegining();
-            } else if (game.getState() instanceof AwaitTopCardToBeDrawn) {
-                getUserInputWhileAwaitTopCardToBeDraw();
-            } else if (game.getState() instanceof AwaitActionSelection) {
-                getUserInputWhileAwaitActionSelection();
-            } else if (game.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
-                getUserInputWhileAwaitEnemyTrackSelectionForArchersAttack();
-            } else if (game.getState() instanceof AwaitBoilingWaterTrackSelection) {
-                getUserInputWhileAwaitBoilingWaterTrackSelection();
+            } else {
+                if (game.getState() instanceof AwaitTopCardToBeDrawn) {
+                    game.VerifyGameOver();
+                    getUserInputWhileAwaitTopCardToBeDraw();
+                } else if (game.getState() instanceof AwaitActionSelection) {
+                    game.VerifyGameOver();
+                    getUserInputWhileAwaitActionSelection();
+                } else if (game.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
+                    getUserInputWhileAwaitEnemyTrackSelectionForArchersAttack();
+                } else if (game.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    getUserInputWhileAwaitBoilingWaterTrackSelection();
+                } else if(game.getState() instanceof AwaitOptionMovementSelection)
+                {
+                    getUserInputWhileAwaitOptionMovementSelection();
+                }
             }
         }
     }
@@ -70,7 +79,7 @@ public class TextUI {
             System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).getEventName());
             game.AdvanceEnemies();
             System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).toString());
-            
+
         }
 
     }
@@ -120,6 +129,7 @@ public class TextUI {
                 System.out.println("Dado: " + game.getGame().getDice().getValue());
                 break;
             case 6:
+                game.TunnelMovement();
                 break;
         }
 
@@ -158,6 +168,23 @@ public class TextUI {
         game.ArchersAttackTrackSelection(value);
     }
 
+    private void getUserInputWhileAwaitOptionMovementSelection()
+    {
+         int value;
+
+        System.out.println("----> Movement Selection <----");
+        System.out.println("1 - Movimento Rapido");
+        System.out.println("2 - Movimento Gratuito");
+
+        while (!scan.hasNextInt()) {
+            scan.next();
+        }
+        value = scan.nextInt();
+        game.TunnelMovementOptionSelection(value);
+           
+
+    }
+    
     private void showEnemyStatus() {
         System.out.println("");
         System.out.print("        --> Carta Inimiga <--");

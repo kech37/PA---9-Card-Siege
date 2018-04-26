@@ -13,7 +13,7 @@ import Logic.GameData;
  * @author andre
  */
 public class AwaitActionSelection extends StateAdapter {
-
+    
     public AwaitActionSelection(GameData dataGame) {
         super(dataGame);
     }
@@ -21,14 +21,11 @@ public class AwaitActionSelection extends StateAdapter {
     @Override
     public IStates ArcherAttack() {
 
-        if (verifyGameOver() == null) {
-            return new AwaitEnemyTrackSelectionForArchersAttack(getDataGame());
-        } else {
-            return verifyGameOver();
-        }
+        return new AwaitEnemyTrackSelectionForArchersAttack(getDataGame());
     }
 
-    public IStates verifyGameOver() {
+    @Override
+    public IStates VerifyGameOver() {
         int nEnemy = 0;
         if (getDataGame().getEnemy().getBatteringRam().getPosition() == 0) {
             nEnemy++;
@@ -46,7 +43,7 @@ public class AwaitActionSelection extends StateAdapter {
         if (getDataGame().getStatus().getMorale() == 0 || getDataGame().getStatus().getSupplies() == 0 || getDataGame().getStatus().getWallStrenght() == 0) {
             return new GameOver(getDataGame());
         }
-        return null;
+        return this;
     }
 
     @Override
@@ -124,14 +121,29 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates BoilingWaterAttack() {
-        if (verifyGameOver() == null) {
-            if (getDataGame().getEnemy().isCardsOnCircle()) {
+        if (getDataGame().getEnemy().isCardsOnCircle()) {
+            return this;
+        }
+        return new AwaitBoilingWaterTrackSelection(getDataGame());
+
+    }
+
+    @Override
+    public IStates TunnelMovement() {
+        if(!getDataGame().isFreeMovement())
+        {
+            if(getDataGame().getStatus().getTunnel() == 0)
+            {
+                getDataGame().getStatus().ModifyTunnel(+1);
                 return this;
             }
-            return new AwaitBoilingWaterTrackSelection(getDataGame());
-        } else {
-            return verifyGameOver();
+            else
+            {
+                return new AwaitOptionMovementSelection(getDataGame());
+            }
         }
+        else
+            return this;
     }
 
     @Override

@@ -15,7 +15,7 @@ public class Dice {
 
     private final int sidesNumber;
     private int value;
-    
+
     public Dice(int sides) {
         sidesNumber = sides;
         value = -1;

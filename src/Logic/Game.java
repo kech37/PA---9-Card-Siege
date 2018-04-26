@@ -50,33 +50,29 @@ public final class Game implements Serializable {
     public void CheckExistingCards() {
         setState(getState().CheckExistingCards());
     }
-    
-    public void AdvanceEnemies()
-    {
-         setState(getState().AdvanceEnemies());
+
+    public void AdvanceEnemies() {
+        setState(getState().AdvanceEnemies());
     }
-    
-    public void ArchersAttack()
-    {
-         setState(getState().ArcherAttack());
+
+    public void ArchersAttack() {
+        setState(getState().ArcherAttack());
     }
-    
-    public void BoilingWaterAttack()
-    {
+
+    public void BoilingWaterAttack() {
         setState(getState().BoilingWaterAttack());
     }
-    
-    public void ArchersAttackTrackSelection(int value)
-    {
+
+    public void ArchersAttackTrackSelection(int value) {
         setState(getState().ArchersAttackTrackSelection(value));
     }
 
     public void BoilingWaterAttackTrackSelection(int value) {
-       setState(getState().BoilingWatterTrackSelection(value));
+        setState(getState().BoilingWatterTrackSelection(value));
     }
 
     public void CloseCombatAreaAtack() {
-       setState(getState().CloseCombatAttack());
+        setState(getState().CloseCombatAttack());
     }
 
     public void Coupure() {
@@ -88,20 +84,23 @@ public final class Game implements Serializable {
     }
 
     public void CheckActionPoints() {
-          setState(getState().CheckActionPoints());
+        setState(getState().CheckActionPoints());
     }
 
     public void TunnelMovement() {
-       setState(getState().TunnelMovement());
+        setState(getState().TunnelMovement());
     }
-    
-    public void VerifyGameOver()
-    {
+
+    public void VerifyGameOver() {
         setState(getState().VerifyGameOver());
     }
-    
+
     public void TunnelMovementOptionSelection(int value) {
-       setState(getState().TunnelMovementOptionSelection(value));
+        setState(getState().TunnelMovementOptionSelection(value));
     }
-    
+
+    public void loadGame() {
+        setState(getState().loadGame());
+    }
+
 }

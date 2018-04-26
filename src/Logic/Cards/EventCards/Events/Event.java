@@ -5,7 +5,6 @@
  */
 package Logic.Cards.EventCards.Events;
 
-import Logic.Cards.EventCards.Movement.Movement;
 import Logic.GameData;
 
 /**
@@ -39,15 +38,15 @@ public abstract class Event {
     public int getActionPointAllowance() {
         return actionPointAllowance;
     }
-    
-     public void modifyActionPointAllowance(int actionpoint) {
+
+    public void modifyActionPointAllowance(int actionpoint) {
         actionPointAllowance += actionpoint;
     }
-     
-     public abstract boolean hasEnemyAdvancementOrders();
-                          
+
+    public abstract boolean hasEnemyAdvancementOrders();
+
     public abstract void applyEffect();
-       
-     public abstract void applyMovements();
-    
+
+    public abstract void applyMovements();
+
 }

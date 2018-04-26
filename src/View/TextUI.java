@@ -8,8 +8,6 @@ package View;
 import Logic.Game;
 import Logic.States.*;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TextUI {
 
@@ -36,8 +34,7 @@ public class TextUI {
                     getUserInputWhileAwaitEnemyTrackSelectionForArchersAttack();
                 } else if (game.getState() instanceof AwaitBoilingWaterTrackSelection) {
                     getUserInputWhileAwaitBoilingWaterTrackSelection();
-                } else if(game.getState() instanceof AwaitOptionMovementSelection)
-                {
+                } else if (game.getState() instanceof AwaitOptionMovementSelection) {
                     getUserInputWhileAwaitOptionMovementSelection();
                 }
             }
@@ -65,7 +62,7 @@ public class TextUI {
                 game.start();
                 break;
             case 2:
-                
+                game.loadGame();
                 break;
         }
     }
@@ -99,6 +96,7 @@ public class TextUI {
         System.out.println("   7 - Supply Raid");
         System.out.print("4 - Coupure");
         System.out.println("               8 - Sabotage");
+        System.out.println("          -1 - Save Game");        
 
         while (!scan.hasNextInt()) {
             scan.next();
@@ -106,6 +104,10 @@ public class TextUI {
         value = scan.nextInt();
 
         switch (value) {
+            case -1:
+                game.getState().saveGame();
+                System.out.println("Game saved!");
+                break;
             case 1:
                 game.ArchersAttack();
                 System.out.println("Dado: " + game.getGame().getDice().getValue());
@@ -166,9 +168,8 @@ public class TextUI {
         game.ArchersAttackTrackSelection(value);
     }
 
-    private void getUserInputWhileAwaitOptionMovementSelection()
-    {
-         int value;
+    private void getUserInputWhileAwaitOptionMovementSelection() {
+        int value;
 
         System.out.println("----> Movement Selection <----");
         System.out.println("1 - Movimento Rapido");
@@ -179,10 +180,9 @@ public class TextUI {
         }
         value = scan.nextInt();
         game.TunnelMovementOptionSelection(value);
-           
 
     }
-    
+
     private void showEnemyStatus() {
         System.out.println("");
         System.out.print("        --> Carta Inimiga <--");

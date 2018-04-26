@@ -19,27 +19,26 @@ public final class CardDeck {
     ArrayList<BaseEventCard> Cards;
     private BaseEventCard onUseEventCard;
     GameData gameData;
-    
+
     public CardDeck(GameData gameData) {
         this.Cards = new ArrayList<>();
         this.reset(gameData);
         onUseEventCard = null;
     }
 
-    public void removeOneCard()
-    { 
+    public void removeOneCard() {
         onUseEventCard = this.Cards.remove(0);
-        
+
     }
 
     public BaseEventCard getOnUseEventCard() {
         return onUseEventCard;
     }
-    
-    public boolean isEmpty()
-    {
+
+    public boolean isEmpty() {
         return Cards.isEmpty();
     }
+
     public void reset(GameData gameData) {
         this.Cards.clear();
 
@@ -50,7 +49,7 @@ public final class CardDeck {
         this.Cards.add(new EventCard5(gameData));
         this.Cards.add(new EventCard6(gameData));
         this.Cards.add(new EventCard7(gameData));
-        
+
         onUseEventCard = null;
         Collections.shuffle(this.Cards);
     }

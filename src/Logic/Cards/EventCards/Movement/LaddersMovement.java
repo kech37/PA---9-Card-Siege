@@ -11,7 +11,7 @@ import Logic.GameData;
  *
  * @author a21220528
  */
-public class LaddersMovement extends Movement{
+public class LaddersMovement extends Movement {
 
     public LaddersMovement(GameData gameData) {
         super("Ladders movement", gameData);
@@ -21,5 +21,5 @@ public class LaddersMovement extends Movement{
     public void applyMovement() {
         getGameData().getEnemy().getLadders().Forward();
     }
-    
+
 }

@@ -12,9 +12,9 @@ import Logic.GameData;
  * @author a21220528
  */
 public abstract class Movement {
- 
-    private GameData gameData;
-    private String name;
+
+    private final GameData gameData;
+    private final String name;
     private int day;
 
     public Movement(String name, GameData gameData) {
@@ -29,8 +29,7 @@ public abstract class Movement {
     public GameData getGameData() {
         return gameData;
     }
-    
+
     public abstract void applyMovement();
-   
-    
+
 }

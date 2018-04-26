@@ -6,6 +6,7 @@
 package Logic;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,15 +24,22 @@ public class FileManager {
         this.fileName = fileName;
     }
 
-    public void SaveGameToFile(Game game) throws IOException {
-        try (ObjectOutputStream oout = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            oout.writeObject(game);
+    public void SaveGameDataToFile(GameData gameData) throws IOException {
+        FileOutputStream fos = new FileOutputStream(this.fileName);
+        try (ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(gameData);
+            oos.close();
         }
+
     }
 
-    public Game GetGameFromFile() throws IOException, ClassNotFoundException {
-        try (ObjectInputStream oin = new ObjectInputStream(new FileInputStream(fileName))) {
-            return (Game) oin.readObject();
+    public GameData GetGameDataFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(this.fileName);
+        GameData gameData;
+        try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+            gameData = (GameData) ois.readObject();
+            ois.close();
         }
+        return gameData;
     }
 }

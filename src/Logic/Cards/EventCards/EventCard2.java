@@ -5,6 +5,7 @@
  */
 package Logic.Cards.EventCards;
 
+import Logic.Cards.EventCards.Events.Event;
 import Logic.Cards.EventCards.Events.EventGuardsDistracted;
 import Logic.Cards.EventCards.Events.EventIllness;
 import Logic.Cards.EventCards.Events.TrebuchetAttackEvent;
@@ -19,14 +20,14 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventCard2 extends BaseEventCard{
-    
+public class EventCard2 extends BaseEventCard {
+
     public EventCard2(GameData gameData) {
-        super(new ArrayList<>(Arrays.asList(
+        super(new ArrayList<Event>(Arrays.asList(
                 new EventIllness(gameData),
                 new EventGuardsDistracted(gameData),
                 new TrebuchetAttackEvent(1, gameData)
         )), gameData);
     }
-    
+
 }

@@ -7,11 +7,6 @@ package View;
 
 import Logic.Game;
 import Logic.States.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,6 +63,9 @@ public class TextUI {
                 break;
             case 1:
                 game.start();
+                break;
+            case 2:
+                
                 break;
         }
     }
@@ -201,39 +199,4 @@ public class TextUI {
         System.out.println("-----------------------");
 
     }
-
-/////// GRAVA JOGO NUM FICHEIRO
-    private void SaveGameToFile(String fileName) throws IOException {
-        ObjectOutputStream oout = null;
-
-        try {
-            oout = new ObjectOutputStream(new FileOutputStream(fileName));
-
-            oout.writeObject(game);
-
-        } finally {
-
-            if (oout != null) {
-                oout.close();
-            }
-        }
-    }
-
-    ////// DEVOLVE O JOGO QUE ESTÁ GUARDADO NO FICHEIRO
-    private Game GetGameFromFile(String fileName) throws IOException, ClassNotFoundException {
-        ObjectInputStream oin = null;
-
-        try {
-
-            oin = new ObjectInputStream(new FileInputStream(fileName));
-
-            return (Game) oin.readObject();
-
-        } finally {
-            if (oin != null) {
-                oin.close();
-            }
-        }
-    }
-
 }

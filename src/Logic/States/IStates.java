@@ -9,11 +9,14 @@ public interface IStates {
 
     //  AWAIT BEGINIG 
     IStates start();
+
     IStates finish();
 
     //AWAIT TOP CARD TO BE DOWN
     IStates CheckingEnemyLines();
+
     IStates CheckExistingCards();
+
     IStates AdvanceEnemies();
 
     //AWAIT ACTION SELECTION
@@ -37,7 +40,5 @@ public interface IStates {
      
      /// TUNNEL MOVEMENT SELECTION
      IStates TunnelMovementOptionSelection(int value);
-
-    
 
 }

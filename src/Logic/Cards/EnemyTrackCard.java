@@ -73,5 +73,14 @@ public class EnemyTrackCard {
             LaddersStrength = 0;
         }
     }
+    
+    public boolean isCardsOnCircle()
+    {
+        if(BatteringRam.getPosition() == 0 || SiegeTower.getPosition() == 0 || Ladders.getPosition() == 0)
+        {
+            return true;
+        }
+        return false;
+    }
 
 }

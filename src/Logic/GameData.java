@@ -13,6 +13,7 @@ public class GameData implements Serializable {
     private final StatusTrackCard status;
     private final DRM drm;
     private int day;
+    private Dice dice;
     private boolean justRaidSabotage;
 
     public GameData() {
@@ -20,8 +21,13 @@ public class GameData implements Serializable {
         enemy = new EnemyTrackCard();
         status = new StatusTrackCard();
         drm = new DRM();
+        dice = new Dice();
         justRaidSabotage = false;
         day = 0;
+    }
+
+    public Dice getDice() {
+        return dice;
     }
 
     public int getDay() {

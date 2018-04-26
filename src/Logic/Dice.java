@@ -14,9 +14,15 @@ import java.util.Random;
 public class Dice {
 
     private final int sidesNumber;
-
+    private int value;
+    
     public Dice(int sides) {
         sidesNumber = sides;
+        value = -1;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     public Dice() {
@@ -25,6 +31,7 @@ public class Dice {
 
     public int rollDice() {
         Random random = new Random();
-        return random.nextInt(this.sidesNumber) + 1;
+        value = random.nextInt(this.sidesNumber) + 1;
+        return value;
     }
 }

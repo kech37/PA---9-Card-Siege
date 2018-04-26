@@ -12,29 +12,33 @@ import Logic.GameData;
  *
  * @author andre
  */
-public class AwaitEnemyTrackSelectionForArchersAttack extends StateAdapter {
+public class AwaitBoilingWaterTrackSelection extends StateAdapter {
 
-    public AwaitEnemyTrackSelectionForArchersAttack(GameData dataGame) {
+    public AwaitBoilingWaterTrackSelection(GameData dataGame) {
         super(dataGame);
     }
 
     @Override
-    public IStates ArchersAttackTrackSelection(int value) {
+    public IStates BoilingWatterTrackSelection(int value) {
+        int dice = getDataGame().getDice().rollDice();
         try {
+            if (dice == 1) {
+                getDataGame().getStatus().ModifyMorale(-1);
+            }
             switch (value) {
                 case 1:
-                    if ((getDataGame().getDice().rollDice() + getDataGame().getDRM().getLadders()) > getDataGame().getEnemy().getLaddersStrength()) {
+                    if ((dice + getDataGame().getDRM().getLadders() + 1) > getDataGame().getEnemy().getLaddersStrength()) {
                         getDataGame().getEnemy().getLadders().Backward();
                     }
                     break;
 
                 case 2:
-                    if ((getDataGame().getDice().rollDice() + getDataGame().getDRM().getBatteringRam()) > getDataGame().getEnemy().getBatteringRamStrength()) {
+                    if ((dice + getDataGame().getDRM().getBatteringRam() + 1) > getDataGame().getEnemy().getBatteringRamStrength()) {
                         getDataGame().getEnemy().getBatteringRam().Backward();
                     }
                     break;
                 case 3:
-                    if ((getDataGame().getDice().rollDice() + getDataGame().getDRM().getSiegeTower()) > getDataGame().getEnemy().getSiegeTowerStrength()) {
+                    if ((dice + getDataGame().getDRM().getSiegeTower() + 1) > getDataGame().getEnemy().getSiegeTowerStrength()) {
                         getDataGame().getEnemy().getSiegeTower().Backward();
                     }
                     break;

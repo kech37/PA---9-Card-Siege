@@ -31,5 +31,6 @@ public abstract class Movement {
     }
     
     public abstract void applyMovement();
+   
     
 }

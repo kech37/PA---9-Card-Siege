@@ -9,7 +9,7 @@ public class Track {
     }
 
     public void Forward() {
-        if (position >= 0) {
+        if (position > 0) {
             position--;
         } else {
             throw new IndexOutOfBoundsException();
@@ -17,7 +17,7 @@ public class Track {
     }
 
     public void Backward() {
-        if (position < 5) {
+        if (position < 4) {
             position++;
         } else {
             throw new IndexOutOfBoundsException();

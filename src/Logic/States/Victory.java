@@ -17,4 +17,6 @@ public class Victory extends StateAdapter{
         super(dataGame);
     }
     
+    
+    
 }

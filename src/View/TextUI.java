@@ -36,10 +36,14 @@ public class TextUI {
             } else {
                 if (game.getState() instanceof AwaitTopCardToBeDrawn) {
                     game.VerifyGameOver();
-                    getUserInputWhileAwaitTopCardToBeDraw();
+                    if (!(game.getState() instanceof GameOver)) {
+                        getUserInputWhileAwaitTopCardToBeDraw();
+                    }
                 } else if (game.getState() instanceof AwaitActionSelection) {
                     game.VerifyGameOver();
-                    getUserInputWhileAwaitActionSelection();
+                    if (!(game.getState() instanceof GameOver)) {
+                        getUserInputWhileAwaitActionSelection();
+                    }
                 } else if (game.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
                     getUserInputWhileAwaitEnemyTrackSelectionForArchersAttack();
                 } else if (game.getState() instanceof AwaitBoilingWaterTrackSelection) {
@@ -53,21 +57,28 @@ public class TextUI {
         }
         if (game.getState() instanceof Victory) {
             uiVictory();
+        } else if (game.getState() instanceof GameOver) {
+            uiGameOver();
         }
     }
 
     private void getUserInputWhileAwaitingBegining() {
-        int value;
+        int value = 0;
 
         System.out.println("----> 9CardSiege <----");
         System.out.println("0 - Sair");
         System.out.println("1 - Começar novo jogo");
         System.out.println("2 - Continuar antigo jogo");
 
-        while (!scan.hasNextInt()) {
-            scan.next();
+        while (true) {
+            if (scan.hasNextInt()) {
+                scan.next();
+                value = scan.nextInt();
+                if ((value >= 0 && value <= 2)) {
+                    break;
+                }
+            }
         }
-        value = scan.nextInt();
 
         switch (value) {
             case 0:
@@ -78,6 +89,7 @@ public class TextUI {
                 game.start();
                 break;
         }
+
     }
 
     private void getUserInputWhileAwaitTopCardToBeDraw() {
@@ -105,7 +117,7 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitActionSelection() {
-        int value;
+        int value = 0;
 
         game.CheckActionPoints();
         if (game.getState() instanceof AwaitTopCardToBeDrawn) {
@@ -122,10 +134,16 @@ public class TextUI {
         System.out.print("4 - Coupure");
         System.out.println("               8 - Sabotage");
 
-        while (!scan.hasNextInt()) {
-            scan.next();
+        while (true) {
+
+            if (scan.hasNextInt()) {
+                scan.next();
+                value = scan.nextInt();
+                if ((value >= 1 && value <= 8)) {
+                    break;
+                }
+            }
         }
-        value = scan.nextInt();
 
         switch (value) {
             case 1:
@@ -162,17 +180,23 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitEnemyTrackSelectionForArchersAttack() {
-        int value;
+        int value = 0;
 
         System.out.println("----> Archers Attack <----");
         System.out.println("1 - Battering Ram");
         System.out.println("2 - Ladders Track");
         System.out.println("3 - Siege Tower");
 
-        while (!scan.hasNextInt()) {
-            scan.next();
+        while (true) {
+
+            if (scan.hasNextInt()) {
+                scan.next();
+                value = scan.nextInt();
+                if ((value >= 1 && value <= 3)) {
+                    break;
+                }
+            }
         }
-        value = scan.nextInt();
 
         game.ArchersAttackTrackSelection(value);
         switch (value) {
@@ -190,17 +214,23 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitBoilingWaterTrackSelection() {
-        int value;
+        int value = 0;
 
         System.out.println("----> Boiling Water <----");
         System.out.println("1 - Battering Ram");
         System.out.println("2 - Ladders Track");
         System.out.println("3 - Siege Tower");
 
-        while (!scan.hasNextInt()) {
-            scan.next();
+        while (true) {
+
+            if (scan.hasNextInt()) {
+                scan.next();
+                value = scan.nextInt();
+                if ((value >= 1 && value <= 3)) {
+                    break;
+                }
+            }
         }
-        value = scan.nextInt();
 
         game.ArchersAttackTrackSelection(value);
         switch (value) {
@@ -223,10 +253,16 @@ public class TextUI {
         System.out.println("1 - Movimento Rapido");
         System.out.println("2 - Movimento Gratuito");
 
-        while (!scan.hasNextInt()) {
-            scan.next();
+        while (true) {
+
+            if (scan.hasNextInt()) {
+                scan.next();
+                value = scan.nextInt();
+                if ((value >= 1 && value <= 2)) {
+                    break;
+                }
+            }
         }
-        value = scan.nextInt();
         game.TunnelMovementOptionSelection(value);
     }
 
@@ -247,6 +283,19 @@ public class TextUI {
         System.out.println("   Supplies Carregados: " + game.getGame().getStatus().getSuppliesLevel());
         System.out.println("---------------------------------\n");
 
+    }
+
+    private void uiVictory() {
+        System.out.println("____________________________");
+        System.out.println("          VITORIA!          ");
+        System.out.println("____________________________");
+    }
+
+    private void uiGameOver() {
+        System.out.println("____________________________");
+        System.out.println("          PERDEU!          \n\n");
+        showEnemyStatus();
+        System.out.println("____________________________");
     }
 
 /////// GRAVA JOGO NUM FICHEIRO
@@ -281,12 +330,6 @@ public class TextUI {
                 oin.close();
             }
         }
-    }
-
-    private void uiVictory() {
-        System.out.println("____________________________");
-        System.out.println("          VITORIA!          ");
-        System.out.println("____________________________");
     }
 
 }

@@ -52,7 +52,7 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
                     return this;
                 } else {
                     getDataGame().getStatus().ModifySupplies(getDataGame().getStatus().getSuppliesLevel());
-                    return this;//
+                    return this;
                 }
             }
         } else {
@@ -86,8 +86,6 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
         if (getDataGame().getStatus().getMorale() == 0 || getDataGame().getStatus().getSupplies() == 0 || getDataGame().getStatus().getWallStrenght() == 0) {
             return new GameOver(getDataGame());
         }
-
-        getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(-1);
         return new AwaitActionSelection(getDataGame());
     }
 

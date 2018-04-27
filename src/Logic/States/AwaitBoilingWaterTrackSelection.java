@@ -26,13 +26,13 @@ public class AwaitBoilingWaterTrackSelection extends StateAdapter {
                 getDataGame().getStatus().ModifyMorale(-1);
             }
             switch (value) {
-                case 1:
+                case 2:
                     if ((dice + getDataGame().getDRM().getLadders() + 1) > getDataGame().getEnemy().getLaddersStrength()) {
                         getDataGame().getEnemy().getLadders().Backward();
                     }
                     break;
 
-                case 2:
+                case 1:
                     if ((dice + getDataGame().getDRM().getBatteringRam() + 1) > getDataGame().getEnemy().getBatteringRamStrength()) {
                         getDataGame().getEnemy().getBatteringRam().Backward();
                     }

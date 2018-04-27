@@ -13,7 +13,7 @@ import Logic.GameData;
  * @author andre
  */
 public class AwaitActionSelection extends StateAdapter {
-    
+
     public AwaitActionSelection(GameData dataGame) {
         super(dataGame);
     }
@@ -48,12 +48,48 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates SabotageAttack() {
-        return super.SabotageAttack(); //To change body of generated methods, choose Tools | Templates.
+        if (getDataGame().getStatus().getTunnel() != 4) {
+            return this;
+        } else {
+            int dice = getDataGame().getDice().rollDice() + getDataGame().getDRM().getSabotageAction();
+            dice = (dice > 6) ? 6 : dice;
+            dice = (dice <= 0) ? 1 : dice;
+
+            if (dice == 5 || dice == 6) {
+                getDataGame().getEnemy().getTrebuchet().removeOne();
+            } else {
+                if (dice == 1) {
+                    getDataGame().getStatus().setTunnel(0);
+                    getDataGame().getStatus().setSuppliesLevel(0);
+                    getDataGame().getStatus().ModifyMorale(-1);
+                }
+            }
+            return this;
+        }
     }
 
     @Override
     public IStates SupplieRaidAttack() {
-        return super.SupplieRaidAttack(); //To change body of generated methods, choose Tools | Templates.
+        int dice = getDataGame().getDice().rollDice() + getDataGame().getDRM().getRaid();
+        dice = (dice > 6) ? 6 : dice;
+        dice = (dice <= 0) ? 1 : dice;
+        if (dice >= 3 && dice <= 5) {
+            if (getDataGame().getStatus().getSuppliesLevel() < 2) {
+                getDataGame().getStatus().ModifySuppliesLevel(+1);
+            }
+        } else {
+            if (dice == 6) {
+                getDataGame().getStatus().setSuppliesLevel(2);
+            } else {
+                if (dice == 2) {
+                } else {
+                    getDataGame().getStatus().setTunnel(0);
+                    getDataGame().getStatus().setSuppliesLevel(0);
+                    getDataGame().getStatus().ModifyMorale(-1);
+                }
+            }
+        }
+        return this;
     }
 
     @Override
@@ -61,6 +97,7 @@ public class AwaitActionSelection extends StateAdapter {
         int dice = getDataGame().getDice().rollDice();
 
         getDataGame().getStatus().ModifySupplies(-1);
+        
         try {
             if (dice > 4) {
                 getDataGame().getStatus().ModifyMorale(+1);
@@ -75,8 +112,9 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates Coupure() {
-        int dice = getDataGame().getDice().rollDice();
-        dice += getDataGame().getDRM().getCoupure();
+        int dice = getDataGame().getDice().rollDice() + getDataGame().getDRM().getCoupure();
+        dice = (dice > 6) ? 6 : dice;
+        dice = (dice <= 0) ? 1 : dice;
 
         try {
             if (dice > 4) {
@@ -93,8 +131,10 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates CloseCombatAttack() {
-        int dice = getDataGame().getDice().rollDice();
-        dice += getDataGame().getDRM().getCloseCombat();
+        int dice = getDataGame().getDice().rollDice() + getDataGame().getDRM().getCloseCombat();
+        dice = (dice > 6) ? 6 : dice;
+        dice = (dice <= 0) ? 1 : dice;
+
         try {
             if (dice == 1) {
                 getDataGame().getStatus().ModifyMorale(-1);
@@ -130,25 +170,21 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates TunnelMovement() {
-        if(!getDataGame().isFreeMovement())
-        {
-            if(getDataGame().getStatus().getTunnel() == 0)
-            {
+        if (!getDataGame().isFreeMovement()) {
+            if (getDataGame().getStatus().getTunnel() == 0) {
                 getDataGame().getStatus().ModifyTunnel(+1);
                 return this;
-            }
-            else
-            {
+            } else {
                 return new AwaitOptionMovementSelection(getDataGame());
             }
-        }
-        else
+        } else {
             return this;
+        }
     }
 
     @Override
     public IStates CheckActionPoints() {
-        if (getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).getActionPointAllowance() != 0) {
+        if (getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).getActionPointAllowance() > 0) {
             getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(-1);
             return this;
         } else {

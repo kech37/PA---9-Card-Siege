@@ -103,5 +103,13 @@ public final class Game implements Serializable {
     public void TunnelMovementOptionSelection(int value) {
        setState(getState().TunnelMovementOptionSelection(value));
     }
+
+    public void SupplyRaid() {
+        setState(getState().SupplieRaidAttack());
+    }
+
+    public void Sabotage() {
+        setState(getState().SabotageAttack());
+    }
     
 }

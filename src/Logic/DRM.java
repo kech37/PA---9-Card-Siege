@@ -97,5 +97,4 @@ public class DRM {
     public void setMoraleAction(int MoraleAction) {
         this.MoraleAction += MoraleAction;
     }
-
 }

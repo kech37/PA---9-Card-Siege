@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author a21220528
  */
-public abstract class BaseEventCard implements Serializable  {
+public abstract class BaseEventCard implements Serializable {
 
     //Irá guardar os eventos que esta carta de eventos tem. É obrigatorio ter 3.
     private final List<Event> events;

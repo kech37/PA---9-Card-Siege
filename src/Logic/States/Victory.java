@@ -11,12 +11,10 @@ import Logic.GameData;
  *
  * @author andre
  */
-public class Victory extends StateAdapter{
-    
+public class Victory extends StateAdapter {
+
     public Victory(GameData dataGame) {
         super(dataGame);
     }
-    
-    
-    
+
 }

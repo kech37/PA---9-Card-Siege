@@ -39,7 +39,7 @@ public final class CardDeck implements Serializable {
     public boolean isFull() {
         return (Cards.size() == 7);
     }
-  
+
     public boolean isEmpty() {
         return Cards.isEmpty();
     }
@@ -54,9 +54,9 @@ public final class CardDeck implements Serializable {
         this.Cards.add(new EventCard5(gameData));
         this.Cards.add(new EventCard6(gameData));
         this.Cards.add(new EventCard7(gameData));
-      
+
         onUseEventCard = null;
-      
+
         Collections.shuffle(this.Cards);
     }
 

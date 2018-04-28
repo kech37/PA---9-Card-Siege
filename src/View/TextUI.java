@@ -9,8 +9,6 @@ import Logic.Cards.EventCards.Events.RegularEvents;
 import Logic.Game;
 import Logic.States.*;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TextUI {
 
@@ -84,7 +82,7 @@ public class TextUI {
                 game.start();
                 break;
             case 2:
-                
+                game.loadGame();
                 break;
         }
 
@@ -131,6 +129,7 @@ public class TextUI {
         System.out.println("   7 - Supply Raid");
         System.out.print("4 - Coupure");
         System.out.println("               8 - Sabotage");
+        System.out.println("          -1 - Save Game");        
 
         while (true) {
 
@@ -144,6 +143,10 @@ public class TextUI {
         }
 
         switch (value) {
+            case -1:
+                game.getState().saveGame();
+                System.out.println("Game saved!");
+                break;
             case 1:
                 game.ArchersAttack();
                 break;

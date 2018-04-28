@@ -1,6 +1,8 @@
 package Logic.Cards;
 
-public class StatusTrackCard {
+import java.io.Serializable;
+
+public class StatusTrackCard implements Serializable {
 
     private int SuppliesLevel;
     private int WallStrenght, Morale, Supplies;
@@ -73,19 +75,9 @@ public class StatusTrackCard {
     public void ModifyTunnel(int Tunnel) {
         this.Tunnel += Tunnel;
     }
-    
-           
-    public boolean isOnEnemyLines()
-    {
-        if(Tunnel == 3)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
+    public boolean isOnEnemyLines() {
+        return Tunnel == 3;
+    }
 
 }

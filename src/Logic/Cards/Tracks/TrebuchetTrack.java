@@ -5,11 +5,13 @@
  */
 package Logic.Cards.Tracks;
 
+import java.io.Serializable;
+
 /**
  *
  * @author andre
  */
-public class TrebuchetTrack {
+public class TrebuchetTrack implements Serializable {
 
     private int count;
 

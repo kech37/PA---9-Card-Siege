@@ -11,7 +11,7 @@ import Logic.GameData;
  *
  * @author a21220528
  */
-public class BatteringRamMovement extends Movement{
+public class BatteringRamMovement extends Movement {
 
     public BatteringRamMovement(GameData gameData) {
         super("Battering Ram movement", gameData);
@@ -21,5 +21,5 @@ public class BatteringRamMovement extends Movement{
     public void applyMovement() {
         getGameData().getEnemy().getBatteringRam().Forward();
     }
-    
+
 }

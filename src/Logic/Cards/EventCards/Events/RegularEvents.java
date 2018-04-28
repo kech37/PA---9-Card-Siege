@@ -45,12 +45,10 @@ public abstract class RegularEvents extends Event {
             temp += s + "\n";
         }
         temp += "--------\n";
-        for(Movement s: enemyAdvancementOrders)
-        {
-            temp+= s.getName();
+        for (Movement s : enemyAdvancementOrders) {
+            temp += s.getName();
         }
-        
-        
+
         return temp;
     }
 

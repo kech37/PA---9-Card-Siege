@@ -8,12 +8,12 @@ import java.io.Serializable;
 
 public class GameData implements Serializable {
 
-    private CardDeck deck;
+    private final CardDeck deck;
     private final EnemyTrackCard enemy;
     private final StatusTrackCard status;
     private final DRM drm;
     private int day;
-    private Dice dice;
+    private final Dice dice;
     private boolean justRaidSabotage;
     private boolean freeMovement;
 
@@ -45,11 +45,11 @@ public class GameData implements Serializable {
     }
 
     public boolean nextDay() {
-        if(day < 2){
+        if (day < 2) {
             day++;
-            deck.reset(this);          
+            deck.reset(this);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -77,5 +77,5 @@ public class GameData implements Serializable {
     public StatusTrackCard getStatus() {
         return status;
     }
-       
+
 }

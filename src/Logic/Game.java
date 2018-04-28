@@ -102,5 +102,13 @@ public final class Game implements Serializable {
     public void loadGame() {
         setState(getState().loadGame());
     }
+  
+    public void SupplyRaid() {
+        setState(getState().SupplieRaidAttack());
+    }
 
+    public void Sabotage() {
+        setState(getState().SabotageAttack());
+    }
+   
 }

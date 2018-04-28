@@ -99,5 +99,4 @@ public class DRM implements Serializable {
     public void setMoraleAction(int MoraleAction) {
         this.MoraleAction += MoraleAction;
     }
-
 }

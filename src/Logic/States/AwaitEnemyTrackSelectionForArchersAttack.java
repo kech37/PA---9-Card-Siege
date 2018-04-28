@@ -22,13 +22,13 @@ public class AwaitEnemyTrackSelectionForArchersAttack extends StateAdapter {
     public IStates ArchersAttackTrackSelection(int value) {
         try {
             switch (value) {
-                case 1:
+                case 2:
                     if ((getDataGame().getDice().rollDice() + getDataGame().getDRM().getLadders()) > getDataGame().getEnemy().getLaddersStrength()) {
                         getDataGame().getEnemy().getLadders().Backward();
                     }
                     break;
 
-                case 2:
+                case 1:
                     if ((getDataGame().getDice().rollDice() + getDataGame().getDRM().getBatteringRam()) > getDataGame().getEnemy().getBatteringRamStrength()) {
                         getDataGame().getEnemy().getBatteringRam().Backward();
                     }

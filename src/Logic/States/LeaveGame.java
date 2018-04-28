@@ -11,10 +11,10 @@ import Logic.GameData;
  *
  * @author a21220528
  */
-public class LeaveGame extends StateAdapter{
-    
+public class LeaveGame extends StateAdapter {
+
     public LeaveGame(GameData dataGame) {
         super(dataGame);
     }
-    
+
 }

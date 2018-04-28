@@ -129,7 +129,7 @@ public class TextUI {
         System.out.println("   7 - Supply Raid");
         System.out.print("4 - Coupure");
         System.out.println("               8 - Sabotage");
-        System.out.println("          -1 - Save Game");        
+        System.out.println("          -1 - Save Game");
 
         while (true) {
 

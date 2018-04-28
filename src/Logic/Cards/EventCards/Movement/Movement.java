@@ -16,7 +16,6 @@ public abstract class Movement implements Serializable {
 
     private final GameData gameData;
     private final String name;
-    private int day;
 
     public Movement(String name, GameData gameData) {
         this.gameData = gameData;

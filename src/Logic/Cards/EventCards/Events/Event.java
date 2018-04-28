@@ -20,7 +20,7 @@ public abstract class Event implements Serializable {
     //Quantas ações é possivel fazer neste evento (turno)
     private int actionPointAllowance;
 
-    private GameData gameData;
+    private final GameData gameData;
 
     public Event(String eventName, int actionPointAllowance, GameData gameData) {
         this.eventName = eventName;

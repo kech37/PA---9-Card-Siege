@@ -110,5 +110,9 @@ public final class Game implements Serializable {
     public void Sabotage() {
         setState(getState().SabotageAttack());
     }
+    
+    public void saveGame(){
+        setState(getState().saveGame());
+    }
 
 }

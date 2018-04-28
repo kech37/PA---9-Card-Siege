@@ -124,7 +124,7 @@ public class StateAdapter implements IStates {
     @Override
     public IStates saveGame() {
         try {
-            FileManager fileManager = new FileManager("savegame.9cs");
+            FileManager fileManager = new FileManager();
             fileManager.SaveGameDataToFile(getDataGame());
         } catch (IOException ex) {
             Logger.getLogger(StateAdapter.class.getName()).log(Level.SEVERE, null, ex);

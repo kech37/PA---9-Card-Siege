@@ -5,7 +5,6 @@
  */
 package Logic.States;
 
-import Logic.Dice;
 import Logic.GameData;
 
 /**
@@ -97,7 +96,7 @@ public class AwaitActionSelection extends StateAdapter {
         int dice = getDataGame().getDice().rollDice();
 
         getDataGame().getStatus().ModifySupplies(-1);
-        
+
         try {
             if (dice > 4) {
                 getDataGame().getStatus().ModifyMorale(+1);

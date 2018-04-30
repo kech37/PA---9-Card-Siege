@@ -5,6 +5,7 @@
  */
 package Logic.Cards.EventCards;
 
+import Logic.Cards.EventCards.Events.Event;
 import Logic.Cards.EventCards.Events.EventDeterminedEnemy;
 import Logic.Cards.EventCards.Events.EventFaith;
 import Logic.Cards.EventCards.Events.EventIronShields;
@@ -16,14 +17,14 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventCard7 extends BaseEventCard{
-    
+public class EventCard7 extends BaseEventCard {
+
     public EventCard7(GameData gameData) {
-        super(new ArrayList<>(Arrays.asList(
+        super(new ArrayList<Event>(Arrays.asList(
                 new EventDeterminedEnemy(gameData),
                 new EventIronShields(gameData),
                 new EventFaith(gameData)
         )), gameData);
     }
-    
+
 }

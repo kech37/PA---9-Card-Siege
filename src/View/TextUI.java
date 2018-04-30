@@ -6,16 +6,10 @@
 package View;
 
 import Logic.Cards.EventCards.Events.RegularEvents;
+import Logic.FileManager;
 import Logic.Game;
 import Logic.States.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TextUI {
 
@@ -63,30 +57,29 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitingBegining() {
-        int value = 0;
+        int value;
+        FileManager fileManager = new FileManager();
 
         System.out.println("----> 9CardSiege <----");
         System.out.println("0 - Sair");
         System.out.println("1 - Começar novo jogo");
-        System.out.println("2 - Continuar antigo jogo");
-
-        while (true) {
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 0 && value <= 2)) {
-                    break;
-                }
-            }
+        if (fileManager.checkSavegameFile()) {
+            System.out.println("2 - Continuar antigo jogo");
         }
+
+        value = readNumber();
 
         switch (value) {
             case 0:
                 game.leaveGame();
-
                 break;
             case 1:
                 game.start();
+                break;
+            case 2:
+                if (fileManager.checkSavegameFile()) {
+                    game.loadGame();
+                }
                 break;
         }
 
@@ -117,7 +110,7 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitActionSelection() {
-        int value = 0;
+        int value;
 
         game.CheckActionPoints();
         if (game.getState() instanceof AwaitTopCardToBeDrawn) {
@@ -133,19 +126,15 @@ public class TextUI {
         System.out.println("   7 - Supply Raid");
         System.out.print("4 - Coupure");
         System.out.println("               8 - Sabotage");
+        System.out.print("9 - Save game");
+        System.out.println("            -1 - Exit game");
 
-        while (true) {
-
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 1 && value <= 8)) {
-                    break;
-                }
-            }
-        }
+        value = readNumber();
 
         switch (value) {
+            case -1:
+                System.out.println("TODO: EXIT GAME!!");
+                break;
             case 1:
                 game.ArchersAttack();
                 break;
@@ -174,29 +163,24 @@ public class TextUI {
                 game.Sabotage();
                 System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
                 break;
+            case 9:
+                game.saveGame();
+                System.out.println(">>>>> Game saved! <<<<<");
+                break;
 
         }
 
     }
 
     private void getUserInputWhileAwaitEnemyTrackSelectionForArchersAttack() {
-        int value = 0;
+        int value;
 
         System.out.println("----> Archers Attack <----");
         System.out.println("1 - Battering Ram");
         System.out.println("2 - Ladders Track");
         System.out.println("3 - Siege Tower");
 
-        while (true) {
-
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 1 && value <= 3)) {
-                    break;
-                }
-            }
-        }
+        value = readNumber();
 
         game.ArchersAttackTrackSelection(value);
         switch (value) {
@@ -214,23 +198,14 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitBoilingWaterTrackSelection() {
-        int value = 0;
+        int value;
 
         System.out.println("----> Boiling Water <----");
         System.out.println("1 - Battering Ram");
         System.out.println("2 - Ladders Track");
         System.out.println("3 - Siege Tower");
 
-        while (true) {
-
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 1 && value <= 3)) {
-                    break;
-                }
-            }
-        }
+        value = readNumber();
 
         game.ArchersAttackTrackSelection(value);
         switch (value) {
@@ -253,16 +228,8 @@ public class TextUI {
         System.out.println("1 - Movimento Rapido");
         System.out.println("2 - Movimento Gratuito");
 
-        while (true) {
+        value = readNumber();
 
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 1 && value <= 2)) {
-                    break;
-                }
-            }
-        }
         game.TunnelMovementOptionSelection(value);
     }
 
@@ -298,38 +265,10 @@ public class TextUI {
         System.out.println("____________________________");
     }
 
-/////// GRAVA JOGO NUM FICHEIRO
-    private void SaveGameToFile(String fileName) throws IOException {
-        ObjectOutputStream oout = null;
-
-        try {
-            oout = new ObjectOutputStream(new FileOutputStream(fileName));
-
-            oout.writeObject(game);
-
-        } finally {
-
-            if (oout != null) {
-                oout.close();
-            }
+    private int readNumber() {
+        while (!scan.hasNextInt()) {
+            scan.next();
         }
+        return scan.nextInt();
     }
-
-    ////// DEVOLVE O JOGO QUE ESTÁ GUARDADO NO FICHEIRO
-    private Game GetGameFromFile(String fileName) throws IOException, ClassNotFoundException {
-        ObjectInputStream oin = null;
-
-        try {
-
-            oin = new ObjectInputStream(new FileInputStream(fileName));
-
-            return (Game) oin.readObject();
-
-        } finally {
-            if (oin != null) {
-                oin.close();
-            }
-        }
-    }
-
 }

@@ -14,14 +14,14 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventDeathOfLeader extends RegularEvents{
+public class EventDeathOfLeader extends RegularEvents {
 
     public EventDeathOfLeader(GameData gameData) {
         super(
-                "Death of a Leader", 
-                new ArrayList<>(Arrays.asList("Reduce morale by 1")), 
-                2, 
-                new ArrayList<>(Arrays.asList(new SwordMovement(gameData))), 
+                "Death of a Leader",
+                new ArrayList<>(Arrays.asList("Reduce morale by 1")),
+                2,
+                new ArrayList<>(Arrays.asList(new SwordMovement(gameData))),
                 gameData);
     }
 
@@ -29,5 +29,5 @@ public class EventDeathOfLeader extends RegularEvents{
     public void applyEffect() {
         getGameData().getStatus().ModifyMorale(-1);
     }
-    
+
 }

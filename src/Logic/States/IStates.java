@@ -9,7 +9,9 @@ public interface IStates {
 
     //  AWAIT BEGINIG 
     IStates start();
-    IStates finish(); 
+    IStates saveGame();
+    IStates loadGame();
+    IStates finish();
 
     //AWAIT TOP CARD TO BE DOWN
     IStates CheckingEnemyLines();
@@ -28,14 +30,13 @@ public interface IStates {
     IStates TunnelMovement();
     IStates VerifyGameOver();
 
-
     //AWAIT ARCHERS ATACK ACTION SELECTION
     IStates ArchersAttackTrackSelection(int value);
-    
+
     //AWAIT BOILING WATER  ACTION SELECTION
-     IStates BoilingWatterTrackSelection(int value);
-     
-     /// TUNNEL MOVEMENT SELECTION
-     IStates TunnelMovementOptionSelection(int value);
+    IStates BoilingWatterTrackSelection(int value);
+
+    /// TUNNEL MOVEMENT SELECTION
+    IStates TunnelMovementOptionSelection(int value);
 
 }

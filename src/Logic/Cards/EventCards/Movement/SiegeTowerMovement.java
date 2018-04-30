@@ -11,7 +11,7 @@ import Logic.GameData;
  *
  * @author a21220528
  */
-public class SiegeTowerMovement extends Movement{
+public class SiegeTowerMovement extends Movement {
 
     public SiegeTowerMovement(GameData gameData) {
         super("Siege Tower movement", gameData);
@@ -19,7 +19,7 @@ public class SiegeTowerMovement extends Movement{
 
     @Override
     public void applyMovement() {
-        if(getGameData().getEnemy().getSiegeTower().getPosition() != -1){
+        if (getGameData().getEnemy().getSiegeTower().getPosition() != -1) {
             getGameData().getEnemy().getSiegeTower().Forward();
         }
     }

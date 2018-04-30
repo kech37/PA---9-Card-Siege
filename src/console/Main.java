@@ -5,8 +5,13 @@
  */
 package console;
 
+import Logic.FileManager;
 import Logic.Game;
+import Logic.GameData;
 import View.TextUI;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *

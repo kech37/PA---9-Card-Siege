@@ -6,8 +6,8 @@
 package Logic.Cards.EventCards;
 
 import Logic.Cards.EventCards.Events.Event;
-import Logic.Cards.EventCards.Movement.Movement;
 import Logic.GameData;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,16 +15,13 @@ import java.util.List;
  *
  * @author a21220528
  */
-public abstract class BaseEventCard {
+public abstract class BaseEventCard implements Serializable {
 
     //Irá guardar os eventos que esta carta de eventos tem. É obrigatorio ter 3.
     private final List<Event> events;
-    
-    private final GameData gamedata;
 
-    public BaseEventCard(ArrayList eventsInput, GameData g) {
+    public BaseEventCard(ArrayList<Event> eventsInput, GameData g) {
         this.events = new ArrayList<>(eventsInput);
-        gamedata = g;
     }
 
     public List<Event> getEvents() {

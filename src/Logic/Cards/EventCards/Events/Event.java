@@ -5,14 +5,14 @@
  */
 package Logic.Cards.EventCards.Events;
 
-import Logic.Cards.EventCards.Movement.Movement;
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author a21220528
  */
-public abstract class Event {
+public abstract class Event implements Serializable {
 
     // Nome do Evento
     private final String eventName;
@@ -20,7 +20,7 @@ public abstract class Event {
     //Quantas ações é possivel fazer neste evento (turno)
     private int actionPointAllowance;
 
-    private GameData gameData;
+    private final GameData gameData;
 
     public Event(String eventName, int actionPointAllowance, GameData gameData) {
         this.eventName = eventName;
@@ -39,15 +39,15 @@ public abstract class Event {
     public int getActionPointAllowance() {
         return actionPointAllowance;
     }
-    
-     public void modifyActionPointAllowance(int actionpoint) {
+
+    public void modifyActionPointAllowance(int actionpoint) {
         actionPointAllowance += actionpoint;
     }
-     
-     public abstract boolean hasEnemyAdvancementOrders();
-                          
+
+    public abstract boolean hasEnemyAdvancementOrders();
+
     public abstract void applyEffect();
-       
-     public abstract void applyMovements();
-    
+
+    public abstract void applyMovements();
+
 }

@@ -5,11 +5,13 @@
  */
 package Logic;
 
+import java.io.Serializable;
+
 /**
  *
  * @author andre
  */
-public class DRM {
+public class DRM implements Serializable {
 
     private int SiegeTower, BatteringRam, Ladders;
     private int Raid, Coupure, CloseCombat, CircleSpaces, MoraleAction, SabotageAction;

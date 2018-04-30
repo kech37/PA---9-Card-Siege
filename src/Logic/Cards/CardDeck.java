@@ -7,6 +7,7 @@ package Logic.Cards;
 
 import Logic.Cards.EventCards.*;
 import Logic.GameData;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -14,7 +15,7 @@ import java.util.Collections;
  *
  * @author andre
  */
-public final class CardDeck {
+public final class CardDeck implements Serializable {
 
     ArrayList<BaseEventCard> Cards;
     private BaseEventCard onUseEventCard;
@@ -43,18 +44,19 @@ public final class CardDeck {
         return Cards.isEmpty();
     }
 
-    public void reset(GameData g) {
+    public void reset(GameData gameData) {
         this.Cards.clear();
 
-        this.Cards.add(new EventCard1(g));
-        this.Cards.add(new EventCard2(g));
-        this.Cards.add(new EventCard3(g));
-        this.Cards.add(new EventCard4(g));
-        this.Cards.add(new EventCard5(g));
-        this.Cards.add(new EventCard6(g));
-        this.Cards.add(new EventCard7(g));
+        this.Cards.add(new EventCard1(gameData));
+        this.Cards.add(new EventCard2(gameData));
+        this.Cards.add(new EventCard3(gameData));
+        this.Cards.add(new EventCard4(gameData));
+        this.Cards.add(new EventCard5(gameData));
+        this.Cards.add(new EventCard6(gameData));
+        this.Cards.add(new EventCard7(gameData));
 
         onUseEventCard = null;
+
         Collections.shuffle(this.Cards);
     }
 

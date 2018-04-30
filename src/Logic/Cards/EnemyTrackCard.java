@@ -2,8 +2,9 @@ package Logic.Cards;
 
 import Logic.Cards.Tracks.Track;
 import Logic.Cards.Tracks.TrebuchetTrack;
+import java.io.Serializable;
 
-public class EnemyTrackCard {
+public class EnemyTrackCard implements Serializable {
 
     private final Track SiegeTower;
 
@@ -73,11 +74,9 @@ public class EnemyTrackCard {
             LaddersStrength = 0;
         }
     }
-    
-    public boolean isCardsOnCircle()
-    {
-        if(BatteringRam.getPosition() == 0 || SiegeTower.getPosition() == 0 || Ladders.getPosition() == 0)
-        {
+
+    public boolean isCardsOnCircle() {
+        if (BatteringRam.getPosition() == 0 || SiegeTower.getPosition() == 0 || Ladders.getPosition() == 0) {
             return true;
         }
         return false;

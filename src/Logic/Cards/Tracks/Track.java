@@ -1,6 +1,8 @@
 package Logic.Cards.Tracks;
 
-public class Track {
+import java.io.Serializable;
+
+public class Track implements Serializable {
 
     private int position;
 

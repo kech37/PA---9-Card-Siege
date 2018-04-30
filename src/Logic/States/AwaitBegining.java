@@ -5,7 +5,11 @@
  */
 package Logic.States;
 
+import Logic.FileManager;
 import Logic.GameData;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,9 +28,20 @@ public class AwaitBegining extends StateAdapter {
     }
 
     @Override
+    public IStates loadGame() {
+        try {
+            FileManager fileManager = new FileManager();
+            setDataGame(fileManager.GetGameDataFromFile());
+            return new AwaitTopCardToBeDrawn(getDataGame());
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(AwaitBegining.class.getName()).log(Level.SEVERE, null, ex);
+            return this;
+        }
+    }
+
+    @Override
     public IStates finish() {
         return new LeaveGame(getDataGame());
     }
-    
-    
+
 }

@@ -5,11 +5,10 @@
  */
 package Logic.Cards.EventCards;
 
+import Logic.Cards.EventCards.Events.Event;
 import Logic.Cards.EventCards.Events.EventCollapsed;
 import Logic.Cards.EventCards.Events.EventRepairedTrebuchet;
 import Logic.Cards.EventCards.Events.EventVolleyArrows;
-import Logic.Cards.EventCards.Movement.BatteringRamMovement;
-import Logic.Cards.EventCards.Movement.LaddersMovement;
 import Logic.GameData;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,14 +17,14 @@ import java.util.Arrays;
  *
  * @author a21220528
  */
-public class EventCard5 extends BaseEventCard{
-    
+public class EventCard5 extends BaseEventCard {
+
     public EventCard5(GameData gameData) {
-        super(new ArrayList<>(Arrays.asList(
+        super(new ArrayList<Event>(Arrays.asList(
                 new EventVolleyArrows(gameData),
                 new EventCollapsed(gameData),
                 new EventRepairedTrebuchet(gameData)
-        )),gameData);
+        )), gameData);
     }
-    
+
 }

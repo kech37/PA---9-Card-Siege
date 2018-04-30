@@ -5,7 +5,6 @@
  */
 package Logic.States;
 
-import Logic.Dice;
 import Logic.GameData;
 
 /**

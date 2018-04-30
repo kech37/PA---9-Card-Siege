@@ -6,16 +6,16 @@
 package Logic.Cards.EventCards.Movement;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author a21220528
  */
-public abstract class Movement {
- 
-    private GameData gameData;
-    private String name;
-    private int day;
+public abstract class Movement implements Serializable {
+
+    private final GameData gameData;
+    private final String name;
 
     public Movement(String name, GameData gameData) {
         this.gameData = gameData;
@@ -29,8 +29,7 @@ public abstract class Movement {
     public GameData getGameData() {
         return gameData;
     }
-    
+
     public abstract void applyMovement();
-   
-    
+
 }

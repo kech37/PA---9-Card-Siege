@@ -6,6 +6,7 @@
 package View;
 
 import Logic.Cards.EventCards.Events.RegularEvents;
+import Logic.FileManager;
 import Logic.Game;
 import Logic.States.*;
 import java.util.Scanner;
@@ -56,33 +57,29 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitingBegining() {
-        int value = 0;
+        int value;
+        FileManager fileManager = new FileManager();
 
         System.out.println("----> 9CardSiege <----");
         System.out.println("0 - Sair");
         System.out.println("1 - Começar novo jogo");
-        System.out.println("2 - Continuar antigo jogo");
-
-        while (true) {
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 0 && value <= 2)) {
-                    break;
-                }
-            }
+        if (fileManager.checkSavegameFile()) {
+            System.out.println("2 - Continuar antigo jogo");
         }
+
+        value = readNumber();
 
         switch (value) {
             case 0:
                 game.leaveGame();
-
                 break;
             case 1:
                 game.start();
                 break;
             case 2:
-                game.loadGame();
+                if (fileManager.checkSavegameFile()) {
+                    game.loadGame();
+                }
                 break;
         }
 
@@ -113,7 +110,7 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitActionSelection() {
-        int value = 0;
+        int value;
 
         game.CheckActionPoints();
         if (game.getState() instanceof AwaitTopCardToBeDrawn) {
@@ -129,23 +126,14 @@ public class TextUI {
         System.out.println("   7 - Supply Raid");
         System.out.print("4 - Coupure");
         System.out.println("               8 - Sabotage");
-        System.out.println("          -1 - Save Game");
+        System.out.print("9 - Save game");
+        System.out.println("            -1 - Exit game");
 
-        while (true) {
-
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 1 && value <= 8)) {
-                    break;
-                }
-            }
-        }
+        value = readNumber();
 
         switch (value) {
             case -1:
-                game.getState().saveGame();
-                System.out.println("Game saved!");
+                System.out.println("TODO: EXIT GAME!!");
                 break;
             case 1:
                 game.ArchersAttack();
@@ -175,29 +163,24 @@ public class TextUI {
                 game.Sabotage();
                 System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
                 break;
+            case 9:
+                game.saveGame();
+                System.out.println(">>>>> Game saved! <<<<<");
+                break;
 
         }
 
     }
 
     private void getUserInputWhileAwaitEnemyTrackSelectionForArchersAttack() {
-        int value = 0;
+        int value;
 
         System.out.println("----> Archers Attack <----");
         System.out.println("1 - Battering Ram");
         System.out.println("2 - Ladders Track");
         System.out.println("3 - Siege Tower");
 
-        while (true) {
-
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 1 && value <= 3)) {
-                    break;
-                }
-            }
-        }
+        value = readNumber();
 
         game.ArchersAttackTrackSelection(value);
         switch (value) {
@@ -215,23 +198,14 @@ public class TextUI {
     }
 
     private void getUserInputWhileAwaitBoilingWaterTrackSelection() {
-        int value = 0;
+        int value;
 
         System.out.println("----> Boiling Water <----");
         System.out.println("1 - Battering Ram");
         System.out.println("2 - Ladders Track");
         System.out.println("3 - Siege Tower");
 
-        while (true) {
-
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 1 && value <= 3)) {
-                    break;
-                }
-            }
-        }
+        value = readNumber();
 
         game.ArchersAttackTrackSelection(value);
         switch (value) {
@@ -254,16 +228,8 @@ public class TextUI {
         System.out.println("1 - Movimento Rapido");
         System.out.println("2 - Movimento Gratuito");
 
-        while (true) {
+        value = readNumber();
 
-            if (scan.hasNextInt()) {
-                scan.next();
-                value = scan.nextInt();
-                if ((value >= 1 && value <= 2)) {
-                    break;
-                }
-            }
-        }
         game.TunnelMovementOptionSelection(value);
     }
 
@@ -297,5 +263,12 @@ public class TextUI {
         System.out.println("          PERDEU!          \n\n");
         showEnemyStatus();
         System.out.println("____________________________");
+    }
+
+    private int readNumber() {
+        while (!scan.hasNextInt()) {
+            scan.next();
+        }
+        return scan.nextInt();
     }
 }

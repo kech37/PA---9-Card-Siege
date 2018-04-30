@@ -30,7 +30,7 @@ public class AwaitBegining extends StateAdapter {
     @Override
     public IStates loadGame() {
         try {
-            FileManager fileManager = new FileManager("savegame.9cs");
+            FileManager fileManager = new FileManager();
             setDataGame(fileManager.GetGameDataFromFile());
             return new AwaitTopCardToBeDrawn(getDataGame());
         } catch (IOException | ClassNotFoundException ex) {

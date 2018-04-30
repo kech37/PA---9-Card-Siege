@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -22,6 +23,10 @@ public class FileManager {
 
     public FileManager(String fileName) {
         this.fileName = fileName;
+    }
+    
+    public FileManager() {
+        this("savegame.9cs");
     }
 
     public void SaveGameDataToFile(GameData gameData) throws IOException {
@@ -41,5 +46,9 @@ public class FileManager {
             ois.close();
         }
         return gameData;
+    }
+    
+    public boolean checkSavegameFile(){
+        return new File(this.fileName).isFile();
     }
 }

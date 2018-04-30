@@ -6,6 +6,7 @@
 package View;
 
 import Logic.Cards.EventCards.Events.RegularEvents;
+import Logic.Cards.EventCards.Movement.SiegeTowerMovement;
 import Logic.FileManager;
 import Logic.Game;
 import Logic.States.*;
@@ -178,7 +179,9 @@ public class TextUI {
         System.out.println("----> Archers Attack <----");
         System.out.println("1 - Battering Ram");
         System.out.println("2 - Ladders Track");
-        System.out.println("3 - Siege Tower");
+        if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+            System.out.println("3 - Siege Tower");
+        }
 
         value = readNumber();
 
@@ -191,7 +194,9 @@ public class TextUI {
                 System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getLadders());
                 break;
             default:
-                System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSiegeTower());
+                if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+                    System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSiegeTower());
+                }
                 break;
         }
 
@@ -203,7 +208,9 @@ public class TextUI {
         System.out.println("----> Boiling Water <----");
         System.out.println("1 - Battering Ram");
         System.out.println("2 - Ladders Track");
-        System.out.println("3 - Siege Tower");
+        if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+            System.out.println("3 - Siege Tower");
+        }
 
         value = readNumber();
 
@@ -216,7 +223,9 @@ public class TextUI {
                 System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getLadders());
                 break;
             default:
-                System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSiegeTower());
+                if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+                    System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSiegeTower());
+                }
                 break;
         }
     }
@@ -241,7 +250,11 @@ public class TextUI {
         System.out.println("                                --> Carta Estados <--");
         System.out.print("Battering:" + game.getGame().getEnemy().getBatteringRam().getPosition() + " S" + game.getGame().getEnemy().getBatteringRamStrength());
         System.out.print("  Ladders:" + game.getGame().getEnemy().getLadders().getPosition() + " S" + game.getGame().getEnemy().getLaddersStrength());
-        System.out.print("  Siege Tower:" + game.getGame().getEnemy().getSiegeTower().getPosition() + " S" + game.getGame().getEnemy().getSiegeTowerStrength());
+        if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+            System.out.print("  Siege Tower:" + game.getGame().getEnemy().getSiegeTower().getPosition() + " S" + game.getGame().getEnemy().getSiegeTowerStrength());
+        } else {
+            System.out.print("  Siege Tower: Removida");
+        }
         System.out.print("      Moral:" + game.getGame().getStatus().getMorale());
         System.out.print("  Força Muralha:" + game.getGame().getStatus().getWallStrenght());
         System.out.println("  Supplies:" + game.getGame().getStatus().getSupplies() + "\n");

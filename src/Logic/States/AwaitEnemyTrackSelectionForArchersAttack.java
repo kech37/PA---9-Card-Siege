@@ -19,21 +19,25 @@ public class AwaitEnemyTrackSelectionForArchersAttack extends StateAdapter {
 
     @Override
     public IStates ArchersAttackTrackSelection(int value) {
+        int dice = getDataGame().getDice().rollDice();
         try {
             switch (value) {
                 case 2:
-                    if ((getDataGame().getDice().rollDice() + getDataGame().getDRM().getLadders()) > getDataGame().getEnemy().getLaddersStrength()) {
+                    dice += (getDataGame().getEnemy().getLadders().CircleSpace()) ? getDataGame().getDRM().getCircleSpaces():0;
+                    if ((dice + getDataGame().getDRM().getLadders()) > getDataGame().getEnemy().getLaddersStrength()) {
                         getDataGame().getEnemy().getLadders().Backward();
                     }
                     break;
 
                 case 1:
-                    if ((getDataGame().getDice().rollDice() + getDataGame().getDRM().getBatteringRam()) > getDataGame().getEnemy().getBatteringRamStrength()) {
+                    dice += (getDataGame().getEnemy().getBatteringRam().CircleSpace()) ? getDataGame().getDRM().getCircleSpaces():0;
+                    if ((dice + getDataGame().getDRM().getBatteringRam()) > getDataGame().getEnemy().getBatteringRamStrength()) {
                         getDataGame().getEnemy().getBatteringRam().Backward();
                     }
                     break;
                 case 3:
-                    if ((getDataGame().getDice().rollDice() + getDataGame().getDRM().getSiegeTower()) > getDataGame().getEnemy().getSiegeTowerStrength()) {
+                    dice += (getDataGame().getEnemy().getSiegeTower().CircleSpace()) ? getDataGame().getDRM().getCircleSpaces():0;
+                    if ((dice + getDataGame().getDRM().getSiegeTower()) > getDataGame().getEnemy().getSiegeTowerStrength()) {
                         getDataGame().getEnemy().getSiegeTower().Backward();
                     }
                     break;

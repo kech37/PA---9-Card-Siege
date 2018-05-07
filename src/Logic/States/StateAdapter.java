@@ -136,4 +136,9 @@ public class StateAdapter implements IStates {
     public IStates loadGame() {
         return this;
     }
+
+    @Override
+    public IStates SuppliesReduceChoice(int value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

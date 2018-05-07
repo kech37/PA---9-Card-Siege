@@ -45,6 +45,8 @@ public class TextUI {
                     getUserInputWhileAwaitBoilingWaterTrackSelection();
                 } else if (game.getState() instanceof AwaitOptionMovementSelection) {
                     getUserInputWhileAwaitOptionMovementSelection();
+                } else if (game.getState() instanceof AwaitSuppliesReduceChoice) {
+                    getUserInputWhileAwaitSuppliesReduceChoice();
                 } else if (game.getState() instanceof Victory) {
                     break;
                 }
@@ -118,6 +120,25 @@ public class TextUI {
             return;
         }
         showEnemyStatus();
+        if (game.getGame().isJustRaidSabotage()) {
+            System.out.println("      ----> Ação do Jogador <----");
+            System.out.print("1 - Supply Raid");
+            System.out.println("        2 - Sabotage Action");
+            value = readNumber();
+
+            switch (value) {
+                case 1:
+                    game.SupplyRaid();
+                    System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getRaid());
+                    break;
+                case 2:
+                    game.Sabotage();
+                    System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
+                    break;
+            }
+            return;
+        }
+
         System.out.println("      ----> Ação do Jogador <----");
         System.out.print("1 - Archers Attack");
         System.out.println("        5 - Rally Troops");
@@ -152,7 +173,6 @@ public class TextUI {
                 break;
             case 5:
                 game.RallyTroops();
-                System.out.println("Dado: " + game.getGame().getDice().getValue());
                 break;
             case 6:
                 game.TunnelMovement();
@@ -283,5 +303,16 @@ public class TextUI {
             scan.next();
         }
         return scan.nextInt();
+    }
+
+    private void getUserInputWhileAwaitSuppliesReduceChoice() {
+        System.out.println("\nDar Supplies para ajudar a aumentar a Moral?");
+        System.out.println("1. Sim");
+        System.out.println("2. Nao");
+
+        int value = readNumber();
+
+        game.ReduceSuppliesChoice(value);
+        System.out.println("Dado: " + game.getGame().getDice().getValue());
     }
 }

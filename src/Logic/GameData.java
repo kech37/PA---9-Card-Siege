@@ -26,8 +26,10 @@ public class GameData implements Serializable {
         justRaidSabotage = false;
         day = 0;
         freeMovement = false;
+     
+    
     }
-
+    
     public boolean isFreeMovement() {
         return freeMovement;
     }

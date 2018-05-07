@@ -93,20 +93,8 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates RallyTroops() {
-        int dice = getDataGame().getDice().rollDice();
-
-        getDataGame().getStatus().ModifySupplies(-1);
-
-        try {
-            if (dice > 4) {
-                getDataGame().getStatus().ModifyMorale(+1);
-            } else {
-                return new AwaitActionSelection(getDataGame());
-            }
-        } catch (IndexOutOfBoundsException e) {
-
-        }
-        return new AwaitActionSelection(getDataGame());
+        
+        return new AwaitSuppliesReduceChoice(getDataGame());
     }
 
     @Override

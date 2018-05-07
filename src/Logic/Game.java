@@ -98,6 +98,11 @@ public final class Game implements Serializable {
     public void TunnelMovementOptionSelection(int value) {
         setState(getState().TunnelMovementOptionSelection(value));
     }
+    
+    public void ReduceSuppliesChoice(int value)
+    {
+        setState(getState().SuppliesReduceChoice(value));
+    }
 
     public void loadGame() {
         setState(getState().loadGame());
@@ -114,5 +119,5 @@ public final class Game implements Serializable {
     public void saveGame(){
         setState(getState().saveGame());
     }
-
+    
 }

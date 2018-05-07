@@ -38,5 +38,8 @@ public interface IStates {
 
     /// TUNNEL MOVEMENT SELECTION
     IStates TunnelMovementOptionSelection(int value);
+    
+    ///AWAIT SUPPLIES REDUCE CHOICE
+    IStates SuppliesReduceChoice(int value);
 
 }

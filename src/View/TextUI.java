@@ -6,14 +6,21 @@
 package View;
 
 import Logic.Cards.EventCards.Events.RegularEvents;
+import Logic.Cards.EventCards.Movement.SiegeTowerMovement;
 import Logic.FileManager;
 import Logic.Game;
 import Logic.States.*;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TextUI {
 
-    private final Game game;
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+
+    private Game game;
     private final Scanner scan;
     private boolean firstTime;
 
@@ -44,6 +51,8 @@ public class TextUI {
                     getUserInputWhileAwaitBoilingWaterTrackSelection();
                 } else if (game.getState() instanceof AwaitOptionMovementSelection) {
                     getUserInputWhileAwaitOptionMovementSelection();
+                } else if (game.getState() instanceof AwaitSuppliesReduceChoice) {
+                    getUserInputWhileAwaitSuppliesReduceChoice();
                 } else if (game.getState() instanceof Victory) {
                     break;
                 }
@@ -78,7 +87,13 @@ public class TextUI {
                 break;
             case 2:
                 if (fileManager.checkSavegameFile()) {
-                    game.loadGame();
+                    loadGame();
+                }
+                if (game.getGame().getDeck().getOnUseEventCard() != null) {
+                    System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).getEventName());
+                }
+                if (game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()) instanceof RegularEvents) {
+                    System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).toString());
                 }
                 break;
         }
@@ -117,23 +132,44 @@ public class TextUI {
             return;
         }
         showEnemyStatus();
+        if (game.getGame().isJustRaidSabotage()) {
+            System.out.println("      ----> Ação do Jogador <----");
+            System.out.print("1 - Supply Raid");
+            System.out.println("        2 - Sabotage Action");
+            System.out.println("3 - Avancar Proximo Turno");
+            value = readNumber();
+
+            switch (value) {
+                case 1:
+                    game.SupplyRaid();
+                    System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getRaid());
+                    break;
+                case 2:
+                    game.Sabotage();
+                    System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
+                    break;
+            }
+            return;
+        }
+
         System.out.println("      ----> Ação do Jogador <----");
         System.out.print("1 - Archers Attack");
-        System.out.println("        5 - Rally Troops");
+        System.out.println("        7 - Supply Raid");
         System.out.print("2 - Boling Water Attack");
-        System.out.println("   6 - Tunel Movement");
+        System.out.println("   8 - Sabotage");
         System.out.print("3 - Close Combat Attack");
-        System.out.println("   7 - Supply Raid");
+        System.out.println("   9 - Proximo Turno");
         System.out.print("4 - Coupure");
-        System.out.println("               8 - Sabotage");
-        System.out.print("9 - Save game");
-        System.out.println("            -1 - Exit game");
+        System.out.println("               10 - Save game");
+        System.out.print("5 - Rally Troops");
+        System.out.println("          -1 - Exit game");
+        System.out.println("6 - Tunel Movement");
 
         value = readNumber();
 
         switch (value) {
             case -1:
-                System.out.println("TODO: EXIT GAME!!");
+                game.ExitGame();
                 break;
             case 1:
                 game.ArchersAttack();
@@ -151,7 +187,6 @@ public class TextUI {
                 break;
             case 5:
                 game.RallyTroops();
-                System.out.println("Dado: " + game.getGame().getDice().getValue());
                 break;
             case 6:
                 game.TunnelMovement();
@@ -163,9 +198,12 @@ public class TextUI {
                 game.Sabotage();
                 System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
                 break;
-            case 9:
+            case 10:
                 game.saveGame();
                 System.out.println(">>>>> Game saved! <<<<<");
+                break;
+            case 9:
+                game.NextTurn();
                 break;
 
         }
@@ -178,7 +216,9 @@ public class TextUI {
         System.out.println("----> Archers Attack <----");
         System.out.println("1 - Battering Ram");
         System.out.println("2 - Ladders Track");
-        System.out.println("3 - Siege Tower");
+        if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+            System.out.println("3 - Siege Tower");
+        }
 
         value = readNumber();
 
@@ -191,7 +231,9 @@ public class TextUI {
                 System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getLadders());
                 break;
             default:
-                System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSiegeTower());
+                if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+                    System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSiegeTower());
+                }
                 break;
         }
 
@@ -200,24 +242,35 @@ public class TextUI {
     private void getUserInputWhileAwaitBoilingWaterTrackSelection() {
         int value;
 
-        System.out.println("----> Boiling Water <----");
-        System.out.println("1 - Battering Ram");
-        System.out.println("2 - Ladders Track");
-        System.out.println("3 - Siege Tower");
+        if (game.getGame().getEnemy().isJustOneEnemyOnCircle() != -1) {
+            value = game.getGame().getEnemy().isJustOneEnemyOnCircle();
+        } else {
+            System.out.println("----> Boiling Water <----");
+            System.out.println("1 - Battering Ram");
+            System.out.println("2 - Ladders Track");
+            if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+                System.out.println("3 - Siege Tower");
+            }
 
-        value = readNumber();
-
-        game.ArchersAttackTrackSelection(value);
-        switch (value) {
-            case 1:
-                System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getBatteringRam());
-                break;
-            case 2:
-                System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getLadders());
-                break;
-            default:
-                System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSiegeTower());
-                break;
+            value = readNumber();
+        }
+        game.BoilingWaterAttackTrackSelection(value);
+        if (game.getGame().getEnemy().isCardsOnCircle()) {
+            switch (value) {
+                case 1:
+                    System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getBatteringRam());
+                    break;
+                case 2:
+                    System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getLadders());
+                    break;
+                case 3:
+                    if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+                        if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+                            System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSiegeTower());
+                        }
+                    }
+                    break;
+            }
         }
     }
 
@@ -237,11 +290,28 @@ public class TextUI {
         System.out.println("\n---------> Informçoes <----------");
         System.out.println("Pontos de ação: " + (game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).getActionPointAllowance() + 1));
         System.out.println("");
-        System.out.print("        --> Carta Inimiga <--");
+        System.out.print(ANSI_RED + "        --> Carta Inimiga <--" + ANSI_RESET);
         System.out.println("                                --> Carta Estados <--");
-        System.out.print("Battering:" + game.getGame().getEnemy().getBatteringRam().getPosition() + " S" + game.getGame().getEnemy().getBatteringRamStrength());
-        System.out.print("  Ladders:" + game.getGame().getEnemy().getLadders().getPosition() + " S" + game.getGame().getEnemy().getLaddersStrength());
-        System.out.print("  Siege Tower:" + game.getGame().getEnemy().getSiegeTower().getPosition() + " S" + game.getGame().getEnemy().getSiegeTowerStrength());
+        if (game.getGame().getEnemy().getBatteringRam().getPosition() == 0) {
+            System.out.print("Battering:" + ANSI_RED + game.getGame().getEnemy().getBatteringRam().getPosition() + ANSI_RESET + " S" + game.getGame().getEnemy().getBatteringRamStrength());
+        } else {
+            System.out.print("Battering:" + game.getGame().getEnemy().getBatteringRam().getPosition() + " S" + game.getGame().getEnemy().getBatteringRamStrength());
+        }
+        if (game.getGame().getEnemy().getLadders().getPosition() == 0) {
+            System.out.print("  Ladders:" + ANSI_RED + game.getGame().getEnemy().getLadders().getPosition() + ANSI_RESET + " S" + game.getGame().getEnemy().getLaddersStrength());
+        } else {
+            System.out.print("  Ladders:" + game.getGame().getEnemy().getLadders().getPosition() + " S" + game.getGame().getEnemy().getLaddersStrength());
+        }
+
+        if (game.getGame().getEnemy().getSiegeTower().getPosition() != -1) {
+            if (game.getGame().getEnemy().getSiegeTower().getPosition() == 0) {
+                System.out.print("  Siege Tower:" + ANSI_RED + game.getGame().getEnemy().getSiegeTower().getPosition() + ANSI_RESET + " S" + game.getGame().getEnemy().getSiegeTowerStrength());
+            } else {
+                System.out.print("  Siege Tower:" + game.getGame().getEnemy().getSiegeTower().getPosition() + " S" + game.getGame().getEnemy().getSiegeTowerStrength());
+            }
+        } else {
+            System.out.print("  Siege Tower: Removida");
+        }
         System.out.print("      Moral:" + game.getGame().getStatus().getMorale());
         System.out.print("  Força Muralha:" + game.getGame().getStatus().getWallStrenght());
         System.out.println("  Supplies:" + game.getGame().getStatus().getSupplies() + "\n");
@@ -270,5 +340,25 @@ public class TextUI {
             scan.next();
         }
         return scan.nextInt();
+    }
+
+    private void getUserInputWhileAwaitSuppliesReduceChoice() {
+        System.out.println("\nDar Supplies para ajudar a aumentar a Moral?");
+        System.out.println("1. Sim");
+        System.out.println("2. Nao");
+
+        int value = readNumber();
+
+        game.ReduceSuppliesChoice(value);
+        System.out.println("Dado: " + game.getGame().getDice().getValue());
+    }
+
+    public void loadGame() {
+        try {
+            FileManager fileManager = new FileManager();
+            game = fileManager.GetGameDataFromFile();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(AwaitBegining.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -5,11 +5,16 @@
  */
 package Logic.States;
 
+import Logic.Game;
+import View.TextUI;
+
 public interface IStates {
+    
+    ///
+    IStates exitGame();
 
     //  AWAIT BEGINIG 
     IStates start();
-    IStates saveGame();
     IStates loadGame();
     IStates finish();
 
@@ -29,6 +34,8 @@ public interface IStates {
     IStates CheckActionPoints();
     IStates TunnelMovement();
     IStates VerifyGameOver();
+    IStates NextTurn();
+    IStates saveGame(Game game);
 
     //AWAIT ARCHERS ATACK ACTION SELECTION
     IStates ArchersAttackTrackSelection(int value);
@@ -38,5 +45,8 @@ public interface IStates {
 
     /// TUNNEL MOVEMENT SELECTION
     IStates TunnelMovementOptionSelection(int value);
+    
+    ///AWAIT SUPPLIES REDUCE CHOICE
+    IStates SuppliesReduceChoice(int value);
 
 }

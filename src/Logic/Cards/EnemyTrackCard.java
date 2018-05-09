@@ -76,10 +76,34 @@ public class EnemyTrackCard implements Serializable {
     }
 
     public boolean isCardsOnCircle() {
-        if (BatteringRam.getPosition() == 0 || SiegeTower.getPosition() == 0 || Ladders.getPosition() == 0) {
+        if (BatteringRam.getPosition() == 1 || SiegeTower.getPosition() == 1 || Ladders.getPosition() == 1) {
             return true;
         }
         return false;
+    }
+
+    public int isJustOneEnemyOnCircle() {
+        int nEnemy = 0, enemy=0;
+        if (BatteringRam.getPosition() == 1) {
+            nEnemy++;
+            enemy=1;
+            
+        }
+        if (SiegeTower.getPosition() == 1) {
+            nEnemy++;
+            enemy = 2;
+        }
+        if (Ladders.getPosition() == 1) {
+            nEnemy++;
+            enemy = 3;
+        }
+        
+       if(nEnemy == 1)
+       {
+           return enemy;
+       }
+       else 
+           return -1;
     }
 
 }

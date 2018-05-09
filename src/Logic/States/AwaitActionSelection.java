@@ -5,7 +5,12 @@
  */
 package Logic.States;
 
+import Logic.FileManager;
+import Logic.Game;
 import Logic.GameData;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,6 +18,8 @@ import Logic.GameData;
  */
 public class AwaitActionSelection extends StateAdapter {
 
+  
+    
     public AwaitActionSelection(GameData dataGame) {
         super(dataGame);
     }
@@ -93,20 +100,8 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates RallyTroops() {
-        int dice = getDataGame().getDice().rollDice();
-
-        getDataGame().getStatus().ModifySupplies(-1);
-
-        try {
-            if (dice > 4) {
-                getDataGame().getStatus().ModifyMorale(+1);
-            } else {
-                return new AwaitActionSelection(getDataGame());
-            }
-        } catch (IndexOutOfBoundsException e) {
-
-        }
-        return new AwaitActionSelection(getDataGame());
+        
+        return new AwaitSuppliesReduceChoice(getDataGame());
     }
 
     @Override
@@ -189,6 +184,23 @@ public class AwaitActionSelection extends StateAdapter {
         } else {
             return new AwaitTopCardToBeDrawn(getDataGame());
         }
+    }
+
+    @Override
+    public IStates NextTurn() {
+        return new AwaitTopCardToBeDrawn(getDataGame());
+    }
+    
+    @Override
+    public IStates saveGame(Game game) {
+        try {
+            FileManager fileManager = new FileManager();
+            fileManager.SaveGameDataToFile(game);
+        } catch (IOException ex) {
+            Logger.getLogger(StateAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
+        return this;
     }
 
 }

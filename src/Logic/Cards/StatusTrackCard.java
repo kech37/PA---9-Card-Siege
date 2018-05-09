@@ -57,19 +57,27 @@ public class StatusTrackCard implements Serializable {
     }
 
     public void ModifySuppliesLevel(int SuppliesLevel) {
-        this.SuppliesLevel += SuppliesLevel;
+        if ((this.SuppliesLevel + SuppliesLevel) <= 4 && (this.SuppliesLevel + SuppliesLevel) >= 0) {
+            this.SuppliesLevel += SuppliesLevel;
+        }
     }
 
     public void ModifyWallStrenght(int WallStrenght) {
-        this.WallStrenght += WallStrenght;
+        if ((this.WallStrenght + WallStrenght) <= 4 && (this.WallStrenght + WallStrenght) >= 0) {
+            this.WallStrenght += WallStrenght;
+        }
     }
 
     public void ModifyMorale(int Morale) {
-        this.Morale += Morale;
+        if ((this.Morale + Morale) <= 4 && (this.Morale + Morale) >= 0) {
+            this.Morale += Morale;
+        }
     }
 
     public void ModifySupplies(int Supplies) {
-        this.Supplies += Supplies;
+        if ((this.Supplies + Supplies) <= 4 && (this.Supplies + Supplies) >= 0) {
+            this.Supplies += Supplies;
+        }
     }
 
     public void ModifyTunnel(int Tunnel) {

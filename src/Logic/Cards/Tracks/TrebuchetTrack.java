@@ -16,7 +16,7 @@ public class TrebuchetTrack implements Serializable {
     private int count;
 
     public TrebuchetTrack() {
-        count = 1;
+        count = 3;
     }
 
     public int getHowMany() {

@@ -29,23 +29,23 @@ public class FileManager {
         this("savegame.9cs");
     }
 
-    public void SaveGameDataToFile(GameData gameData) throws IOException {
+    public void SaveGameDataToFile(Game game) throws IOException {
         FileOutputStream fos = new FileOutputStream(this.fileName);
         try (ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            oos.writeObject(gameData);
+            oos.writeObject(game);
             oos.close();
         }
 
     }
 
-    public GameData GetGameDataFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
+    public Game GetGameDataFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(this.fileName);
-        GameData gameData;
+        Game game;
         try (ObjectInputStream ois = new ObjectInputStream(fis)) {
-            gameData = (GameData) ois.readObject();
+            game = (Game) ois.readObject();
             ois.close();
         }
-        return gameData;
+        return game;
     }
     
     public boolean checkSavegameFile(){

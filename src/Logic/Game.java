@@ -7,7 +7,9 @@ package Logic;
 
 import Logic.States.AwaitBegining;
 import Logic.States.IStates;
+import View.TextUI;
 import java.io.Serializable;
+import static javafx.scene.input.KeyCode.L;
 
 /**
  *
@@ -15,6 +17,8 @@ import java.io.Serializable;
  */
 public final class Game implements Serializable {
 
+   static final long serialVersionUID = 1010L;
+     
     private final GameData gameData;
     private IStates state;
 
@@ -104,10 +108,6 @@ public final class Game implements Serializable {
         setState(getState().SuppliesReduceChoice(value));
     }
 
-    public void loadGame() {
-        setState(getState().loadGame());
-    }
-
     public void SupplyRaid() {
         setState(getState().SupplieRaidAttack());
     }
@@ -117,7 +117,16 @@ public final class Game implements Serializable {
     }
     
     public void saveGame(){
-        setState(getState().saveGame());
+        setState(getState().saveGame(this));
+    }
+    
+    public void ExitGame()
+    {
+        setState(getState().exitGame());
+    }
+
+    public void NextTurn() {
+       setState(getState().NextTurn());
     }
     
 }

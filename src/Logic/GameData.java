@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 public class GameData implements Serializable {
 
+    static final long serialVersionUID = 1010L;
+
     private final CardDeck deck;
     private final EnemyTrackCard enemy;
     private final StatusTrackCard status;
@@ -26,10 +28,9 @@ public class GameData implements Serializable {
         justRaidSabotage = false;
         day = 0;
         freeMovement = false;
-     
-    
+
     }
-    
+
     public boolean isFreeMovement() {
         return freeMovement;
     }

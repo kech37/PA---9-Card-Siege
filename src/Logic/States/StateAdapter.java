@@ -6,8 +6,11 @@
 package Logic.States;
 
 import Logic.FileManager;
+import Logic.Game;
 import Logic.GameData;
+import View.TextUI;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,8 +18,10 @@ import java.util.logging.Logger;
  *
  * @author andre
  */
-public class StateAdapter implements IStates {
+public class StateAdapter implements IStates,Serializable {
 
+    static final long serialVersionUID = 1010L;
+    
     private GameData dataGame;
 
     public StateAdapter(GameData dataGame) {
@@ -122,23 +127,29 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates saveGame() {
-        try {
-            FileManager fileManager = new FileManager();
-            fileManager.SaveGameDataToFile(getDataGame());
-        } catch (IOException ex) {
-            Logger.getLogger(StateAdapter.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return this;
+    public IStates SuppliesReduceChoice(int value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates exitGame() {
+       return new LeaveGame(getDataGame());
+    }
+
+    @Override
+    public IStates NextTurn() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates saveGame(Game game) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public IStates loadGame() {
-        return this;
-    }
-
-    @Override
-    public IStates SuppliesReduceChoice(int value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+ 
 }

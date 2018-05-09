@@ -20,7 +20,6 @@ public class AwaitOptionMovementSelection extends StateAdapter {
     @Override
     public IStates TunnelMovementOptionSelection(int value) {
         if (value == 2) {
-            getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(1);
             if (getDataGame().getStatus().getSuppliesLevel() == 0) {
                 if (getDataGame().getStatus().getTunnel() < 4) {
                     getDataGame().getStatus().ModifyTunnel(1);
@@ -37,6 +36,7 @@ public class AwaitOptionMovementSelection extends StateAdapter {
             }
             return new AwaitActionSelection(getDataGame());
         } else {
+            getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(-1);
             if (getDataGame().getStatus().getSuppliesLevel() == 0) {
                 getDataGame().getStatus().setTunnel(4);
             }

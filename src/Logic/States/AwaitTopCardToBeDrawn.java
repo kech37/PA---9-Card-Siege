@@ -37,6 +37,7 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
 
     @Override
     public IStates CheckExistingCards() {
+        getDataGame().setFreeMovement(true);
         if (getDataGame().getDeck().isEmpty()) {
             if (!getDataGame().nextDay()) {
                 return new Victory(getDataGame());

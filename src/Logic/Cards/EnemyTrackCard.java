@@ -105,5 +105,16 @@ public class EnemyTrackCard implements Serializable {
        else 
            return -1;
     }
+    
+    public boolean isCloseCombat()
+    {
+        int nEnemy=0;
+        
+       nEnemy += (Ladders.getPosition() == 0) ? 1:0;
+       nEnemy += (SiegeTower.getPosition() == 0) ? 1:0;
+       nEnemy += (BatteringRam.getPosition() == 0) ? 1:0;
+       
+       return (nEnemy >= 2);
+    }
 
 }

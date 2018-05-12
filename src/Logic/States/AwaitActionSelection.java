@@ -18,8 +18,6 @@ import java.util.logging.Logger;
  */
 public class AwaitActionSelection extends StateAdapter {
 
-  
-    
     public AwaitActionSelection(GameData dataGame) {
         super(dataGame);
     }
@@ -100,7 +98,7 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates RallyTroops() {
-        
+
         return new AwaitSuppliesReduceChoice(getDataGame());
     }
 
@@ -164,16 +162,14 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates TunnelMovement() {
-        if (!getDataGame().isFreeMovement()) {
-            if (getDataGame().getStatus().getTunnel() == 0) {
-                getDataGame().getStatus().ModifyTunnel(+1);
-                return this;
-            } else {
-                return new AwaitOptionMovementSelection(getDataGame());
-            }
-        } else {
+        if (getDataGame().getStatus().getTunnel() == 0) {
+            getDataGame().getStatus().ModifyTunnel(+1);
+            getDataGame().setFreeMovement(false);
             return this;
+        } else {
+            return new AwaitOptionMovementSelection(getDataGame());
         }
+
     }
 
     @Override
@@ -190,16 +186,16 @@ public class AwaitActionSelection extends StateAdapter {
     public IStates NextTurn() {
         return new AwaitTopCardToBeDrawn(getDataGame());
     }
-    
+
     @Override
     public IStates saveGame(Game game) {
         try {
+            getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
             FileManager fileManager = new FileManager();
             fileManager.SaveGameDataToFile(game);
         } catch (IOException ex) {
             Logger.getLogger(StateAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
         return this;
     }
 

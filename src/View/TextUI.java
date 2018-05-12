@@ -109,11 +109,12 @@ public class TextUI {
         if (game.getGame().getDeck().isFull()) {
             System.out.println("--------------------------------------------> Dia " + (game.getGame().getDay() + 1) + " <----------------------------------------------------\n");
         }
-        firstTime = false;
-        System.out.println("\n\n----------------------> Nova Volta <-------------------------\n");
+
         game.CheckingEnemyLines();
         game.CheckExistingCards();
         if (game.getGame().getDeck().getOnUseEventCard() != null) {
+            firstTime = false;
+            System.out.println("\n\n----------------------> Nova Volta <-------------------------\n");
             System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).getEventName());
             game.AdvanceEnemies();
             if (game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()) instanceof RegularEvents) {
@@ -132,6 +133,14 @@ public class TextUI {
             return;
         }
         showEnemyStatus();
+
+        if (game.getGame().getEnemy().isCloseCombat()) {
+            System.out.println("Close Combat Area Obrigatoria\n");
+            game.CloseCombatAreaAtack();
+            System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getCloseCombat());
+            return;
+        }
+        
         if (game.getGame().isJustRaidSabotage()) {
             System.out.println("      ----> Ação do Jogador <----");
             System.out.print("1 - Supply Raid");
@@ -194,6 +203,7 @@ public class TextUI {
             case 7:
                 game.SupplyRaid();
                 System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getRaid());
+                break;
             case 8:
                 game.Sabotage();
                 System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
@@ -282,6 +292,9 @@ public class TextUI {
         System.out.println("2 - Movimento Gratuito");
 
         value = readNumber();
+        if (value == 2 && !game.getGame().isFreeMovement()) {
+            System.out.println(ANSI_RED + "<Erro>" + ANSI_RESET + " Só é possivel usar um movimento Gratuito por turno!\n");
+        }
 
         game.TunnelMovementOptionSelection(value);
     }

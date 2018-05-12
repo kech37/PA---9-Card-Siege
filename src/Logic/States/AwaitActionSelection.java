@@ -190,12 +190,12 @@ public class AwaitActionSelection extends StateAdapter {
     @Override
     public IStates saveGame(Game game) {
         try {
+            getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
             FileManager fileManager = new FileManager();
             fileManager.SaveGameDataToFile(game);
         } catch (IOException ex) {
             Logger.getLogger(StateAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
         return this;
     }
 

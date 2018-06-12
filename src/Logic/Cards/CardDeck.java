@@ -29,11 +29,14 @@ public final class CardDeck implements Serializable {
 
     public void removeOneCard() {
         onUseEventCard = this.Cards.remove(0);
-
     }
 
     public BaseEventCard getOnUseEventCard() {
         return onUseEventCard;
+    }
+
+    public int getNCards() {
+        return Cards.size();
     }
 
     public boolean isFull() {

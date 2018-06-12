@@ -27,4 +27,8 @@ public class EventCard2 extends BaseEventCard {
         )), gameData);
     }
 
+    @Override
+    public String getImageName() {
+        return "Card1.png";
+    }
 }

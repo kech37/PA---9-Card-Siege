@@ -26,4 +26,9 @@ public class EventCard1 extends BaseEventCard {
 
     }
 
+    @Override
+    public String getImageName() {
+        return "TrebuchetCard.png";
+    }
+
 }

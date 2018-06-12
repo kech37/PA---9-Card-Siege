@@ -55,6 +55,8 @@ public class TextUI {
                     getUserInputWhileAwaitSuppliesReduceChoice();
                 } else if (game.getState() instanceof Victory) {
                     break;
+                } else if (game.getState() instanceof AwaitEncouragement) {
+                    getUserInputWhileAwaitEncouragement();
                 }
             }
         }
@@ -140,12 +142,13 @@ public class TextUI {
             System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getCloseCombat());
             return;
         }
-        
+
         if (game.getGame().isJustRaidSabotage()) {
             System.out.println("      ----> Ação do Jogador <----");
             System.out.print("1 - Supply Raid");
             System.out.println("        2 - Sabotage Action");
-            System.out.println("3 - Avancar Proximo Turno");
+            System.out.print("3 - Avancar Proximo Turno");
+            System.out.println("       4 - Add another Action Point");
             value = readNumber();
 
             switch (value) {
@@ -156,6 +159,11 @@ public class TextUI {
                 case 2:
                     game.Sabotage();
                     System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
+                    break;
+                case 3:
+                    game.NextTurn();
+                    break;
+                case 4:
                     break;
             }
             return;
@@ -169,10 +177,11 @@ public class TextUI {
         System.out.print("3 - Close Combat Attack");
         System.out.println("   9 - Proximo Turno");
         System.out.print("4 - Coupure");
-        System.out.println("               10 - Save game");
+        System.out.println("               10 - Add another Action Point");
         System.out.print("5 - Rally Troops");
-        System.out.println("          -1 - Exit game");
-        System.out.println("6 - Tunel Movement");
+        System.out.println("          11 - Save game");
+        System.out.print("6 - Tunel Movement");
+        System.out.println("        -1 - Exit Game");
 
         value = readNumber();
 
@@ -209,6 +218,9 @@ public class TextUI {
                 System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
                 break;
             case 10:
+                game.AddAnotherActionPoint();
+                break;
+            case 11:
                 game.saveGame();
                 System.out.println(">>>>> Game saved! <<<<<");
                 break;
@@ -297,6 +309,18 @@ public class TextUI {
         }
 
         game.TunnelMovementOptionSelection(value);
+    }
+
+    private void getUserInputWhileAwaitEncouragement() {
+        int value;
+
+        System.out.println("----> Encouragement <----");
+        System.out.println("1 - Reduce Morale");
+        System.out.println("2 - Reduce Supplies");
+
+        value = readNumber();
+
+        game.Encouragement(value);
     }
 
     private void showEnemyStatus() {

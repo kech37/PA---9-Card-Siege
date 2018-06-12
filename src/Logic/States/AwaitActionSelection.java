@@ -131,7 +131,6 @@ public class AwaitActionSelection extends StateAdapter {
             if (dice == 1) {
                 getDataGame().getStatus().ModifyMorale(-1);
             } else if (dice > 4) {
-                if (getDataGame().getEnemy().isCardsOnCircle()) {
                     if (getDataGame().getEnemy().getBatteringRam().getPosition() == 0) {
                         getDataGame().getEnemy().getBatteringRam().Backward();
                     }
@@ -141,7 +140,6 @@ public class AwaitActionSelection extends StateAdapter {
                     if (getDataGame().getEnemy().getSiegeTower().getPosition() == 0) {
                         getDataGame().getEnemy().getSiegeTower().Backward();
                     }
-                }
             }
 
             return new AwaitActionSelection(getDataGame());
@@ -199,4 +197,11 @@ public class AwaitActionSelection extends StateAdapter {
         return this;
     }
 
+    @Override
+    public IStates AddAnotherActionPoint() {
+        getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
+        return new AwaitEncouragement(getDataGame());
+    }
+
+    
 }

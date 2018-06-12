@@ -20,10 +20,6 @@ public class AwaitBoilingWaterTrackSelection extends StateAdapter {
     @Override
     public IStates BoilingWatterTrackSelection(int value) {
         int dice = getDataGame().getDice().rollDice();
-        if (!getDataGame().getEnemy().isCardsOnCircle()) {
-            return new AwaitActionSelection(getDataGame());
-        }
-        
         try {
             if (dice == 1) {
                 getDataGame().getStatus().ModifyMorale(-1);

@@ -27,5 +27,8 @@ public abstract class BaseEventCard implements Serializable {
     public List<Event> getEvents() {
         return events;
     }
+    
+    public abstract String getImageName();
+    
 
 }

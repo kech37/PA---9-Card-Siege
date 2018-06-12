@@ -6,6 +6,7 @@
 package Logic;
 
 import Logic.Cards.CardDeck;
+import Logic.Cards.EnemyTrackCard;
 import Logic.Cards.EventCards.BaseEventCard;
 import Logic.Cards.EventCards.EventCard1;
 import Logic.Cards.EventCards.Events.RegularEvents;
@@ -28,14 +29,20 @@ public class ObservableGame extends java.util.Observable {
         notifyObservers();
     }
     
+    public EnemyTrackCard getEnemyCard()
+    {
+        return game.getGame().getEnemy();
+    }
+    
     public void  AwaitTopCardToBeDrawnAction()
     {
         game.CheckingEnemyLines();
         game.CheckExistingCards();
         
-        /*if (game.getGame().getDeck().getOnUseEventCard() != null) {
+        if (game.getGame().getDeck().getOnUseEventCard() != null) {
             game.AdvanceEnemies();
-        }*/
+        }
+        game.ActionSelection();
     }
     
     public void ArchersAttack()

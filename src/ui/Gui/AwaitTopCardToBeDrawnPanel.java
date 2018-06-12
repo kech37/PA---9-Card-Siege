@@ -153,6 +153,17 @@ class CardImage extends JPanel implements Observer {
         } catch (IOException ex) {
             Logger.getLogger(FirstMenuPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        if(observableGame.getAtualCard() != null)
+        {
+            try {
+                image = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource("Images/" +  observableGame.getAtualCard().getImageName()), observableGame.getAtualCard().getImageName()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(CardImage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(CardImage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void setupLayout() {
@@ -165,7 +176,7 @@ class CardImage extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-        if (observableGame.getState() instanceof AwaitTopCardToBeDrawn) {
+        if (observableGame.getState() instanceof AwaitTopCardToBeDrawn || observableGame.getState() instanceof AwaitActionSelectionPanel ) {
             try {
                 image = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource("Images/" + observableGame.getAtualCard().getImageName()), observableGame.getAtualCard().getImageName()));
             } catch (MalformedURLException ex) {

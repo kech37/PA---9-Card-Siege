@@ -17,19 +17,23 @@ public interface Constants {
     static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int DIM_X_FRAME = (int) screenSize.getWidth();
     public static final int DIM_Y_FRAME = (int) screenSize.getHeight();
-    
-    public static final int DIM_X_HOMEPAGE = (int) screenSize.getWidth()-100;
-    public static final int DIM_Y_HOMEPAGE = (int) screenSize.getHeight()-100;
+
+    public static final int DIM_X_HOMEPAGE = (int) screenSize.getWidth() - 100;
+    public static final int DIM_Y_HOMEPAGE = (int) screenSize.getHeight() - 100;
 
     public static final int DIM_X_MENU = 500;
     public static final int DIM_Y_MENU = 550;
 
     public static final int DIM_X_LOGOMENU = (255 * DIM_X_FRAME) / 1366;
     public static final int DIM_Y_LOGOMENU = (320 * DIM_Y_FRAME) / 768;
-    
-    public static final int DIM_X_CARDDECK = (470*DIM_X_FRAME)/1366;
-    public static final int DIM_Y_CARDDECK = (900*DIM_Y_FRAME)/768;
-    
-    public static final int DIM_X_ENEMYSTATUS = (470*DIM_X_FRAME)/1366;
-    public static final int DIM_Y_ENEMYSTATUS= (900*DIM_Y_FRAME)/768;
+
+    public static final int DIM_X_CARDDECK = (470 * DIM_X_FRAME) / 1366;
+    public static final int DIM_Y_CARDDECK = (900 * DIM_Y_FRAME) / 768;
+
+    public static final int DIM_X_ENEMYSTATUS = 234;
+    public static final int DIM_Y_ENEMYSTATUS = 332;
+
+    public static final int DIM_X_QUADRICULA_AREA = 5;
+    public static final int DIM_Y_QUADRICULA_AREA = 5;
+
 }

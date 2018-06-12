@@ -86,7 +86,13 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
         if (getDataGame().getStatus().getMorale() == 0 || getDataGame().getStatus().getSupplies() == 0 || getDataGame().getStatus().getWallStrenght() == 0) {
             return new GameOver(getDataGame());
         }
-        return new AwaitActionSelection(getDataGame());
+       return this;
+    }
+    
+    @Override
+    public IStates ActionSelection()
+    {
+         return new AwaitActionSelection(getDataGame());
     }
 
     @Override

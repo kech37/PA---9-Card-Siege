@@ -22,6 +22,7 @@ public interface IStates {
     IStates CheckingEnemyLines();
     IStates CheckExistingCards();
     IStates AdvanceEnemies();
+    IStates ActionSelection();
 
     //AWAIT ACTION SELECTION
     IStates ArcherAttack();

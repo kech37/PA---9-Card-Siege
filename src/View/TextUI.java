@@ -119,6 +119,7 @@ public class TextUI {
             System.out.println("\n\n----------------------> Nova Volta <-------------------------\n");
             System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).getEventName());
             game.AdvanceEnemies();
+            game.ActionSelection();
             if (game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()) instanceof RegularEvents) {
                 System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(game.getGame().getDay()).toString());
             }

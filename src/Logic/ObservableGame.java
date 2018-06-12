@@ -21,27 +21,70 @@ public class ObservableGame extends java.util.Observable {
 
     public void StartGame() {
         game.start();
-       
+
         AwaitTopCardToBeDrawnAction();
-        
+
         setChanged();
         notifyObservers();
     }
-    
-    public void  AwaitTopCardToBeDrawnAction()
-    {
+
+    public void AwaitTopCardToBeDrawnAction() {
         game.CheckingEnemyLines();
         game.CheckExistingCards();
-        
+
         /*if (game.getGame().getDeck().getOnUseEventCard() != null) {
             game.AdvanceEnemies();
         }*/
     }
-    
-    public void ArchersAttack()
-    {
+
+    public void ArchersAttack() {
         game.ArchersAttack();
-        
+        setChanged();
+        notifyObservers();
+    }
+
+    public void BoilingWaterAttack() {
+        game.BoilingWaterAttack();
+        setChanged();
+        notifyObservers();
+    }
+
+    public void CloseCombatAreaAtack() {
+        game.CloseCombatAreaAtack();
+        System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getCloseCombat());
+        setChanged();
+        notifyObservers();
+    }
+
+    public void Coupure() {
+        game.Coupure();
+        System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getCoupure());
+        setChanged();
+        notifyObservers();
+    }
+
+    public void RallyTroops() {
+        game.RallyTroops();
+        setChanged();
+        notifyObservers();
+    }
+
+    public void TunnelMovement() {
+        game.TunnelMovement();
+        setChanged();
+        notifyObservers();
+    }
+
+    public void SupplyRaid() {
+        game.SupplyRaid();
+        System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getRaid());
+        setChanged();
+        notifyObservers();
+    }
+
+    public void Sabotage() {
+        game.Sabotage();
+        System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
         setChanged();
         notifyObservers();
     }
@@ -49,9 +92,8 @@ public class ObservableGame extends java.util.Observable {
     public IStates getState() {
         return game.getState();
     }
-    
-    public void SetUpdate()
-    {
+
+    public void SetUpdate() {
         setChanged();
         notifyObservers();
     }

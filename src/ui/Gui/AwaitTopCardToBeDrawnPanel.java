@@ -25,7 +25,6 @@ import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.JPanel;
 
-
 /**
  *
  * @author andre
@@ -52,24 +51,24 @@ public class AwaitTopCardToBeDrawnPanel extends JPanel implements Observer, Cons
         boxes = new Box[2];
         boxes[0] = Box.createHorizontalBox();
         boxes[1] = Box.createHorizontalBox();
-       
-        boxes[0].setMaximumSize(new Dimension(DIM_X_CARDDECK ,DIM_Y_CARDDECK));
-        boxes[0].setMinimumSize(new Dimension(DIM_X_CARDDECK ,DIM_Y_CARDDECK));
-        boxes[0].setPreferredSize(new Dimension(DIM_X_CARDDECK ,DIM_Y_CARDDECK));
-        
+
+        boxes[0].setMaximumSize(new Dimension(DIM_X_CARDDECK, DIM_Y_CARDDECK));
+        boxes[0].setMinimumSize(new Dimension(DIM_X_CARDDECK, DIM_Y_CARDDECK));
+        boxes[0].setPreferredSize(new Dimension(DIM_X_CARDDECK, DIM_Y_CARDDECK));
+
         boxes[1].setPreferredSize(new Dimension(700, DIM_Y_CARDDECK));
         boxes[1].setMinimumSize(new Dimension(700, DIM_Y_CARDDECK));
         boxes[1].setMaximumSize(new Dimension(700, DIM_Y_CARDDECK));
-        
+
     }
 
     private void setupLayout() {
         setOpaque(false);
         boxes[0].add(deckimage);
         boxes[1].add(cardimage);
-        
+
         content.setOpaque(false);
-        
+
         content.add(boxes[0], BorderLayout.WEST);
         content.add(boxes[1], BorderLayout.EAST);
         add(content);
@@ -92,7 +91,6 @@ class DeckCardImage extends JPanel implements Observer {
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
 
-
         setupComponents();
         setupLayout();
     }
@@ -107,7 +105,7 @@ class DeckCardImage extends JPanel implements Observer {
         }
     }
 
-    public void setupLayout() {  
+    public void setupLayout() {
         setOpaque(false);
     }
 
@@ -160,7 +158,7 @@ class CardImage extends JPanel implements Observer {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(image, 1, 1, image.getWidth(this)-20, image.getHeight(this)-20, this);
+        g.drawImage(image, 1, 1, image.getWidth(this) - 20, image.getHeight(this) - 20, this);
     }
 
     @Override

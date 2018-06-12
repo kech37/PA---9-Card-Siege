@@ -45,9 +45,9 @@ public class HomePageView extends JFrame implements Observer {
         setMinimumSize(new Dimension(width, height));
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         observableGame.SetUpdate();
-        
+
         validate();
     }
 

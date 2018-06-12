@@ -20,7 +20,7 @@ import static ui.Gui.Constants.*;
  *
  * @author andre
  */
-public class FirstMenuView extends JFrame implements Observer{
+public class FirstMenuView extends JFrame implements Observer {
 
     private ObservableGame observableGame;
     private FirstMenuPanel panel;
@@ -35,7 +35,7 @@ public class FirstMenuView extends JFrame implements Observer{
         observableGame = j;
 
         observableGame.addObserver(this);
-        
+
         setResizable(false);
 
         Container cp = getContentPane();

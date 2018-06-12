@@ -5,8 +5,11 @@
  */
 package ui.Gui;
 
+import Logic.ObservableGame;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -20,6 +23,8 @@ import static ui.Gui.Constants.DIM_Y_ENEMYSTATUS;
  */
 public class AwaitActionSelectionPanel extends JPanel implements Observer {
 
+    private ObservableGame observableGame;
+
     JButton btArchersAttack;
     JButton btBoilingWaterAttack;
     JButton btCloseCombatAttack;
@@ -29,7 +34,10 @@ public class AwaitActionSelectionPanel extends JPanel implements Observer {
     JButton btSupplyRaid;
     JButton btSabotage;
 
-    public AwaitActionSelectionPanel() {
+    public AwaitActionSelectionPanel(ObservableGame observableGame) {
+        this.observableGame = observableGame;
+        this.observableGame.addObserver(this);
+
         setupComponents();
         setupLayout();
     }
@@ -59,7 +67,14 @@ public class AwaitActionSelectionPanel extends JPanel implements Observer {
         add(btTunnelMovement);
         add(btSupplyRaid);
         add(btSabotage);
-        
+
+        btArchersAttack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                observableGame.ArchersAttack();
+            }
+        });
+
         setLayout(new GridLayout(4, 2));
     }
 

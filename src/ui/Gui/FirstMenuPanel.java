@@ -5,6 +5,7 @@
  */
 package ui.Gui;
 
+import Logic.FileManager;
 import Logic.ObservableGame;
 import Logic.States.AwaitBegining;
 import java.awt.BorderLayout;
@@ -166,6 +167,13 @@ class OptionsMenu extends JPanel implements Observer {
         jb3.setMinimumSize(new Dimension(100, 25));
         jb3.setPreferredSize(new Dimension(100, 25));
         jb3.setMaximumSize(new Dimension(100, 25));
+
+        FileManager fileManager = new FileManager();
+        if (fileManager.checkSavegameFile()) {
+            jb2.setEnabled(true);
+        } else {
+            jb2.setEnabled(false);
+        }
 
         b1.add(jb1);
         b2.add(jb2);

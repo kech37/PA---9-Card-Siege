@@ -37,6 +37,14 @@ public class ObservableGame extends java.util.Observable {
             game.AdvanceEnemies();
         }*/
     }
+    
+    public void ArchersAttack()
+    {
+        game.ArchersAttack();
+        
+        setChanged();
+        notifyObservers();
+    }
 
     public IStates getState() {
         return game.getState();

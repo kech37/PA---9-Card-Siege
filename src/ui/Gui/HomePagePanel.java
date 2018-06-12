@@ -49,7 +49,7 @@ public class HomePagePanel extends JPanel implements Observer {
         
         bottomPanel.setLayout(new GridLayout(1, 3));
         bottomPanel.add(new EnemyPanel(observableGame),BorderLayout.CENTER);
-        bottomPanel.add(new AwaitActionSelectionPanel());
+        bottomPanel.add(new AwaitActionSelectionPanel(observableGame));
         bottomPanel.add(new StatusPanel(observableGame),BorderLayout.CENTER);
         
         add(awaitTopCardToBeDrawn, BorderLayout.CENTER);

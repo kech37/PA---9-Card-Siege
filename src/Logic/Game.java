@@ -17,8 +17,8 @@ import static javafx.scene.input.KeyCode.L;
  */
 public final class Game implements Serializable {
 
-   static final long serialVersionUID = 1010L;
-     
+    static final long serialVersionUID = 1010L;
+
     private final GameData gameData;
     private IStates state;
 
@@ -64,7 +64,10 @@ public final class Game implements Serializable {
     }
 
     public void BoilingWaterAttack() {
-        setState(getState().BoilingWaterAttack());
+        if(gameData.getEnemy().isCardsOnCircle())
+              setState(getState().BoilingWaterAttack());      
+        else
+            gameData.getDeck().getOnUseEventCard().getEvents().get(gameData.getDay()).modifyActionPointAllowance(1);
     }
 
     public void ArchersAttackTrackSelection(int value) {
@@ -75,8 +78,11 @@ public final class Game implements Serializable {
         setState(getState().BoilingWatterTrackSelection(value));
     }
 
-    public void CloseCombatAreaAtack() {
-        setState(getState().CloseCombatAttack());
+    public void CloseCombatAreaAtack() {   
+          if(gameData.getEnemy().isCardsOnCircle())
+            setState(getState().CloseCombatAttack());    
+        else
+            gameData.getDeck().getOnUseEventCard().getEvents().get(gameData.getDay()).modifyActionPointAllowance(1);
     }
 
     public void Coupure() {
@@ -102,9 +108,8 @@ public final class Game implements Serializable {
     public void TunnelMovementOptionSelection(int value) {
         setState(getState().TunnelMovementOptionSelection(value));
     }
-    
-    public void ReduceSuppliesChoice(int value)
-    {
+
+    public void ReduceSuppliesChoice(int value) {
         setState(getState().SuppliesReduceChoice(value));
     }
 
@@ -115,18 +120,26 @@ public final class Game implements Serializable {
     public void Sabotage() {
         setState(getState().SabotageAttack());
     }
-    
-    public void saveGame(){
+
+    public void saveGame() {
         setState(getState().saveGame(this));
     }
-    
-    public void ExitGame()
-    {
+
+    public void ExitGame() {
         setState(getState().exitGame());
     }
 
     public void NextTurn() {
-       setState(getState().NextTurn());
+        setState(getState().NextTurn());
+    }
+
+    public void AddAnotherActionPoint() {
+        setState(getState().AddAnotherActionPoint());
     }
     
+    public void Encouragement(int value)
+    {
+        setState(getState().SelectSuppliesOrMorale(value));
+    }
+
 }

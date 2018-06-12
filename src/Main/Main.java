@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package console;
+package Main;
 
 import Logic.FileManager;
 import Logic.Game;
 import Logic.GameData;
+import Logic.ObservableGame;
 import View.TextUI;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ui.Gui.FirstMenuView;
 
 /**
  *
@@ -21,9 +23,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        TextUI textUI = new TextUI(new Game());
+       // TextUI textUI = new TextUI(new Game());
 
-        textUI.run();
+       //textUI.run();
+        
+         FirstMenuView menu = new FirstMenuView(new ObservableGame(new Game()),1,1);
 
     }
 }

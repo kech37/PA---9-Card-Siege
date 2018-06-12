@@ -36,6 +36,7 @@ public interface IStates {
     IStates VerifyGameOver();
     IStates NextTurn();
     IStates saveGame(Game game);
+    IStates AddAnotherActionPoint();
 
     //AWAIT ARCHERS ATACK ACTION SELECTION
     IStates ArchersAttackTrackSelection(int value);
@@ -48,5 +49,8 @@ public interface IStates {
     
     ///AWAIT SUPPLIES REDUCE CHOICE
     IStates SuppliesReduceChoice(int value);
-
+    
+    ///AWAIT ENCOURAGEMENT
+    IStates SelectSuppliesOrMorale(int value);
+ 
 }

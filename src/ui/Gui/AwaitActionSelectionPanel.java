@@ -75,6 +75,55 @@ public class AwaitActionSelectionPanel extends JPanel implements Observer {
             }
         });
 
+        btBoilingWaterAttack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.BoilingWaterAttack();
+            }
+        });
+
+        btCloseCombatAttack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.CloseCombatAreaAtack();
+            }
+        });
+
+        btCoupure.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.Coupure();
+            }
+        });
+
+        btRallyTroops.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.RallyTroops();
+            }
+        });
+
+        btTunnelMovement.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.TunnelMovement();
+            }
+        });
+
+        btSupplyRaid.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.SupplyRaid();
+            }
+        });
+
+        btSabotage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.Sabotage();
+            }
+        });
+
         setLayout(new GridLayout(4, 2));
     }
 

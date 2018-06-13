@@ -63,7 +63,6 @@ public class EnemyPanel extends JPanel implements Observer {
         CreateGrid();
 
         add(enemy);
-
     }
 
     public void CreateGrid() {
@@ -101,7 +100,6 @@ public class EnemyPanel extends JPanel implements Observer {
         enemy.setMinimumSize(new Dimension(image.getIconWidth(), image.getIconHeight()));
         enemy.setPreferredSize(new Dimension(image.getIconWidth(), image.getIconHeight()));
         enemy.setMaximumSize(new Dimension(image.getIconWidth(), image.getIconHeight()));
-
         enemy.setLayout(new GridLayout(6, 3, 15, 15));
     }
 
@@ -118,5 +116,4 @@ public class EnemyPanel extends JPanel implements Observer {
         enemyBlocks.get(observableGame.getEnemyCard().getLadders().getPosition() + 10).setIcon(new ImageIcon(getClass().getResource("Images/Token_24x26.png")));
         enemyBlocks.get(observableGame.getEnemyCard().getSiegeTower().getPosition() + 20).setIcon(new ImageIcon(getClass().getResource("Images/Token_24x26.png")));
     }
-
 }

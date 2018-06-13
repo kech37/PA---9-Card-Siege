@@ -58,6 +58,11 @@ public final class Game implements Serializable {
     public void AdvanceEnemies() {
         setState(getState().AdvanceEnemies());
     }
+    
+    public void ActionSelection()
+    {
+         setState(getState().ActionSelection());
+    }
 
     public void ArchersAttack() {
         setState(getState().ArcherAttack());

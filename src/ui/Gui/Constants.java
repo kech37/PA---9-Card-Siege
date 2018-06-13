@@ -30,6 +30,10 @@ public interface Constants {
     public static final int DIM_X_CARDDECK = (470 * DIM_X_FRAME) / 1366;
     public static final int DIM_Y_CARDDECK = (900 * DIM_Y_FRAME) / 768;
 
-    public static final int DIM_X_ENEMYSTATUS = (470 * DIM_X_FRAME) / 1366;
-    public static final int DIM_Y_ENEMYSTATUS = (900 * DIM_Y_FRAME) / 768;
+    public static final int DIM_X_ENEMYSTATUS = 234;
+    public static final int DIM_Y_ENEMYSTATUS = 332;
+
+    public static final int DIM_X_QUADRICULA_AREA = 5;
+    public static final int DIM_Y_QUADRICULA_AREA = 5;
+
 }

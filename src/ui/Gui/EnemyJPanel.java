@@ -6,23 +6,15 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Box;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -32,14 +24,14 @@ import static ui.Gui.Constants.*;
  *
  * @author andre
  */
-public class EnemyPanel extends JPanel implements Observer {
+public class EnemyJPanel extends JPanel implements Observer {
 
     private ObservableGame observableGame;
     private ImageIcon image;
     private Map<Integer, JLabel> enemyBlocks;
     private JLabel enemy;
 
-    public EnemyPanel(ObservableGame observableGame) {
+    public EnemyJPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
         setupComponents();

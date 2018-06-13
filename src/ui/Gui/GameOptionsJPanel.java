@@ -21,7 +21,7 @@ import static ui.Gui.Constants.DIM_Y_ENEMYSTATUS;
  *
  * @author andre
  */
-public class AwaitActionSelectionPanel extends JPanel implements Observer {
+public class GameOptionsJPanel extends JPanel implements Observer {
 
     private ObservableGame observableGame;
 
@@ -34,7 +34,7 @@ public class AwaitActionSelectionPanel extends JPanel implements Observer {
     JButton btSupplyRaid;
     JButton btSabotage;
 
-    public AwaitActionSelectionPanel(ObservableGame observableGame) {
+    public GameOptionsJPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
 

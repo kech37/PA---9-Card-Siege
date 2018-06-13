@@ -13,7 +13,7 @@ import View.TextUI;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ui.Gui.FirstMenuView;
+import ui.Gui.InicialMenuJFrame;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Main {
 
        //textUI.run();
         
-         FirstMenuView menu = new FirstMenuView(new ObservableGame(new Game()),1,1);
+         InicialMenuJFrame menu = new InicialMenuJFrame(new ObservableGame(new Game()),1,1);
 
     }
 }

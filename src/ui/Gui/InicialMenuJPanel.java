@@ -9,27 +9,19 @@ import Logic.FileManager;
 import Logic.ObservableGame;
 import Logic.States.AwaitBegining;
 import java.awt.BorderLayout;
-import static java.awt.BorderLayout.CENTER;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resources;
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -38,7 +30,7 @@ import javax.swing.JPanel;
  *
  * @author andre
  */
-public class FirstMenuPanel extends JPanel implements Observer {
+public class InicialMenuJPanel extends JPanel implements Observer {
 
     private ObservableGame observableGame;
 
@@ -46,7 +38,7 @@ public class FirstMenuPanel extends JPanel implements Observer {
     OptionsMenu options;
     Box boxcenter;
 
-    public FirstMenuPanel(ObservableGame j) {
+    public InicialMenuJPanel(ObservableGame j) {
         observableGame = j;
         observableGame.addObserver(this);
         setupComponents();
@@ -78,9 +70,9 @@ public class FirstMenuPanel extends JPanel implements Observer {
         try {
             image = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource("Images/Fundo.png"), "Fundo.png"));
         } catch (MalformedURLException ex) {
-            Logger.getLogger(FirstMenuPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InicialMenuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(FirstMenuPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InicialMenuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
     }
@@ -114,9 +106,9 @@ class LogoImage extends JPanel {
         try {
             image = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource("Images/LogoR.png"), "LogoR.png"));
         } catch (MalformedURLException ex) {
-            Logger.getLogger(FirstMenuPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InicialMenuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(FirstMenuPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InicialMenuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         g.drawImage(image, 50, 50, this.getWidth() - 100, this.getHeight() - 100, this);
     }
@@ -184,7 +176,7 @@ class OptionsMenu extends JPanel implements Observer {
             public void actionPerformed(ActionEvent ev) {
                 observableGame.StartGame();
 
-                HomePageView home = new HomePageView(observableGame, 1, 1);
+                MainGameJFrame home = new MainGameJFrame(observableGame, 1, 1);
 
             }
         });

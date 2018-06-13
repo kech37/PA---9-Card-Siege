@@ -47,6 +47,7 @@ public class AwaitTopCardToBeDrawnPanel extends JPanel implements Observer, Cons
     private void setupComponents() {
         deckimage = new DeckCardImage(observableGame);
         cardimage = new CardImage(observableGame);
+        
         content = new JPanel();
         boxes = new Box[2];
         boxes[0] = Box.createHorizontalBox();

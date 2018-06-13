@@ -48,7 +48,7 @@ public class EnemyPanel extends JPanel implements Observer {
         setMinimumSize(new Dimension(DIM_X_ENEMYSTATUS, DIM_Y_ENEMYSTATUS));
         setMaximumSize(new Dimension(DIM_X_ENEMYSTATUS, DIM_Y_ENEMYSTATUS));
         setPreferredSize(new Dimension(DIM_X_ENEMYSTATUS, DIM_Y_ENEMYSTATUS));
-        
+
         add(new JLabel(image));
 
     }
@@ -60,7 +60,7 @@ public class EnemyPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-       
+
     }
 
 }

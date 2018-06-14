@@ -13,12 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-/**
- *
- * @author a21220528
- */
 public class FileManager {
-
     private final String fileName;
 
     public FileManager(String fileName) {

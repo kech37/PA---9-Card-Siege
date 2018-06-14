@@ -143,6 +143,7 @@ class CardImage extends JPanel implements Observer {
 
         setupComponents();
         setupLayout();
+        
     }
 
     public void setupComponents() {

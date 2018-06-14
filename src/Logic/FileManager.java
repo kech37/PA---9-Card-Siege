@@ -25,7 +25,8 @@ public class FileManager {
     }
 
     public void SaveGameDataToFile(Game game) throws IOException {
-        FileOutputStream fos = new FileOutputStream(this.fileName);
+        new File("savegames/").mkdir();
+        FileOutputStream fos = new FileOutputStream("savegames/" + this.fileName);
         try (ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(game);
             oos.close();
@@ -34,7 +35,7 @@ public class FileManager {
     }
 
     public Game GetGameDataFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(this.fileName);
+        FileInputStream fis = new FileInputStream("savegames/"+this.fileName);
         Game game;
         try (ObjectInputStream ois = new ObjectInputStream(fis)) {
             game = (Game) ois.readObject();
@@ -44,6 +45,6 @@ public class FileManager {
     }
     
     public boolean checkSavegameFile(){
-        return new File(this.fileName).isFile();
+        return new File("savegames/"+this.fileName).isFile();
     }
 }

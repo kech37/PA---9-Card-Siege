@@ -14,7 +14,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class FileManager {
-
     private final String fileName;
 
     public FileManager(String fileName) {

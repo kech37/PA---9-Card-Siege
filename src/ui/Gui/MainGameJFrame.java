@@ -8,19 +8,21 @@ package ui.Gui;
 import Logic.ObservableGame;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import static ui.Gui.Constants.*;
 
@@ -58,14 +60,18 @@ public class MainGameJFrame extends JFrame implements Observer {
         menuItem = new JMenuItem("Load");
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
         menuItem.addActionListener((ActionEvent ev) -> {
-            /* Load savegame file */
+            try {
+                observableGame.loadGame();
+            } catch (IOException | ClassNotFoundException ex) {
+                Logger.getLogger(MainGameJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         menu.add(menuItem);
 
         menuItem = new JMenuItem("Save");
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         menuItem.addActionListener((ActionEvent ev) -> {
-            /* Save savegame file */
+            observableGame.saveGame();
         });
         menu.add(menuItem);
 
@@ -85,18 +91,6 @@ public class MainGameJFrame extends JFrame implements Observer {
         setJMenuBar(menuBar);
 
         cp.setLayout(new GridLayout(2, 2));
-
-        /*JPanel topPanel = new JPanel(new GridLayout(1, 2, 25, 0));
-        topPanel.add(new EnemyJPanel(observableGame));
-        topPanel.add(new StatusJPanel(observableGame));
-        
-        JPanel bottomPanel = new JPanel(new GridBagLayout());
-        bottomPanel.add(new DeckNCardJPanel(observableGame));
-        bottomPanel.add(new GameOptionsJPanel(observableGame));
-        
-        cp.add(topPanel);
-        cp.add(bottomPanel);*/
-        
         cp.add(new EnemyJPanel(observableGame));
         cp.add(new StatusJPanel(observableGame));
         cp.add(new DeckNCardJPanel(observableGame));
@@ -107,7 +101,8 @@ public class MainGameJFrame extends JFrame implements Observer {
 
         setMinimumSize(new Dimension(width, height));
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addWindowListener(new WindowsClosing());
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         observableGame.SetUpdate();
 
@@ -117,6 +112,18 @@ public class MainGameJFrame extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object o1) {
 
+    }
+
+    private class WindowsClosing extends WindowAdapter {
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            Object[] options = {"Sim", "Não"};
+            int sel = JOptionPane.showOptionDialog(MainGameJFrame.this, "Tem a certeza que quer sair?", "Exit", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (sel == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        }
     }
 
 }

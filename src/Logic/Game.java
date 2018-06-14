@@ -7,9 +7,7 @@ package Logic;
 
 import Logic.States.AwaitBegining;
 import Logic.States.IStates;
-import View.TextUI;
 import java.io.Serializable;
-import static javafx.scene.input.KeyCode.L;
 
 /**
  *

@@ -5,12 +5,11 @@
  */
 package Logic;
 
-import Logic.Cards.CardDeck;
 import Logic.Cards.EnemyTrackCard;
 import Logic.Cards.EventCards.BaseEventCard;
-import Logic.Cards.EventCards.EventCard1;
-import Logic.Cards.EventCards.Events.RegularEvents;
 import Logic.States.IStates;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class ObservableGame extends java.util.Observable {
 
@@ -113,5 +112,14 @@ public class ObservableGame extends java.util.Observable {
     public BaseEventCard getAtualCard() {
         return game.getGame().getDeck().getOnUseEventCard();
     }
-
+    
+    public void saveGame(){
+        game.saveGame();
+    }
+    
+    public void loadGame() throws IOException, FileNotFoundException, ClassNotFoundException{
+        FileManager f = new FileManager();
+        game = f.GetGameDataFromFile();
+    }
+    
 }

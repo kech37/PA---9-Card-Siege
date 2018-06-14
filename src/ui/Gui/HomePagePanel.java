@@ -27,7 +27,7 @@ import javax.swing.JPanel;
 public class HomePagePanel extends JPanel implements Observer {
 
     private ObservableGame observableGame;
-    private AwaitTopCardToBeDrawnPanel awaitTopCardToBeDrawn;
+  //  private AwaitTopCardToBeDrawnPanel awaitTopCardToBeDrawn;
     private JPanel bottomPanel;
 
     public HomePagePanel(ObservableGame observableGame) {
@@ -39,7 +39,7 @@ public class HomePagePanel extends JPanel implements Observer {
     }
 
     private void setupComponents() {
-        awaitTopCardToBeDrawn = new AwaitTopCardToBeDrawnPanel(observableGame);
+  //      awaitTopCardToBeDrawn = new AwaitTopCardToBeDrawnPanel(observableGame);
         bottomPanel = new JPanel();
     }
 
@@ -49,7 +49,7 @@ public class HomePagePanel extends JPanel implements Observer {
         
         bottomPanel.setLayout(new GridLayout(1, 3));
         bottomPanel.add(new EnemyPanel(observableGame), BorderLayout.CENTER);
-        bottomPanel.add(new AwaitActionSelectionPanel(observableGame));
+        //bottomPanel.add(new AwaitActionSelectionPanel(observableGame));
         bottomPanel.add(new StatusPanel(observableGame), BorderLayout.CENTER);
 
        //add(awaitTopCardToBeDrawn, BorderLayout.CENTER);

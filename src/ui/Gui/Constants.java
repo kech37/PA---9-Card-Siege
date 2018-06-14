@@ -18,8 +18,11 @@ public interface Constants {
     public static final int DIM_X_FRAME = (int) screenSize.getWidth();
     public static final int DIM_Y_FRAME = (int) screenSize.getHeight();
 
-    public static final int DIM_X_HOMEPAGE = (int) screenSize.getWidth() - 100;
-    public static final int DIM_Y_HOMEPAGE = (int) screenSize.getHeight() - 100;
+    /*public static final int DIM_X_HOMEPAGE = (int) screenSize.getWidth() - 100;
+    public static final int DIM_Y_HOMEPAGE = (int) screenSize.getHeight() - 100;*/
+    
+    public static final int DIM_X_HOMEPAGE = (int) 1024;
+    public static final int DIM_Y_HOMEPAGE = (int) 800;
 
     public static final int DIM_X_MENU = 500;
     public static final int DIM_Y_MENU = 550;

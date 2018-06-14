@@ -20,16 +20,16 @@ import static ui.Gui.Constants.*;
  *
  * @author andre
  */
-public class FirstMenuView extends JFrame implements Observer {
+public class InicialMenuJFrame extends JFrame implements Observer {
 
     private ObservableGame observableGame;
-    private FirstMenuPanel panel;
+    private InicialMenuJPanel panel;
 
-    public FirstMenuView(ObservableGame j, int x, int y) {
+    public InicialMenuJFrame(ObservableGame j, int x, int y) {
         this(j, x, y, DIM_X_MENU, DIM_Y_MENU);
     }
 
-    public FirstMenuView(ObservableGame j, int x, int y, int width, int height) {
+    public InicialMenuJFrame(ObservableGame j, int x, int y, int width, int height) {
         super("Menu Principal");
 
         observableGame = j;
@@ -40,7 +40,7 @@ public class FirstMenuView extends JFrame implements Observer {
 
         Container cp = getContentPane();
 
-        panel = new FirstMenuPanel(observableGame);
+        panel = new InicialMenuJPanel(observableGame);
 
         cp.add(panel, BorderLayout.CENTER);
         setSize(width, height);

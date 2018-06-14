@@ -27,12 +27,12 @@ import static ui.Gui.Constants.DIM_Y_ENEMYSTATUS;
  *
  * @author andre
  */
-public class StatusPanel extends JPanel implements Observer {
+public class StatusJPanel extends JPanel implements Observer {
 
     private ObservableGame observableGame;
     private ImageIcon image;
 
-    public StatusPanel(ObservableGame observableGame) {
+    public StatusJPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
         setupComponents();

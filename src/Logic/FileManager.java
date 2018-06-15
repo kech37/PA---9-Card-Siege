@@ -14,19 +14,22 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class FileManager {
+
+    public static final String folder = "savegames/";
+    public static final String extension = ".9cs";
     private final String fileName;
 
     public FileManager(String fileName) {
-        this.fileName = fileName;
+        this.fileName = folder + fileName;
     }
-    
+
     public FileManager() {
-        this("savegame.9cs");
+        this("savegame");
     }
 
     public void SaveGameDataToFile(Game game) throws IOException {
-        new File("savegames/").mkdir();
-        FileOutputStream fos = new FileOutputStream("savegames/" + this.fileName);
+        //new File(folder).mkdir();
+        FileOutputStream fos = new FileOutputStream(this.fileName + extension);
         try (ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(game);
             oos.close();
@@ -35,7 +38,7 @@ public class FileManager {
     }
 
     public Game GetGameDataFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("savegames/"+this.fileName);
+        FileInputStream fis = new FileInputStream(this.fileName);
         Game game;
         try (ObjectInputStream ois = new ObjectInputStream(fis)) {
             game = (Game) ois.readObject();
@@ -43,8 +46,15 @@ public class FileManager {
         }
         return game;
     }
-    
-    public boolean checkSavegameFile(){
-        return new File("savegames/"+this.fileName).isFile();
+
+    public boolean checkSavegameFile() {
+        File file = new File(folder);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        if (file.listFiles().length > 0) {
+            return true;
+        }
+        return false;
     }
 }

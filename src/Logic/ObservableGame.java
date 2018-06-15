@@ -27,17 +27,15 @@ public class ObservableGame extends java.util.Observable {
         setChanged();
         notifyObservers();
     }
-  
-    public EnemyTrackCard getEnemyCard()
-    {
+
+    public EnemyTrackCard getEnemyCard() {
         return game.getGame().getEnemy();
     }
-    
-    public void  AwaitTopCardToBeDrawnAction()
-    {
+
+    public void AwaitTopCardToBeDrawnAction() {
         game.CheckingEnemyLines();
         game.CheckExistingCards();
-        
+
         if (game.getGame().getDeck().getOnUseEventCard() != null) {
             game.AdvanceEnemies();
         }
@@ -112,14 +110,27 @@ public class ObservableGame extends java.util.Observable {
     public BaseEventCard getAtualCard() {
         return game.getGame().getDeck().getOnUseEventCard();
     }
-    
-    public void saveGame(){
+
+    public void saveGame() {
         game.saveGame();
     }
-    
-    public void loadGame() throws IOException, FileNotFoundException, ClassNotFoundException{
+
+    public void saveGameWithName(String fileName) {
+        game.saveGameWithName(fileName);
+    }
+
+    public void loadGame() throws IOException, FileNotFoundException, ClassNotFoundException {
         FileManager f = new FileManager();
         game = f.GetGameDataFromFile();
     }
-    
+
+    public void loadGameWithName(String fileName) throws IOException, FileNotFoundException, ClassNotFoundException {
+        FileManager f = new FileManager(fileName);
+        game = f.GetGameDataFromFile();
+    }
+
+    public void tradeActionPoint() {
+        game.AddAnotherActionPoint();
+    }
+
 }

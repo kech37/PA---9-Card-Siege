@@ -5,18 +5,22 @@
  */
 package Logic.States;
 
+import Logic.FileManager;
 import Logic.Game;
 import Logic.GameData;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author andre
  */
-public class StateAdapter implements IStates,Serializable {
+public class StateAdapter implements IStates, Serializable {
 
     static final long serialVersionUID = 1010L;
-    
+
     private GameData dataGame;
 
     public StateAdapter(GameData dataGame) {
@@ -128,7 +132,7 @@ public class StateAdapter implements IStates,Serializable {
 
     @Override
     public IStates exitGame() {
-       return new LeaveGame(getDataGame());
+        return new LeaveGame(getDataGame());
     }
 
     @Override
@@ -163,8 +167,14 @@ public class StateAdapter implements IStates,Serializable {
 
     @Override
     public IStates saveGameWithName(String nameFile, Game game) {
+        try {
+            getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
+            FileManager fileManager = new FileManager(nameFile);
+            fileManager.SaveGameDataToFile(game);
+        } catch (IOException ex) {
+            Logger.getLogger(StateAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return this;
     }
-
 
 }

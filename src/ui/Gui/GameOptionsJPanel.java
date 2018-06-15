@@ -33,6 +33,7 @@ public class GameOptionsJPanel extends JPanel implements Observer {
     JButton btTunnelMovement;
     JButton btSupplyRaid;
     JButton btSabotage;
+    JButton btTradeActionPoint;
 
     public GameOptionsJPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
@@ -51,6 +52,7 @@ public class GameOptionsJPanel extends JPanel implements Observer {
         btTunnelMovement = new JButton("Tunnel Movement");
         btSupplyRaid = new JButton("Supply Raid");
         btSabotage = new JButton("Sabotage");
+        btTradeActionPoint = new JButton("Trade Action Points");
     }
 
     public void setupLayout() {
@@ -67,7 +69,15 @@ public class GameOptionsJPanel extends JPanel implements Observer {
         add(btTunnelMovement);
         add(btSupplyRaid);
         add(btSabotage);
+        add(btTradeActionPoint);
 
+        btTradeActionPoint.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                observableGame.tradeActionPoint();
+            }
+        });
+        
         btArchersAttack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {

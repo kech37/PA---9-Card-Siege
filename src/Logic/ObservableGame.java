@@ -129,4 +129,8 @@ public class ObservableGame extends java.util.Observable {
         game = f.GetGameDataFromFile();
     }
 
+    public void tradeActionPoint() {
+        game.AddAnotherActionPoint();
+    }
+
 }

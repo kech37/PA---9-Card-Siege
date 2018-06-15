@@ -37,6 +37,7 @@ public interface IStates {
     IStates VerifyGameOver();
     IStates NextTurn();
     IStates saveGame(Game game);
+    IStates saveGameWithName(String nameFile, Game game);
     IStates AddAnotherActionPoint();
 
     //AWAIT ARCHERS ATACK ACTION SELECTION

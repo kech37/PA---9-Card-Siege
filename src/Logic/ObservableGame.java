@@ -29,6 +29,10 @@ public class ObservableGame extends java.util.Observable {
         notifyObservers();
     }
 
+    public int getDay() {
+        return game.getGame().getDay();
+    }
+
     public EnemyTrackCard getEnemyCard() {
         return game.getGame().getEnemy();
     }
@@ -40,6 +44,14 @@ public class ObservableGame extends java.util.Observable {
         if (game.getGame().getDeck().getOnUseEventCard() != null) {
             game.AdvanceEnemies();
         }
+    }
+
+    public int getActionPoint() {
+        return getAtualCard().getEvents().get(getDay()).getActionPointAllowance() + 1;
+    }
+
+    public int getDiceNumber() {
+        return game.getGame().getDice().getValue();
     }
 
     public void ActionSelection() {
@@ -123,7 +135,6 @@ public class ObservableGame extends java.util.Observable {
         game.saveGameWithName(fileName);
     }
 
-
     public void loadGame() throws IOException, FileNotFoundException, ClassNotFoundException {
         FileManager f = new FileManager();
         game = f.GetGameDataFromFile();
@@ -136,7 +147,7 @@ public class ObservableGame extends java.util.Observable {
 
     public void checkActionPoints() {
         game.CheckActionPoints();
-        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(0).getActionPointAllowance());
+        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(getDay()).getActionPointAllowance());
         if (game.getState() instanceof AwaitTopCardToBeDrawn) {
             AwaitTopCardToBeDrawnAction();
             setChanged();
@@ -153,5 +164,10 @@ public class ObservableGame extends java.util.Observable {
         game.AddAnotherActionPoint();
     }
 
+    public void NextTurn() {
+        game.NextTurn();
+        setChanged();
+        notifyObservers();
+    }
 
 }

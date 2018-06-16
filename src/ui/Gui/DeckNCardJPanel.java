@@ -6,6 +6,7 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import Logic.States.AwaitTopCardToBeDrawn;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -52,7 +53,7 @@ public class DeckNCardJPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
 }

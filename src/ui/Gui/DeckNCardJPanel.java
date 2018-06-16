@@ -6,14 +6,10 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 /**
  *

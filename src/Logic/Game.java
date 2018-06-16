@@ -127,7 +127,11 @@ public final class Game implements Serializable {
     public void saveGame() {
         setState(getState().saveGame(this));
     }
-
+    
+    public void saveGameWithName(String fileName){
+        setState(getState().saveGameWithName(fileName, this));
+    }
+    
     public void ExitGame() {
         setState(getState().exitGame());
     }

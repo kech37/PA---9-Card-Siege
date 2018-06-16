@@ -131,15 +131,15 @@ public class AwaitActionSelection extends StateAdapter {
             if (dice == 1) {
                 getDataGame().getStatus().ModifyMorale(-1);
             } else if (dice > 4) {
-                    if (getDataGame().getEnemy().getBatteringRam().getPosition() == 0) {
-                        getDataGame().getEnemy().getBatteringRam().Backward();
-                    }
-                    if (getDataGame().getEnemy().getLadders().getPosition() == 0) {
-                        getDataGame().getEnemy().getLadders().Backward();
-                    }
-                    if (getDataGame().getEnemy().getSiegeTower().getPosition() == 0) {
-                        getDataGame().getEnemy().getSiegeTower().Backward();
-                    }
+                if (getDataGame().getEnemy().getBatteringRam().getPosition() == 0) {
+                    getDataGame().getEnemy().getBatteringRam().Backward();
+                }
+                if (getDataGame().getEnemy().getLadders().getPosition() == 0) {
+                    getDataGame().getEnemy().getLadders().Backward();
+                }
+                if (getDataGame().getEnemy().getSiegeTower().getPosition() == 0) {
+                    getDataGame().getEnemy().getSiegeTower().Backward();
+                }
             }
 
             return new AwaitActionSelection(getDataGame());
@@ -203,5 +203,4 @@ public class AwaitActionSelection extends StateAdapter {
         return new AwaitEncouragement(getDataGame());
     }
 
-    
 }

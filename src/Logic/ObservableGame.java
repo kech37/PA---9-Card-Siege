@@ -119,6 +119,11 @@ public class ObservableGame extends java.util.Observable {
         game.saveGame();
     }
 
+    public void saveGameWithName(String fileName) {
+        game.saveGameWithName(fileName);
+    }
+
+
     public void loadGame() throws IOException, FileNotFoundException, ClassNotFoundException {
         FileManager f = new FileManager();
         game = f.GetGameDataFromFile();
@@ -138,4 +143,15 @@ public class ObservableGame extends java.util.Observable {
             notifyObservers();
         }
     }
+
+    public void loadGameWithName(String fileName) throws IOException, FileNotFoundException, ClassNotFoundException {
+        FileManager f = new FileManager(fileName);
+        game = f.GetGameDataFromFile();
+    }
+
+    public void tradeActionPoint() {
+        game.AddAnotherActionPoint();
+    }
+
+
 }

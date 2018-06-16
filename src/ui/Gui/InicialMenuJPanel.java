@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Observable;
@@ -24,7 +25,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -131,7 +135,7 @@ class OptionsMenu extends JPanel implements Observer {
 
     public void setupComponents() {
         jb1 = new JButton("New Game");
-        jb2 = new JButton("Continue");
+        jb2 = new JButton("Load");
         jb3 = new JButton("  Exit  ");
 
         jb1.setForeground(Color.white);
@@ -176,6 +180,35 @@ class OptionsMenu extends JPanel implements Observer {
             public void actionPerformed(ActionEvent ev) {
                 observableGame.StartGame();
                 MainGameJFrame home = new MainGameJFrame(observableGame, 1, 1);
+            }
+        });
+
+        jb2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setCurrentDirectory(new File(FileManager.folder));
+                fileChooser.setAcceptAllFileFilterUsed(false);
+                fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
+                        "(.9cs) 9 Card Siege save file",
+                        "9cs"
+                ));
+
+                if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+                    try {
+                        observableGame.loadGameWithName(file.getName());
+                        MainGameJFrame home = new MainGameJFrame(observableGame, 1, 1);
+                    } catch (IOException | ClassNotFoundException ex) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Check console log for more information.",
+                                "Error!",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                        Logger.getLogger(MainGameJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         });
 

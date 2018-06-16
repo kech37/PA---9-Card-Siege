@@ -5,6 +5,7 @@
  */
 package ui.Gui;
 
+import Logic.FileManager;
 import Logic.ObservableGame;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -13,17 +14,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import static ui.Gui.Constants.*;
 
 
@@ -56,10 +62,33 @@ public class MainGameJFrame extends JFrame implements Observer {
         menuItem = new JMenuItem("Load");
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
         menuItem.addActionListener((ActionEvent ev) -> {
-            try {
-                observableGame.loadGame();
-            } catch (IOException | ClassNotFoundException ex) {
-                Logger.getLogger(MainGameJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File(FileManager.folder));
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
+                    "(.9cs) 9 Card Siege save file",
+                    "9cs"
+            ));
+
+            if (fileChooser.showOpenDialog(MainGameJFrame.this) == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                try {
+                    observableGame.loadGameWithName(file.getName());
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Game load with sucess!",
+                            "Sucess!",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } catch (IOException | ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Check console log for more information.",
+                            "Error!",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    Logger.getLogger(MainGameJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         menu.add(menuItem);
@@ -67,7 +96,25 @@ public class MainGameJFrame extends JFrame implements Observer {
         menuItem = new JMenuItem("Save");
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         menuItem.addActionListener((ActionEvent ev) -> {
-            observableGame.saveGame();
+            String fileName;
+            fileName = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Input for savegame name",
+                    "Save",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    null,
+                    new SimpleDateFormat("dd MM yyyy - HH mm").format(new Date())
+            );
+            if (fileName != null) {
+                observableGame.saveGameWithName(fileName);
+                JOptionPane.showMessageDialog(
+                        null,
+                        "File '" + fileName + FileManager.extension + "' save with sucess!",
+                        "Sucess!",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
         });
         menu.add(menuItem);
 

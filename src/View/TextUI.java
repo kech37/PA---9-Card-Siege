@@ -228,7 +228,6 @@ public class TextUI {
             case 9:
                 game.NextTurn();
                 break;
-
         }
 
     }

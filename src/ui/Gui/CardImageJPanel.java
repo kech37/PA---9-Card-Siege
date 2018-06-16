@@ -26,7 +26,7 @@ public class CardImageJPanel extends JPanel implements Observer {
 
     private Image image = null;
     private final ObservableGame observableGame;
-        
+
     public CardImageJPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
@@ -42,7 +42,7 @@ public class CardImageJPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-        if (observableGame.getState() instanceof AwaitTopCardToBeDrawn || observableGame.getState() instanceof GameOptionsJPanel) {
+        if (observableGame.getState() instanceof AwaitTopCardToBeDrawn) {
             try {
                 image = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource("Images/" + observableGame.getAtualCard().getImageName()), observableGame.getAtualCard().getImageName()));
             } catch (MalformedURLException ex) {
@@ -50,6 +50,8 @@ public class CardImageJPanel extends JPanel implements Observer {
             } catch (IOException ex) {
                 Logger.getLogger(InicialMenuJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
+            paintComponent(this.getGraphics());
+            observableGame.ActionSelection();
         }
 
     }

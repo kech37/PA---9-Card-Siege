@@ -27,10 +27,12 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
 
     @Override
     public IStates CheckingEnemyLines() {
-        if (getDataGame().getDice().rollDice() == 1 && getDataGame().getStatus().isOnEnemyLines()) {
-            getDataGame().getStatus().setTunnel(0); ///SOLDADOS NO CASTELO
-            getDataGame().getStatus().setSuppliesLevel(0);
-            getDataGame().getStatus().ModifyMorale(-1);///REDUZ MORAL EM 1
+        if (getDataGame().getStatus().isOnEnemyLines()) {
+            if (getDataGame().getDice().rollDice() == 1) {
+                getDataGame().getStatus().setTunnel(0); ///SOLDADOS NO CASTELO
+                getDataGame().getStatus().setSuppliesLevel(0);
+                getDataGame().getStatus().ModifyMorale(-1);///REDUZ MORAL EM 1
+            }
         }
         return this;
     }
@@ -86,13 +88,12 @@ public class AwaitTopCardToBeDrawn extends StateAdapter {
         if (getDataGame().getStatus().getMorale() == 0 || getDataGame().getStatus().getSupplies() == 0 || getDataGame().getStatus().getWallStrenght() == 0) {
             return new GameOver(getDataGame());
         }
-       return this;
+        return this;
     }
-    
+
     @Override
-    public IStates ActionSelection()
-    {
-         return new AwaitActionSelection(getDataGame());
+    public IStates ActionSelection() {
+        return new AwaitActionSelection(getDataGame());
     }
 
     @Override

@@ -7,6 +7,7 @@ package ui.Gui;
 
 import Logic.ObservableGame;
 import Logic.States.AwaitActionSelection;
+import Logic.States.AwaitTopCardToBeDrawn;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -39,6 +40,9 @@ public class GameOptionsJPanel extends JPanel implements Observer {
     JButton btSupplyRaid;
     JButton btSabotage;
     JButton btTradeActionPoint;
+    JButton btNone;
+    JButton btNone1;
+    JButton btNextTurn;
 
     public GameOptionsJPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
@@ -58,6 +62,12 @@ public class GameOptionsJPanel extends JPanel implements Observer {
         btSupplyRaid = new JButton("Supply Raid");
         btSabotage = new JButton("Sabotage");
         btTradeActionPoint = new JButton("Trade Action Points");
+        btNextTurn = new JButton("Next Turn");
+        btNone = new JButton("");
+        btNone1 = new JButton("");
+
+        btNone.setEnabled(false);
+        btNone1.setEnabled(false);
     }
 
     public void setupLayout() {
@@ -75,6 +85,9 @@ public class GameOptionsJPanel extends JPanel implements Observer {
         add(btSupplyRaid);
         add(btSabotage);
         add(btTradeActionPoint);
+        add(btNone);
+        add(btNextTurn);
+        add(btNone1);
 
         btTradeActionPoint.addActionListener(new ActionListener() {
             @Override
@@ -82,7 +95,7 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                 observableGame.tradeActionPoint();
             }
         });
-        
+
         btArchersAttack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
@@ -94,7 +107,7 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                 dialog.setModal(true);
                 dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
                 dialog.setVisible(true);
-                
+
                 observableGame.SetUpdate();
 
             }
@@ -149,11 +162,21 @@ public class GameOptionsJPanel extends JPanel implements Observer {
             }
         });
 
-        setLayout(new GridLayout(4, 2));
+        btNextTurn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.NextTurn();
+            }
+        });
+
+        setLayout(new GridLayout(5, 3));
     }
 
     @Override
     public void update(Observable o, Object o1) {
+        if (observableGame.getState() instanceof AwaitTopCardToBeDrawn) {
+            observableGame.AwaitTopCardToBeDrawnAction();
+        }
     }
 
 }

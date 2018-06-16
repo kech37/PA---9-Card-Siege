@@ -8,6 +8,7 @@ package ui.Gui;
 import Logic.ObservableGame;
 import Logic.States.AwaitActionSelection;
 import Logic.States.AwaitTopCardToBeDrawn;
+import Logic.States.GameOver;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -176,6 +177,17 @@ public class GameOptionsJPanel extends JPanel implements Observer {
     public void update(Observable o, Object o1) {
         if (observableGame.getState() instanceof AwaitTopCardToBeDrawn) {
             observableGame.AwaitTopCardToBeDrawnAction();
+        } else {
+            if(observableGame.getState() instanceof GameOver)
+            {
+                GameOverDialog dialog = new GameOverDialog();
+                dialog.setUndecorated(true);
+                dialog.pack();
+
+                dialog.setModal(true);
+                dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
+                dialog.setVisible(true);
+            }
         }
     }
 

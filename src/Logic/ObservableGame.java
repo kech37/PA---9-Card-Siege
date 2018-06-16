@@ -7,6 +7,7 @@ package Logic;
 
 import Logic.Cards.EnemyTrackCard;
 import Logic.Cards.EventCards.BaseEventCard;
+import Logic.Cards.StatusTrackCard;
 import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.IStates;
 import java.io.FileNotFoundException;
@@ -23,8 +24,6 @@ public class ObservableGame extends java.util.Observable {
     public void StartGame() {
         game.start();
 
-        AwaitTopCardToBeDrawnAction();
-
         setChanged();
         notifyObservers();
     }
@@ -35,6 +34,11 @@ public class ObservableGame extends java.util.Observable {
 
     public EnemyTrackCard getEnemyCard() {
         return game.getGame().getEnemy();
+    }
+    
+    public StatusTrackCard getStatusCard()
+    {
+        return game.getGame().getStatus();
     }
 
     public void AwaitTopCardToBeDrawnAction() {

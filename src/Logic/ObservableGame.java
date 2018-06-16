@@ -7,6 +7,7 @@ package Logic;
 
 import Logic.Cards.EnemyTrackCard;
 import Logic.Cards.EventCards.BaseEventCard;
+import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.IStates;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,20 +28,21 @@ public class ObservableGame extends java.util.Observable {
         setChanged();
         notifyObservers();
     }
-  
-    public EnemyTrackCard getEnemyCard()
-    {
+
+    public EnemyTrackCard getEnemyCard() {
         return game.getGame().getEnemy();
     }
-    
-    public void  AwaitTopCardToBeDrawnAction()
-    {
+
+    public void AwaitTopCardToBeDrawnAction() {
         game.CheckingEnemyLines();
         game.CheckExistingCards();
-        
+
         if (game.getGame().getDeck().getOnUseEventCard() != null) {
             game.AdvanceEnemies();
         }
+    }
+
+    public void ActionSelection() {
         game.ActionSelection();
     }
 
@@ -112,14 +114,28 @@ public class ObservableGame extends java.util.Observable {
     public BaseEventCard getAtualCard() {
         return game.getGame().getDeck().getOnUseEventCard();
     }
-    
-    public void saveGame(){
+
+    public void saveGame() {
         game.saveGame();
     }
-    
-    public void loadGame() throws IOException, FileNotFoundException, ClassNotFoundException{
+
+    public void loadGame() throws IOException, FileNotFoundException, ClassNotFoundException {
         FileManager f = new FileManager();
         game = f.GetGameDataFromFile();
     }
-    
+
+    public void ArchersAttackTrackSelection(int value) {
+        game.ArchersAttackTrackSelection(value);
+        checkActionPoints();
+    }
+
+    public void checkActionPoints() {
+        game.CheckActionPoints();
+        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(0).getActionPointAllowance());
+        if (game.getState() instanceof AwaitTopCardToBeDrawn) {
+            AwaitTopCardToBeDrawnAction();
+            setChanged();
+            notifyObservers();
+        }
+    }
 }

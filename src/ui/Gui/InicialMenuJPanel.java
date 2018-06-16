@@ -175,9 +175,7 @@ class OptionsMenu extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 observableGame.StartGame();
-
                 MainGameJFrame home = new MainGameJFrame(observableGame, 1, 1);
-
             }
         });
 

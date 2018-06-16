@@ -26,14 +26,10 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import static ui.Gui.Constants.*;
 
-/**
- *
- * @author andre
- */
+
 public class MainGameJFrame extends JFrame implements Observer {
 
     private ObservableGame observableGame;
-    //private HomePagePanel panel;
 
     public MainGameJFrame(ObservableGame j, int x, int y) {
         this(j, x, y, DIM_X_HOMEPAGE, DIM_Y_HOMEPAGE);

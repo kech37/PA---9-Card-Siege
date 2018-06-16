@@ -6,16 +6,21 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import Logic.States.AwaitActionSelection;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import static ui.Gui.Constants.DIM_X_ENEMYSTATUS;
+import static ui.Gui.Constants.DIM_X_FRAME;
 import static ui.Gui.Constants.DIM_Y_ENEMYSTATUS;
+import static ui.Gui.Constants.DIM_Y_FRAME;
 
 /**
  *
@@ -72,6 +77,16 @@ public class GameOptionsJPanel extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 observableGame.ArchersAttack();
+                SelectEnemyDialog dialog = new SelectEnemyDialog(observableGame);
+                dialog.setUndecorated(true);
+                dialog.pack();
+
+                dialog.setModal(true);
+                dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
+                dialog.setVisible(true);
+                
+                observableGame.SetUpdate();
+
             }
         });
 
@@ -129,7 +144,6 @@ public class GameOptionsJPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-
     }
 
 }

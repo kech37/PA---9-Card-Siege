@@ -7,6 +7,7 @@ package Logic;
 
 import Logic.Cards.EnemyTrackCard;
 import Logic.Cards.EventCards.BaseEventCard;
+import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.IStates;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,6 +29,10 @@ public class ObservableGame extends java.util.Observable {
         notifyObservers();
     }
 
+    public int getDay() {
+        return game.getGame().getDay();
+    }
+
     public EnemyTrackCard getEnemyCard() {
         return game.getGame().getEnemy();
     }
@@ -39,6 +44,17 @@ public class ObservableGame extends java.util.Observable {
         if (game.getGame().getDeck().getOnUseEventCard() != null) {
             game.AdvanceEnemies();
         }
+    }
+
+    public int getActionPoint() {
+        return getAtualCard().getEvents().get(getDay()).getActionPointAllowance() + 1;
+    }
+
+    public int getDiceNumber() {
+        return game.getGame().getDice().getValue();
+    }
+
+    public void ActionSelection() {
         game.ActionSelection();
     }
 
@@ -124,6 +140,21 @@ public class ObservableGame extends java.util.Observable {
         game = f.GetGameDataFromFile();
     }
 
+    public void ArchersAttackTrackSelection(int value) {
+        game.ArchersAttackTrackSelection(value);
+        checkActionPoints();
+    }
+
+    public void checkActionPoints() {
+        game.CheckActionPoints();
+        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(getDay()).getActionPointAllowance());
+        if (game.getState() instanceof AwaitTopCardToBeDrawn) {
+            AwaitTopCardToBeDrawnAction();
+            setChanged();
+            notifyObservers();
+        }
+    }
+
     public void loadGameWithName(String fileName) throws IOException, FileNotFoundException, ClassNotFoundException {
         FileManager f = new FileManager(fileName);
         game = f.GetGameDataFromFile();
@@ -131,6 +162,12 @@ public class ObservableGame extends java.util.Observable {
 
     public void tradeActionPoint() {
         game.AddAnotherActionPoint();
+    }
+
+    public void NextTurn() {
+        game.NextTurn();
+        setChanged();
+        notifyObservers();
     }
 
 }

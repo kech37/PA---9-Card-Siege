@@ -172,7 +172,7 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates CheckActionPoints() {
-        if (getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).getActionPointAllowance() > 0) {
+        if (getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).getActionPointAllowance() > 1) {
             getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(-1);
             return this;
         } else {

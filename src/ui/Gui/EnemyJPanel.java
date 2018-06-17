@@ -6,6 +6,7 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -65,7 +66,7 @@ public class EnemyJPanel extends JPanel implements Observer {
         for (int i = 18; i > 0; i--) {
             JLabel temp = new JLabel();
             enemy.add(temp);
-
+    
             if (i < 3 || i < 16) {
 
                 if (i == 4 || i == 7 || i == 10 || i == 13) {
@@ -104,8 +105,18 @@ public class EnemyJPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
+        cleanJLabels();
         enemyBlocks.get(observableGame.getEnemyCard().getBatteringRam().getPosition()).setIcon(new ImageIcon(getClass().getResource("Images/Token_24x26.png")));
         enemyBlocks.get(observableGame.getEnemyCard().getLadders().getPosition() + 10).setIcon(new ImageIcon(getClass().getResource("Images/Token_24x26.png")));
         enemyBlocks.get(observableGame.getEnemyCard().getSiegeTower().getPosition() + 20).setIcon(new ImageIcon(getClass().getResource("Images/Token_24x26.png")));
+    }
+    
+    private void cleanJLabels()
+    {
+        for (Map.Entry<Integer, JLabel> entry : enemyBlocks.entrySet()) {
+            Integer key = entry.getKey();
+            JLabel value = entry.getValue();
+            value.setIcon(null);
+        }
     }
 }

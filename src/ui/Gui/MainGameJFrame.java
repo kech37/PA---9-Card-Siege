@@ -28,18 +28,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import static ui.Gui.Constants.*;
 
-/**
- *
- * @author andre
- */
+
 public class MainGameJFrame extends JFrame implements Observer {
 
     private ObservableGame observableGame;
-    //private HomePagePanel panel;
 
     public MainGameJFrame(ObservableGame j, int x, int y) {
         this(j, x, y, DIM_X_HOMEPAGE, DIM_Y_HOMEPAGE);
@@ -136,13 +133,24 @@ public class MainGameJFrame extends JFrame implements Observer {
         menu.add(menuItem);
 
         setJMenuBar(menuBar);
+        
+        JPanel top = new JPanel();
+        JPanel bottom  =new JPanel();
+        top.setLayout(new GridLayout(1,3));
+        bottom.setLayout(new GridLayout(1,2));
+        
 
-        cp.setLayout(new GridLayout(2, 2));
-        cp.add(new EnemyJPanel(observableGame));
-        cp.add(new StatusJPanel(observableGame));
-        cp.add(new DeckNCardJPanel(observableGame));
-        cp.add(new GameOptionsJPanel(observableGame));
-
+        cp.setLayout(new GridLayout(2, 1));
+        
+        top.add(new EnemyJPanel(observableGame));
+        top.add(new DiceActionPointPanel(observableGame));
+        top.add(new StatusJPanel(observableGame));
+        bottom.add(new DeckNCardJPanel(observableGame));
+        bottom.add(new GameOptionsJPanel(observableGame));
+        
+        cp.add(top);
+        cp.add(bottom);
+        
         setSize(width, height);
         setLocationRelativeTo(null);
 

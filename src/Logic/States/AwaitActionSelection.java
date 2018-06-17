@@ -199,7 +199,6 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates AddAnotherActionPoint() {
-        getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
         return new AwaitEncouragement(getDataGame());
     }
 

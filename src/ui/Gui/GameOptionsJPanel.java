@@ -9,6 +9,7 @@ import Logic.Game;
 import Logic.ObservableGame;
 import Logic.States.AwaitActionSelection;
 import Logic.States.AwaitBoilingWaterTrackSelection;
+import Logic.States.AwaitEncouragement;
 import Logic.States.AwaitEnemyTrackSelectionForArchersAttack;
 import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.GameOver;
@@ -93,13 +94,6 @@ public class GameOptionsJPanel extends JPanel implements Observer {
         add(btNextTurn);
         add(btNone1);
 
-        btTradeActionPoint.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                observableGame.tradeActionPoint();
-            }
-        });
-
         btArchersAttack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
@@ -153,6 +147,13 @@ public class GameOptionsJPanel extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 observableGame.Sabotage();
+            }
+        });
+        
+        btTradeActionPoint.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.tradeActionPoint();
             }
         });
 
@@ -212,6 +213,14 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                     dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
                     dialog.setVisible(true);
 
+                } else if(observableGame.getState() instanceof  AwaitEncouragement){
+                    EncouragementDialag dialog = new EncouragementDialag(observableGame);
+                    dialog.setUndecorated(true);
+                    dialog.pack();
+
+                    dialog.setModal(true);
+                    dialog.setLocation(new Point(((DIM_X_FRAME - 300) / 2), ((DIM_Y_FRAME - 200) / 2)));
+                    dialog.setVisible(true);
                 }
             }
         }

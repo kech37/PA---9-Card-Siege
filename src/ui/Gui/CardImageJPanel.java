@@ -62,6 +62,8 @@ public class CardImageJPanel extends JPanel implements Observer {
                 paintComponent(this.getGraphics());
                 observableGame.ActionSelection();
             }
+            paintComponent(this.getGraphics());
+            observableGame.ActionSelection();
         }
 
     }

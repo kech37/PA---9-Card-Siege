@@ -148,4 +148,13 @@ public class EnemyJPanel extends JPanel implements Observer {
 
         }
     }
+    
+    private void cleanJLabels()
+    {
+        for (Map.Entry<Integer, JLabel> entry : enemyBlocks.entrySet()) {
+            Integer key = entry.getKey();
+            JLabel value = entry.getValue();
+            value.setIcon(null);
+        }
+    }
 }

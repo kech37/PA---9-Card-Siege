@@ -72,6 +72,7 @@ public class SelectEnemyDialog extends JDialog implements Constants {
 
         setLayout(new GridLayout(2, 1));
         JPanel text = new JPanel();
+      
         JLabel t = new JLabel("Select Enemy Track:", SwingConstants.CENTER);
         t.setFont(new Font(t.getName(), Font.BOLD, 30));
         text.add(t, BorderLayout.CENTER);

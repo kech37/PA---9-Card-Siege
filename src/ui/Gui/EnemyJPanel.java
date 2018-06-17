@@ -30,6 +30,9 @@ public class EnemyJPanel extends JPanel implements Observer {
     private ObservableGame observableGame;
     private ImageIcon image;
     private ImageIcon imageBtCube;
+    private ImageIcon imageLaddersCube;
+    private ImageIcon imageSiegeTowerCube;
+    private ImageIcon imageTrebuchetCube;
 
     public EnemyJPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
@@ -41,6 +44,9 @@ public class EnemyJPanel extends JPanel implements Observer {
     public void setupComponents() {
         image = new ImageIcon(getClass().getResource("Images/EnemyCard.png"));
         imageBtCube = new ImageIcon(getClass().getResource("Images/BtCube.png"));
+        imageLaddersCube = new ImageIcon(getClass().getResource("Images/LaddersCube.png"));
+        imageSiegeTowerCube = new ImageIcon(getClass().getResource("Images/SiegeTowerCube.png"));
+        imageTrebuchetCube = new ImageIcon(getClass().getResource("Images/TrebuchetCube.png"));
     }
 
     public void setupLayout() {
@@ -59,7 +65,7 @@ public class EnemyJPanel extends JPanel implements Observer {
         paintLadder(g, observableGame.getEnemyCard().getLadders().getPosition(), x);
         paintBT(g, observableGame.getEnemyCard().getBatteringRam().getPosition(), x);
         paintSiegeTower(g, observableGame.getEnemyCard().getSiegeTower().getPosition(), x);
-        paintTrebuchet(g,observableGame.getEnemyCard().getTrebuchet().getHowMany(),x);
+        paintTrebuchet(g, observableGame.getEnemyCard().getTrebuchet().getHowMany(), x);
     }
 
     @Override
@@ -70,19 +76,19 @@ public class EnemyJPanel extends JPanel implements Observer {
     public void paintLadder(Graphics g, int value, int x) {
         switch (value) {
             case 4:
-                g.drawImage(imageBtCube.getImage(), x + 12, 220, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageLaddersCube.getImage(), x + 12, 220, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 3:
-                g.drawImage(imageBtCube.getImage(), x + 12, 165, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageLaddersCube.getImage(), x + 12, 165, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 2:
-                g.drawImage(imageBtCube.getImage(), x + 12, 110, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageLaddersCube.getImage(), x + 12, 110, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 1:
-                g.drawImage(imageBtCube.getImage(), x + 12, 55, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageLaddersCube.getImage(), x + 12, 55, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 0:
-                g.drawImage(imageBtCube.getImage(), x + 75, 5, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageLaddersCube.getImage(), x + 75, 5, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
         }
     }
@@ -111,16 +117,16 @@ public class EnemyJPanel extends JPanel implements Observer {
     public void paintSiegeTower(Graphics g, int value, int x) {
         switch (value) {
             case 4:
-                g.drawImage(imageBtCube.getImage(), x + 173, 220, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageSiegeTowerCube.getImage(), x + 173, 220, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 3:
-                g.drawImage(imageBtCube.getImage(), x + 173, 165, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageSiegeTowerCube.getImage(), x + 173, 165, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 2:
-                g.drawImage(imageBtCube.getImage(), x + 173, 110, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageSiegeTowerCube.getImage(), x + 173, 110, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 1:
-                g.drawImage(imageBtCube.getImage(), x + 173, 55, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageSiegeTowerCube.getImage(), x + 173, 55, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 0:
                 g.drawImage(imageBtCube.getImage(), x + 115, 5, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
@@ -131,13 +137,13 @@ public class EnemyJPanel extends JPanel implements Observer {
     public void paintTrebuchet(Graphics g, int value, int x) {
         switch (value) {
             case 1:
-                g.drawImage(imageBtCube.getImage(), x + 12, 285, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageTrebuchetCube.getImage(), x + 12, 285, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 2:
-                g.drawImage(imageBtCube.getImage(), x + 93, 285, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageTrebuchetCube.getImage(), x + 93, 285, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 3:
-                g.drawImage(imageBtCube.getImage(), x + 173, 285, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageTrebuchetCube.getImage(), x + 173, 285, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
 
         }

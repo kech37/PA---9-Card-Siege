@@ -67,7 +67,8 @@ public class DiceActionPointPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-        actionPoint.setText("Action Points: " + observableGame.getAtualCard().getEvents().get(observableGame.getDay()).getActionPointAllowance());
+        if(observableGame.getAtualCard() != null)
+              actionPoint.setText("Action Points: " + observableGame.getAtualCard().getEvents().get(observableGame.getDay()).getActionPointAllowance());
         day.setText("Day: " + (observableGame.getDay() + 1));
     }
 }

@@ -5,7 +5,7 @@
  */
 package Logic.Cards.EventCards.Events;
 
-import Logic.Cards.EventCards.Movement.SwordMovement;
+import Logic.Cards.EventCards.Movement.*;
 import Logic.GameData;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class EventDeathOfLeader extends RegularEvents {
                 "Death of a Leader",
                 new ArrayList<>(Arrays.asList("Reduce morale by 1")),
                 2,
-                new ArrayList<>(Arrays.asList(new SwordMovement(gameData))),
+                new ArrayList<>(Arrays.asList(new LaddersMovement(gameData), new SiegeTowerMovement(gameData))),
                 gameData);
     }
 

@@ -25,12 +25,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
-/**
- *
- * @author andre
- */
 public class SelectEnemyDialog extends JDialog implements Constants {
 
     private ObservableGame observableGame;
@@ -75,7 +72,7 @@ public class SelectEnemyDialog extends JDialog implements Constants {
 
         setLayout(new GridLayout(2, 1));
         JPanel text = new JPanel();
-        JLabel t = new JLabel("Select Enemy Track:");
+        JLabel t = new JLabel("Select Enemy Track:", SwingConstants.CENTER);
         t.setFont(new Font(t.getName(), Font.BOLD, 30));
         text.add(t, BorderLayout.CENTER);
         t.setBounds(120, 50, 350, 100);
@@ -108,7 +105,7 @@ public class SelectEnemyDialog extends JDialog implements Constants {
         });
 
         bT.addMouseListener(new MouseAdapter() {
-          @Override
+            @Override
             public void mouseClicked(MouseEvent e) {
                 if (observableGame.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
                     observableGame.ArchersAttackTrackSelection(2);
@@ -131,7 +128,7 @@ public class SelectEnemyDialog extends JDialog implements Constants {
         });
 
         siegegTower.addMouseListener(new MouseAdapter() {
-           @Override
+            @Override
             public void mouseClicked(MouseEvent e) {
                 if (observableGame.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
                     observableGame.ArchersAttackTrackSelection(3);

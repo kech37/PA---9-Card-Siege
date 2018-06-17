@@ -69,8 +69,6 @@ public final class Game implements Serializable {
     public void BoilingWaterAttack() {
         if(gameData.getEnemy().isCardsOnCircle())
               setState(getState().BoilingWaterAttack());      
-        else
-            gameData.getDeck().getOnUseEventCard().getEvents().get(gameData.getDay()).modifyActionPointAllowance(1);
     }
 
     public void ArchersAttackTrackSelection(int value) {

@@ -42,7 +42,7 @@ public class StatusJPanel extends JPanel implements Observer {
 
     public void setupComponents() {
         image = new ImageIcon(getClass().getResource("Images/StatusCard.png"));
-        imageSatus = new ImageIcon(getClass().getResource("Images/BtCube.png"));
+        imageSatus = new ImageIcon(getClass().getResource("Images/9Cube.png"));
     }
 
     public void setupLayout() {
@@ -55,14 +55,22 @@ public class StatusJPanel extends JPanel implements Observer {
     @Override
     public void paintComponent(Graphics g) {
         int x = (this.getWidth() - image.getIconWidth()) / 2;
-        g.drawImage(image.getImage(), x, 1, image.getIconWidth(), image.getIconHeight(), this);
+        try {
+            g.drawImage(image.getImage(), x, 1, image.getIconWidth(), image.getIconHeight(), this);
 
-        paintWallStrength(g, observableGame.getStatusCard().getWallStrenght(), x);
-        paintMorale(g, observableGame.getStatusCard().getMorale(), x);
-        paintSupplies(g, observableGame.getStatusCard().getSupplies(), x);
+            paintWallStrength(g, observableGame.getStatusCard().getWallStrenght(), x);
+            paintMorale(g, observableGame.getStatusCard().getMorale(), x);
+            paintSupplies(g, observableGame.getStatusCard().getSupplies(), x);
+            paintSuppliesLevel(g, observableGame.getStatusCard().getSuppliesLevel(), x);
+            //paintTunnelMovement(g, observableGame.getStatusCard().getTunnel(),x);
+            paintTunnelMovement(g, 0, x);
+            paintTunnelMovement(g, 1, x);
+            paintTunnelMovement(g, 2, x);
+            paintTunnelMovement(g, 3, x);
+        } catch (Exception i) {
 
-        paintSuppliesLevel(g, observableGame.getStatusCard().getSuppliesLevel(), x);
-      
+        }
+
     }
 
     @Override
@@ -140,6 +148,23 @@ public class StatusJPanel extends JPanel implements Observer {
                 break;
             case 2:
                 g.drawImage(imageSatus.getImage(), x + 168, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                break;
+        }
+    }
+
+    private void paintTunnelMovement(Graphics g, int value, int x) {
+        switch (value) {
+            case 0:
+                g.drawImage(imageSatus.getImage(), x, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                break;
+            case 1:
+                g.drawImage(imageSatus.getImage(), x + 15, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                break;
+            case 2:
+                g.drawImage(imageSatus.getImage(), x + 65, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                break;
+            case 3:
+                g.drawImage(imageSatus.getImage(), x + 112, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
         }
     }

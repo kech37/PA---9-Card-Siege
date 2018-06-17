@@ -170,7 +170,6 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                 observableGame.NextTurn();
             }
         });
-
         setLayout(new GridLayout(5, 3));
     }
 

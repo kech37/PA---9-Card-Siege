@@ -35,9 +35,8 @@ public class ObservableGame extends java.util.Observable {
     public EnemyTrackCard getEnemyCard() {
         return game.getGame().getEnemy();
     }
-    
-    public StatusTrackCard getStatusCard()
-    {
+
+    public StatusTrackCard getStatusCard() {
         return game.getGame().getStatus();
     }
 
@@ -48,6 +47,8 @@ public class ObservableGame extends java.util.Observable {
         if (game.getGame().getDeck().getOnUseEventCard() != null) {
             game.AdvanceEnemies();
         }
+//        setChanged();
+//        notifyObservers();
     }
 
     public int getActionPoint() {
@@ -170,6 +171,12 @@ public class ObservableGame extends java.util.Observable {
 
     public void NextTurn() {
         game.NextTurn();
+        setChanged();
+        notifyObservers();
+    }
+
+    public void leaveGame() {
+        game.leaveGame();
         setChanged();
         notifyObservers();
     }

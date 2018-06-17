@@ -43,15 +43,25 @@ public class CardImageJPanel extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object o1) {
         if (observableGame.getState() instanceof AwaitTopCardToBeDrawn) {
-            try {
-                image = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource("Images/" + observableGame.getAtualCard().getImageName()), observableGame.getAtualCard().getImageName()));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(InicialMenuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(InicialMenuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            if (observableGame.getAtualCard() == null) {
+                try {
+                    image = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource("Images/unknownCard.png"), "unknownCard.png"));
+                } catch (MalformedURLException ex1) {
+                    Logger.getLogger(CardImageJPanel.class.getName()).log(Level.SEVERE, null, ex1);
+                } catch (IOException ex1) {
+                    Logger.getLogger(CardImageJPanel.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+            } else {
+                try {
+                    image = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource("Images/" + observableGame.getAtualCard().getImageName()), observableGame.getAtualCard().getImageName()));
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(InicialMenuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+
+                }
+                paintComponent(this.getGraphics());
+                observableGame.ActionSelection();
             }
-            paintComponent(this.getGraphics());
-            observableGame.ActionSelection();
         }
 
     }

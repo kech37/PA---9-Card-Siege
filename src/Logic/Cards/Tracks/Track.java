@@ -14,7 +14,7 @@ public class Track implements Serializable {
         if (position > 0) {
             position--;
         } else {
-            throw new IndexOutOfBoundsException();
+//            throw new IndexOutOfBoundsException();
         }
     }
 
@@ -22,7 +22,7 @@ public class Track implements Serializable {
         if (position < 4) {
             position++;
         } else {
-            throw new IndexOutOfBoundsException();
+  //          throw new IndexOutOfBoundsException();
         }
     }
 

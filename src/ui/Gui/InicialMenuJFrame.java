@@ -7,10 +7,13 @@ package ui.Gui;
 
 import Logic.ObservableGame;
 import Logic.States.AwaitBegining;
+import Logic.States.GameOver;
+import Logic.States.LeaveGame;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
@@ -55,6 +58,7 @@ public class InicialMenuJFrame extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object o1) {
         setVisible(observableGame.getState() instanceof AwaitBegining);
+      
     }
 
 }

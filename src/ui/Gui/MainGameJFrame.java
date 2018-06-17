@@ -7,6 +7,7 @@ package ui.Gui;
 
 import Logic.FileManager;
 import Logic.ObservableGame;
+import Logic.States.LeaveGame;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -32,7 +33,6 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import static ui.Gui.Constants.*;
-
 
 public class MainGameJFrame extends JFrame implements Observer {
 
@@ -133,24 +133,23 @@ public class MainGameJFrame extends JFrame implements Observer {
         menu.add(menuItem);
 
         setJMenuBar(menuBar);
-        
+
         JPanel top = new JPanel();
-        JPanel bottom  =new JPanel();
-        top.setLayout(new GridLayout(1,3));
-        bottom.setLayout(new GridLayout(1,2));
-        
+        JPanel bottom = new JPanel();
+        top.setLayout(new GridLayout(1, 3));
+        bottom.setLayout(new GridLayout(1, 2));
 
         cp.setLayout(new GridLayout(2, 1));
-        
+
         top.add(new EnemyJPanel(observableGame));
         top.add(new DiceActionPointPanel(observableGame));
         top.add(new StatusJPanel(observableGame));
         bottom.add(new DeckNCardJPanel(observableGame));
         bottom.add(new GameOptionsJPanel(observableGame));
-        
+
         cp.add(top);
         cp.add(bottom);
-        
+
         setSize(width, height);
         setLocationRelativeTo(null);
 
@@ -166,7 +165,9 @@ public class MainGameJFrame extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-
+        if (observableGame.getState() instanceof LeaveGame) {
+            this.dispose();
+        }
     }
 
     private class WindowsClosing extends WindowAdapter {

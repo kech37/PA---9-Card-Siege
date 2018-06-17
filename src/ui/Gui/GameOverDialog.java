@@ -5,6 +5,8 @@
  */
 package ui.Gui;
 
+import Logic.Game;
+import Logic.ObservableGame;
 import Logic.States.AwaitEnemyTrackSelectionForArchersAttack;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,9 +14,12 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javafx.beans.Observable;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -26,33 +31,36 @@ public class GameOverDialog extends JDialog implements Constants{
     private JLabel lGameOver;
     
     public GameOverDialog() {
-        
         setupComponents();
         setupLayout();
     }
 
     private void setupComponents() {
       finish = new JButton("Finish");
-      lGameOver = new JLabel("<html><font color='red'>Game Over</font></html>");
+      lGameOver = new JLabel("<html><font color='white'>Game Over</font></html>", SwingConstants.CENTER);
     }
 
     private void setupLayout() {
          setPreferredSize(new Dimension(600, 400));
-         setLayout(new GridLayout(2,1));
          
-         setBackground(Color.RED);
          
-         lGameOver.setFont((new Font(lGameOver.getName(), Font.PLAIN, 50))); 
+         JPanel temp = new JPanel();
+         temp.setLayout(new GridLayout(2,1));
+         temp.setBackground(Color.RED);
+         
+         lGameOver.setFont((new Font(lGameOver.getName(), Font.BOLD, 50))); 
          
          finish.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.exit(0);
+                dispose();
+               
             }
          });
          
-         add(lGameOver);
-         add(finish);
+         temp.add(lGameOver);
+         temp.add(finish);
+         add(temp);
     }
     
     

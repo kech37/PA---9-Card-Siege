@@ -12,9 +12,18 @@ import Logic.GameData;
  * @author a21220528
  */
 public class GameOver extends StateAdapter {
-
+    private GameData dataGame;
     public GameOver(GameData dataGame) {
         super(dataGame);
+        dataGame = dataGame;
     }
 
+    @Override
+    public IStates finish() {
+       return new LeaveGame(dataGame);
+    }
+
+ 
+    
+    
 }

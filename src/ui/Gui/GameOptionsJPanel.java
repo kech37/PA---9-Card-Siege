@@ -177,6 +177,7 @@ public class GameOptionsJPanel extends JPanel implements Observer {
     public void update(Observable o, Object o1) {
         if (observableGame.getState() instanceof AwaitTopCardToBeDrawn) {
             observableGame.AwaitTopCardToBeDrawnAction();
+
         } else {
             if (observableGame.getState() instanceof GameOver) {
                 GameOverDialog dialog = new GameOverDialog();
@@ -191,11 +192,31 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                 InicialMenuJFrame inicio = new InicialMenuJFrame(new ObservableGame(new Game()), 1, 1);
             }
         }
-        if (observableGame.getEnemyCard().isCardsOnCircle()) {
-                btBoilingWaterAttack.setEnabled(false);
+
+        if (observableGame.isJustRaidSabotage()) {
+            btArchersAttack.setEnabled(false);
+            btBoilingWaterAttack.setEnabled(false);
+            btCloseCombatAttack.setEnabled(false);
+            btCoupure.setEnabled(false);
+            btRallyTroops.setEnabled(false);
+            btTunnelMovement.setEnabled(false);
+            btSupplyRaid.setEnabled(true);
+            btSabotage.setEnabled(true);
+            btTradeActionPoint.setEnabled(true);
+            btNextTurn.setEnabled(true);
         } else {
-              btBoilingWaterAttack.setEnabled(true);
+            btArchersAttack.setEnabled(true);
+            btCoupure.setEnabled(true);
+            btRallyTroops.setEnabled(true);
+            btTunnelMovement.setEnabled(true);
+            btSupplyRaid.setEnabled(true);
+            btSabotage.setEnabled(true);
+            btTradeActionPoint.setEnabled(true);
+            btNextTurn.setEnabled(true);
+            btBoilingWaterAttack.setEnabled(observableGame.getEnemyCard().isCardsOnCircle());
+            btCloseCombatAttack.setEnabled(observableGame.getEnemyCard().isCardsOnCircle());
         }
+
     }
 
 }

@@ -47,8 +47,9 @@ public class ObservableGame extends java.util.Observable {
         if (game.getGame().getDeck().getOnUseEventCard() != null) {
             game.AdvanceEnemies();
         }
-//        setChanged();
-//        notifyObservers();
+        game.ActionSelection();
+        setChanged();
+        notifyObservers();
     }
 
     public int getActionPoint() {
@@ -171,6 +172,8 @@ public class ObservableGame extends java.util.Observable {
 
     public void NextTurn() {
         game.NextTurn();
+        game.getGame().getDice().setValue(0);
+        
         setChanged();
         notifyObservers();
     }
@@ -179,6 +182,11 @@ public class ObservableGame extends java.util.Observable {
         game.leaveGame();
         setChanged();
         notifyObservers();
+    }
+    
+    public boolean isJustRaidSabotage()
+    {
+        return game.getGame().isJustRaidSabotage();
     }
 
 }

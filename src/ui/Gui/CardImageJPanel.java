@@ -6,6 +6,7 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import Logic.States.AwaitActionSelection;
 import Logic.States.AwaitTopCardToBeDrawn;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -42,7 +43,7 @@ public class CardImageJPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-        if (observableGame.getState() instanceof AwaitTopCardToBeDrawn) {
+        if (observableGame.getState() instanceof AwaitTopCardToBeDrawn || observableGame.getState() instanceof AwaitActionSelection) {
             if (observableGame.getAtualCard() == null) {
                 try {
                     image = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource("Images/unknownCard.png"), "unknownCard.png"));

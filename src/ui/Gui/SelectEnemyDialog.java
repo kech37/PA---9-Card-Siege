@@ -86,7 +86,7 @@ public class SelectEnemyDialog extends JDialog implements Constants {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (observableGame.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
-                    observableGame.ArchersAttackTrackSelection(1);
+                    observableGame.ArchersAttackTrackSelection(2);
                     dispose();
                 }
 
@@ -109,7 +109,7 @@ public class SelectEnemyDialog extends JDialog implements Constants {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (observableGame.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
-                    observableGame.ArchersAttackTrackSelection(2);
+                    observableGame.ArchersAttackTrackSelection(1);
                     dispose();
                 }
 

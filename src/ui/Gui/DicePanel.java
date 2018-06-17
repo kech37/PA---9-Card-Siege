@@ -5,6 +5,7 @@
  */
 package ui.Gui;
 
+import Logic.Cards.EventCards.Events.TrebuchetAttackEvent;
 import Logic.ObservableGame;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -50,7 +51,11 @@ public class DicePanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
+
         switch (observableGame.getDiceNumber()) {
+            case 0:
+                image = new ImageIcon(getClass().getResource("Images/dice-six-faces.png"));
+                break;
             case 1:
                 image = new ImageIcon(getClass().getResource("Images/dice-six-faces-one.png"));
                 break;

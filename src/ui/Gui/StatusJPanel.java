@@ -63,10 +63,7 @@ public class StatusJPanel extends JPanel implements Observer {
             paintSupplies(g, observableGame.getStatusCard().getSupplies(), x);
             paintSuppliesLevel(g, observableGame.getStatusCard().getSuppliesLevel(), x);
             //paintTunnelMovement(g, observableGame.getStatusCard().getTunnel(),x);
-            paintTunnelMovement(g, 0, x);
-            paintTunnelMovement(g, 1, x);
-            paintTunnelMovement(g, 2, x);
-            paintTunnelMovement(g, 3, x);
+            paintTunnelMovement(g, observableGame.getStatusCard().getTunnel(), x);
         } catch (Exception i) {
 
         }

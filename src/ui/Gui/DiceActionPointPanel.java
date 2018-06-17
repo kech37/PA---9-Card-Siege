@@ -42,9 +42,9 @@ public class DiceActionPointPanel extends JPanel implements Observer {
 
     private void setupComponents() {
         dice = new DicePanel(observableGame);
-        actionPoint = new JLabel("Action Points: " + observableGame.getAtualCard().getEvents().get(observableGame.getDay()).getActionPointAllowance(), SwingConstants.CENTER);
-        day = new JLabel("Day: " + (observableGame.getDay() + 1),SwingConstants.CENTER);
-   
+      
+        actionPoint = new JLabel("", SwingConstants.CENTER);
+        day = new JLabel("Day: " + (observableGame.getDay() + 1), SwingConstants.CENTER);
     }
 
     private void setupLayout() {
@@ -52,23 +52,24 @@ public class DiceActionPointPanel extends JPanel implements Observer {
         setMinimumSize(new Dimension(DIM_X_ENEMYSTATUS, DIM_Y_ENEMYSTATUS));
         setMaximumSize(new Dimension(DIM_X_ENEMYSTATUS, DIM_Y_ENEMYSTATUS));
         setPreferredSize(new Dimension(DIM_X_ENEMYSTATUS, DIM_Y_ENEMYSTATUS));
-        
+
         actionPoint.setFont((new Font(actionPoint.getName(), Font.PLAIN, 40)));
         day.setFont((new Font(day.getName(), Font.PLAIN, 40)));
-        
+
         JPanel labelpanel = new JPanel();
-        labelpanel.setLayout(new GridLayout(2,1));
-        
+        labelpanel.setLayout(new GridLayout(2, 1));
+
         labelpanel.add(day);
         labelpanel.add(actionPoint);
-        
+
         add(dice);
         add(labelpanel);
     }
 
     @Override
     public void update(Observable o, Object o1) {
-        actionPoint.setText("Action Points: " + observableGame.getAtualCard().getEvents().get(observableGame.getDay()).getActionPointAllowance());
+        if(observableGame.getAtualCard() != null)
+              actionPoint.setText("Action Points: " + observableGame.getAtualCard().getEvents().get(observableGame.getDay()).getActionPointAllowance());
         day.setText("Day: " + (observableGame.getDay() + 1));
     }
 }

@@ -7,6 +7,7 @@ package Logic;
 
 import Logic.Cards.EnemyTrackCard;
 import Logic.Cards.EventCards.BaseEventCard;
+import Logic.Cards.StatusTrackCard;
 import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.IStates;
 import java.io.FileNotFoundException;
@@ -23,8 +24,6 @@ public class ObservableGame extends java.util.Observable {
     public void StartGame() {
         game.start();
 
-        AwaitTopCardToBeDrawnAction();
-
         setChanged();
         notifyObservers();
     }
@@ -37,6 +36,10 @@ public class ObservableGame extends java.util.Observable {
         return game.getGame().getEnemy();
     }
 
+    public StatusTrackCard getStatusCard() {
+        return game.getGame().getStatus();
+    }
+
     public void AwaitTopCardToBeDrawnAction() {
         game.CheckingEnemyLines();
         game.CheckExistingCards();
@@ -44,6 +47,8 @@ public class ObservableGame extends java.util.Observable {
         if (game.getGame().getDeck().getOnUseEventCard() != null) {
             game.AdvanceEnemies();
         }
+//        setChanged();
+//        notifyObservers();
     }
 
     public int getActionPoint() {
@@ -166,6 +171,12 @@ public class ObservableGame extends java.util.Observable {
 
     public void NextTurn() {
         game.NextTurn();
+        setChanged();
+        notifyObservers();
+    }
+
+    public void leaveGame() {
+        game.leaveGame();
         setChanged();
         notifyObservers();
     }

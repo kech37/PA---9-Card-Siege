@@ -11,8 +11,11 @@ import Logic.States.AwaitActionSelection;
 import Logic.States.AwaitBoilingWaterTrackSelection;
 import Logic.States.AwaitEncouragement;
 import Logic.States.AwaitEnemyTrackSelectionForArchersAttack;
+import Logic.States.AwaitOptionMovementSelection;
+import Logic.States.AwaitSuppliesReduceChoice;
 import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.GameOver;
+import Logic.States.Victory;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -149,7 +152,7 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                 observableGame.Sabotage();
             }
         });
-        
+
         btTradeActionPoint.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -178,7 +181,7 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                 dialog.setModal(true);
                 dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
                 dialog.setVisible(true);
-                 observableGame.NextTurn();
+                observableGame.NextTurn();
             }
 
         } else {
@@ -212,8 +215,7 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                     dialog.setModal(true);
                     dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
                     dialog.setVisible(true);
-
-                } else if(observableGame.getState() instanceof  AwaitEncouragement){
+                } else if (observableGame.getState() instanceof AwaitEncouragement) {
                     EncouragementDialag dialog = new EncouragementDialag(observableGame);
                     dialog.setUndecorated(true);
                     dialog.pack();
@@ -221,6 +223,33 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                     dialog.setModal(true);
                     dialog.setLocation(new Point(((DIM_X_FRAME - 300) / 2), ((DIM_Y_FRAME - 200) / 2)));
                     dialog.setVisible(true);
+                } else if (observableGame.getState() instanceof AwaitOptionMovementSelection) {
+                    TunnelMovementDialog dialog = new TunnelMovementDialog(observableGame);
+                    dialog.setUndecorated(true);
+                    dialog.pack();
+
+                    dialog.setModal(true);
+                    dialog.setLocation(new Point(((DIM_X_FRAME - 300) / 2), ((DIM_Y_FRAME - 200) / 2)));
+                    dialog.setVisible(true);
+                } else if (observableGame.getState() instanceof AwaitSuppliesReduceChoice) {
+                    SuppliesReduceChoiceDialog dialog = new SuppliesReduceChoiceDialog(observableGame);
+                    dialog.setUndecorated(true);
+                    dialog.pack();
+
+                    dialog.setModal(true);
+                    dialog.setLocation(new Point(((DIM_X_FRAME - 300) / 2), ((DIM_Y_FRAME - 200) / 2)));
+                    dialog.setVisible(true);
+                } else if (observableGame.getState() instanceof Victory) {
+                    VictoryDialog dialog = new VictoryDialog();
+                    dialog.setUndecorated(true);
+                    dialog.pack();
+
+                    dialog.setModal(true);
+                    dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
+                    dialog.setVisible(true);
+
+                    observableGame.leaveGame();
+                    InicialMenuJFrame inicio = new InicialMenuJFrame(new ObservableGame(new Game()), 1, 1);
                 }
             }
         }
@@ -232,17 +261,18 @@ public class GameOptionsJPanel extends JPanel implements Observer {
             btCoupure.setEnabled(false);
             btRallyTroops.setEnabled(false);
             btTunnelMovement.setEnabled(false);
-            btSupplyRaid.setEnabled(true);
-            btSabotage.setEnabled(true);
+            btSupplyRaid.setEnabled(observableGame.isEnemyLines());
+            btSabotage.setEnabled(observableGame.isEnemyLines());
             btTradeActionPoint.setEnabled(true);
             btNextTurn.setEnabled(true);
+            observableGame.JustRaidSabotage();
         } else {
             btArchersAttack.setEnabled(true);
             btCoupure.setEnabled(true);
             btRallyTroops.setEnabled(true);
             btTunnelMovement.setEnabled(true);
-            btSupplyRaid.setEnabled(true);
-            btSabotage.setEnabled(true);
+            btSupplyRaid.setEnabled(observableGame.isEnemyLines());
+            btSabotage.setEnabled(observableGame.isEnemyLines());
             btTradeActionPoint.setEnabled(true);
             btNextTurn.setEnabled(true);
             btBoilingWaterAttack.setEnabled(observableGame.getEnemyCard().isCardsOnCircle());

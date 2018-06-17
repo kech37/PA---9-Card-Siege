@@ -129,7 +129,7 @@ public class EnemyJPanel extends JPanel implements Observer {
                 g.drawImage(imageSiegeTowerCube.getImage(), x + 173, 55, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
             case 0:
-                g.drawImage(imageBtCube.getImage(), x + 115, 5, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
+                g.drawImage(imageSiegeTowerCube.getImage(), x + 115, 5, imageBtCube.getIconWidth(), imageBtCube.getIconHeight(), this);
                 break;
         }
     }

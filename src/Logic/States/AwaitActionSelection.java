@@ -51,8 +51,8 @@ public class AwaitActionSelection extends StateAdapter {
     }
 
     @Override
-    public IStates SabotageAttack() {
-        if (getDataGame().getStatus().getTunnel() != 4) {
+    public IStates SabotageAttack() {      
+        if (getDataGame().getStatus().getTunnel() != 3) {
             return this;
         } else {
             int dice = getDataGame().getDice().rollDice() + getDataGame().getDRM().getSabotageAction();
@@ -104,6 +104,7 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates Coupure() {
+        getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(-1);
         int dice = getDataGame().getDice().rollDice() + getDataGame().getDRM().getCoupure();
         dice = (dice > 6) ? 6 : dice;
         dice = (dice <= 0) ? 1 : dice;

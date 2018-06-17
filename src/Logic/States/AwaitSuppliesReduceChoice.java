@@ -19,20 +19,24 @@ public class AwaitSuppliesReduceChoice extends StateAdapter {
 
     @Override
     public IStates SuppliesReduceChoice(int value) {
+        int dice = getDataGame().getDice().rollDice();
+        
         switch (value) {
             case 1:
                 getDataGame().getStatus().ModifySupplies(-1);
-                getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
-                break;
-            case 2:
-                  getDataGame().getStatus().ModifyMorale(-1);
-                  getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(+1);
+                dice++;
                 break;
             default:
                 break;
         }
+        
+        dice += getDataGame().getDRM().getRallyTroops();
 
-  
+        if(dice > 4)
+        {
+            getDataGame().getStatus().ModifyMorale(1);
+        } 
+
         return new AwaitActionSelection(getDataGame());
     }
 

@@ -22,7 +22,7 @@ public class AwaitOptionMovementSelection extends StateAdapter {
         if (value == 2) {
             if (getDataGame().isFreeMovement()) {
                 if (getDataGame().getStatus().getSuppliesLevel() == 0) {
-                    if (getDataGame().getStatus().getTunnel() < 4) {
+                    if (getDataGame().getStatus().getTunnel() < 3) {
                         getDataGame().getStatus().ModifyTunnel(1);
                     }
                     
@@ -43,9 +43,9 @@ public class AwaitOptionMovementSelection extends StateAdapter {
             }
             return new AwaitActionSelection(getDataGame());
         } else {
-            getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(-1);
             if (getDataGame().getStatus().getSuppliesLevel() == 0) {
-                getDataGame().getStatus().setTunnel(4);
+                getDataGame().getStatus().setTunnel(3);
+                getDataGame().getDeck().getOnUseEventCard().getEvents().get(getDataGame().getDay()).modifyActionPointAllowance(-1);
             }
             return new AwaitActionSelection(getDataGame());
         }

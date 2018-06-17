@@ -114,14 +114,14 @@ public class ObservableGame extends java.util.Observable {
     public void SupplyRaid() {
         game.SupplyRaid();
         System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getRaid());
-         checkActionPoints();
+        checkActionPoints();
         setChanged();
         notifyObservers();
     }
 
     public void Sabotage() {
         game.Sabotage();
-        System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());    
+        System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
         checkActionPoints();
         setChanged();
         notifyObservers();
@@ -225,10 +225,11 @@ public class ObservableGame extends java.util.Observable {
         setChanged();
         notifyObservers();
     }
-    
-    public void JustRaidSabotage()
-    {
+
+    public void JustRaidSabotage() {
         game.getGame().setJustRaidSabotage(false);
     }
+
+
 
 }

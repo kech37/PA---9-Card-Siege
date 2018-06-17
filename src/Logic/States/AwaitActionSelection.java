@@ -151,7 +151,7 @@ public class AwaitActionSelection extends StateAdapter {
 
     @Override
     public IStates BoilingWaterAttack() {
-        if (getDataGame().getEnemy().isCardsOnCircle()) {
+        if (!getDataGame().getEnemy().isCardsOnCircle()) {
             return this;
         }
         return new AwaitBoilingWaterTrackSelection(getDataGame());

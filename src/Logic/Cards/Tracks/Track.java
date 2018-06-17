@@ -43,7 +43,7 @@ public class Track implements Serializable {
     }
 
     public void Reset() {
-        position = 5;
+        position = 4;
     }
 
 }

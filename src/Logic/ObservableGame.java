@@ -69,6 +69,12 @@ public class ObservableGame extends java.util.Observable {
         setChanged();
         notifyObservers();
     }
+    
+    public void BoilingWaterAttackTrackSelection(int value) {
+        game.BoilingWaterAttackTrackSelection(value);
+        setChanged();
+        notifyObservers();
+    }
 
     public void BoilingWaterAttack() {
         game.BoilingWaterAttack();
@@ -153,9 +159,8 @@ public class ObservableGame extends java.util.Observable {
 
     public void checkActionPoints() {
         game.CheckActionPoints();
-        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(getDay()).getActionPointAllowance());
         if (game.getState() instanceof AwaitTopCardToBeDrawn) {
-            AwaitTopCardToBeDrawnAction();
+            game.NextTurn();
             setChanged();
             notifyObservers();
         }

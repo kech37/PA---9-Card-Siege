@@ -32,6 +32,8 @@ public class StatusJPanel extends JPanel implements Observer {
     private ObservableGame observableGame;
     private ImageIcon image;
     private ImageIcon imageSatus;
+    private ImageIcon imageTunnel;
+    private ImageIcon imageSuppliesRaid;
 
     public StatusJPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
@@ -43,6 +45,8 @@ public class StatusJPanel extends JPanel implements Observer {
     public void setupComponents() {
         image = new ImageIcon(getClass().getResource("Images/StatusCard.png"));
         imageSatus = new ImageIcon(getClass().getResource("Images/9Cube.png"));
+        imageTunnel = new ImageIcon(getClass().getResource("Images/9TunnelCube.png"));
+        imageSuppliesRaid = new ImageIcon(getClass().getResource("Images/9RaidSuppliesCube.png"));
     }
 
     public void setupLayout() {
@@ -138,13 +142,13 @@ public class StatusJPanel extends JPanel implements Observer {
     private void paintSuppliesLevel(Graphics g, int value, int x) {
         switch (value) {
             case 0:
-                g.drawImage(imageSatus.getImage(), x + 168, 265, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                g.drawImage(imageSuppliesRaid.getImage(), x + 168, 265, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
             case 1:
-                g.drawImage(imageSatus.getImage(), x + 168, 245, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                g.drawImage(imageSuppliesRaid.getImage(), x + 168, 245, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
             case 2:
-                g.drawImage(imageSatus.getImage(), x + 168, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                g.drawImage(imageSuppliesRaid.getImage(), x + 168, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
         }
     }
@@ -152,16 +156,16 @@ public class StatusJPanel extends JPanel implements Observer {
     private void paintTunnelMovement(Graphics g, int value, int x) {
         switch (value) {
             case 0:
-                g.drawImage(imageSatus.getImage(), x, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                g.drawImage(imageTunnel.getImage(), x, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
             case 1:
-                g.drawImage(imageSatus.getImage(), x + 15, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                g.drawImage(imageTunnel.getImage(), x + 15, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
             case 2:
-                g.drawImage(imageSatus.getImage(), x + 65, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                g.drawImage(imageTunnel.getImage(), x + 65, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
             case 3:
-                g.drawImage(imageSatus.getImage(), x + 112, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                g.drawImage(imageTunnel.getImage(), x + 112, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
         }
     }

@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class DRM implements Serializable {
 
     private int SiegeTower, BatteringRam, Ladders;
-    private int Raid, Coupure, CloseCombat, CircleSpaces, MoraleAction, SabotageAction;
+    private int Raid, Coupure, CloseCombat, CircleSpaces, MoraleAction, SabotageAction, RallyTroops;
 
     public DRM() {
         SiegeTower = 0;
@@ -26,6 +26,7 @@ public class DRM implements Serializable {
         CircleSpaces = 0;
         MoraleAction = 0;
         SabotageAction = 0;
+        RallyTroops = 0;
     }
 
     public int getSiegeTower() {
@@ -42,6 +43,14 @@ public class DRM implements Serializable {
 
     public void setBatteringRam(int BatteringRam) {
         this.BatteringRam += BatteringRam;
+    }
+
+    public int getRallyTroops() {
+        return RallyTroops;
+    }
+
+    public void setRallyTroops(int RallyTroops) {
+        this.RallyTroops += RallyTroops;
     }
 
     public int getLadders() {

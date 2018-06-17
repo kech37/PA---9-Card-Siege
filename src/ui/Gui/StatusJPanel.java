@@ -66,8 +66,8 @@ public class StatusJPanel extends JPanel implements Observer {
             paintMorale(g, observableGame.getStatusCard().getMorale(), x);
             paintSupplies(g, observableGame.getStatusCard().getSupplies(), x);
             paintSuppliesLevel(g, observableGame.getStatusCard().getSuppliesLevel(), x);
-            //paintTunnelMovement(g, observableGame.getStatusCard().getTunnel(),x);
             paintTunnelMovement(g, observableGame.getStatusCard().getTunnel(), x);
+                    
         } catch (Exception i) {
 
         }
@@ -144,10 +144,10 @@ public class StatusJPanel extends JPanel implements Observer {
             case 0:
                 g.drawImage(imageSuppliesRaid.getImage(), x + 168, 265, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
-            case 1:
+            case 2:
                 g.drawImage(imageSuppliesRaid.getImage(), x + 168, 245, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
-            case 2:
+            case 1:
                 g.drawImage(imageSuppliesRaid.getImage(), x + 168, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
         }
@@ -159,10 +159,10 @@ public class StatusJPanel extends JPanel implements Observer {
                 g.drawImage(imageTunnel.getImage(), x, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
             case 1:
-                g.drawImage(imageTunnel.getImage(), x + 15, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                g.drawImage(imageTunnel.getImage(), x + 40, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
             case 2:
-                g.drawImage(imageTunnel.getImage(), x + 65, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
+                g.drawImage(imageTunnel.getImage(), x + 80, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);
                 break;
             case 3:
                 g.drawImage(imageTunnel.getImage(), x + 112, 285, imageSatus.getIconWidth(), imageSatus.getIconHeight(), this);

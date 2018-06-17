@@ -72,6 +72,7 @@ public class ObservableGame extends java.util.Observable {
 
     public void BoilingWaterAttackTrackSelection(int value) {
         game.BoilingWaterAttackTrackSelection(value);
+        checkActionPoints();
         setChanged();
         notifyObservers();
     }
@@ -85,6 +86,7 @@ public class ObservableGame extends java.util.Observable {
     public void CloseCombatAreaAtack() {
         game.CloseCombatAreaAtack();
         System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getCloseCombat());
+        checkActionPoints();
         setChanged();
         notifyObservers();
     }
@@ -92,6 +94,7 @@ public class ObservableGame extends java.util.Observable {
     public void Coupure() {
         game.Coupure();
         System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getCoupure());
+        checkActionPoints();
         setChanged();
         notifyObservers();
     }
@@ -111,13 +114,15 @@ public class ObservableGame extends java.util.Observable {
     public void SupplyRaid() {
         game.SupplyRaid();
         System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getRaid());
+         checkActionPoints();
         setChanged();
         notifyObservers();
     }
 
     public void Sabotage() {
         game.Sabotage();
-        System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());
+        System.out.println("Dado: " + game.getGame().getDice().getValue() + " + " + game.getGame().getDRM().getSabotageAction());    
+        checkActionPoints();
         setChanged();
         notifyObservers();
     }
@@ -201,4 +206,29 @@ public class ObservableGame extends java.util.Observable {
         setChanged();
         notifyObservers();
     }
+
+    public void TunnelMovementOptionSelection(int value) {
+        game.TunnelMovementOptionSelection(value);
+    }
+
+    public boolean isFreeMovement() {
+        return game.getGame().isFreeMovement();
+    }
+
+    public boolean isEnemyLines() {
+        return (game.getGame().getStatus().getTunnel() == 3);
+    }
+
+    public void SuppliesReduceChoice(int value) {
+        game.ReduceSuppliesChoice(value);
+        checkActionPoints();
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void JustRaidSabotage()
+    {
+        game.getGame().setJustRaidSabotage(false);
+    }
+
 }

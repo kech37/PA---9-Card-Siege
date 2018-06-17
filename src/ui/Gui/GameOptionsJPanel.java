@@ -8,6 +8,9 @@ package ui.Gui;
 import Logic.Game;
 import Logic.ObservableGame;
 import Logic.States.AwaitActionSelection;
+import Logic.States.AwaitBoilingWaterTrackSelection;
+import Logic.States.AwaitEncouragement;
+import Logic.States.AwaitEnemyTrackSelectionForArchersAttack;
 import Logic.States.AwaitTopCardToBeDrawn;
 import Logic.States.GameOver;
 import java.awt.Dimension;
@@ -91,27 +94,10 @@ public class GameOptionsJPanel extends JPanel implements Observer {
         add(btNextTurn);
         add(btNone1);
 
-        btTradeActionPoint.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                observableGame.tradeActionPoint();
-            }
-        });
-
         btArchersAttack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 observableGame.ArchersAttack();
-                SelectEnemyDialog dialog = new SelectEnemyDialog(observableGame);
-                dialog.setUndecorated(true);
-                dialog.pack();
-
-                dialog.setModal(true);
-                dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
-                dialog.setVisible(true);
-
-                observableGame.SetUpdate();
-
             }
         });
 
@@ -163,6 +149,13 @@ public class GameOptionsJPanel extends JPanel implements Observer {
                 observableGame.Sabotage();
             }
         });
+        
+        btTradeActionPoint.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                observableGame.tradeActionPoint();
+            }
+        });
 
         btNextTurn.addActionListener(new ActionListener() {
             @Override
@@ -177,6 +170,16 @@ public class GameOptionsJPanel extends JPanel implements Observer {
     public void update(Observable o, Object o1) {
         if (observableGame.getState() instanceof AwaitTopCardToBeDrawn) {
             observableGame.AwaitTopCardToBeDrawnAction();
+            if (observableGame.getAtualCard() == null) {
+                NextDayDialog dialog = new NextDayDialog(observableGame);
+                dialog.setUndecorated(true);
+                dialog.pack();
+
+                dialog.setModal(true);
+                dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
+                dialog.setVisible(true);
+                 observableGame.NextTurn();
+            }
 
         } else {
             if (observableGame.getState() instanceof GameOver) {
@@ -190,6 +193,35 @@ public class GameOptionsJPanel extends JPanel implements Observer {
 
                 observableGame.leaveGame();
                 InicialMenuJFrame inicio = new InicialMenuJFrame(new ObservableGame(new Game()), 1, 1);
+            } else {
+                if (observableGame.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
+                    SelectEnemyDialog dialog = new SelectEnemyDialog(observableGame);
+                    dialog.setUndecorated(true);
+                    dialog.pack();
+
+                    dialog.setModal(true);
+                    dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
+                    dialog.setVisible(true);
+
+                    observableGame.SetUpdate();
+                } else if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    SelectEnemyDialog dialog = new SelectEnemyDialog(observableGame);
+                    dialog.setUndecorated(true);
+                    dialog.pack();
+
+                    dialog.setModal(true);
+                    dialog.setLocation(new Point(((DIM_X_FRAME - 600) / 2), ((DIM_Y_FRAME - 400) / 2)));
+                    dialog.setVisible(true);
+
+                } else if(observableGame.getState() instanceof  AwaitEncouragement){
+                    EncouragementDialag dialog = new EncouragementDialag(observableGame);
+                    dialog.setUndecorated(true);
+                    dialog.pack();
+
+                    dialog.setModal(true);
+                    dialog.setLocation(new Point(((DIM_X_FRAME - 300) / 2), ((DIM_Y_FRAME - 200) / 2)));
+                    dialog.setVisible(true);
+                }
             }
         }
 
@@ -214,7 +246,7 @@ public class GameOptionsJPanel extends JPanel implements Observer {
             btTradeActionPoint.setEnabled(true);
             btNextTurn.setEnabled(true);
             btBoilingWaterAttack.setEnabled(observableGame.getEnemyCard().isCardsOnCircle());
-            btCloseCombatAttack.setEnabled(observableGame.getEnemyCard().isCardsOnCircle());
+            btCloseCombatAttack.setEnabled(observableGame.getEnemyCard().isCloseCombat());
         }
 
     }

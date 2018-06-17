@@ -15,10 +15,6 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 
-/**
- *
- * @author a21220528
- */
 public class DeckNCardJPanel extends JPanel implements Observer {
 
     private final ObservableGame observableGame;

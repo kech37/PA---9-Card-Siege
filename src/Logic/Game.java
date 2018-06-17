@@ -56,10 +56,9 @@ public final class Game implements Serializable {
     public void AdvanceEnemies() {
         setState(getState().AdvanceEnemies());
     }
-    
-    public void ActionSelection()
-    {
-         setState(getState().ActionSelection());
+
+    public void ActionSelection() {
+        setState(getState().ActionSelection());
     }
 
     public void ArchersAttack() {
@@ -67,8 +66,9 @@ public final class Game implements Serializable {
     }
 
     public void BoilingWaterAttack() {
-        if(gameData.getEnemy().isCardsOnCircle())
-              setState(getState().BoilingWaterAttack());      
+        if (gameData.getEnemy().isCardsOnCircle()) {
+            setState(getState().BoilingWaterAttack());
+        }
     }
 
     public void ArchersAttackTrackSelection(int value) {
@@ -79,11 +79,10 @@ public final class Game implements Serializable {
         setState(getState().BoilingWatterTrackSelection(value));
     }
 
-    public void CloseCombatAreaAtack() {   
-          if(gameData.getEnemy().isCardsOnCircle())
-            setState(getState().CloseCombatAttack());    
-        else
-            gameData.getDeck().getOnUseEventCard().getEvents().get(gameData.getDay()).modifyActionPointAllowance(1);
+    public void CloseCombatAreaAtack() {
+        if (gameData.getEnemy().isCardsOnCircle()) {
+            setState(getState().CloseCombatAttack());
+        }
     }
 
     public void Coupure() {
@@ -125,11 +124,11 @@ public final class Game implements Serializable {
     public void saveGame() {
         setState(getState().saveGame(this));
     }
-    
-    public void saveGameWithName(String fileName){
+
+    public void saveGameWithName(String fileName) {
         setState(getState().saveGameWithName(fileName, this));
     }
-    
+
     public void ExitGame() {
         setState(getState().exitGame());
     }
@@ -141,9 +140,8 @@ public final class Game implements Serializable {
     public void AddAnotherActionPoint() {
         setState(getState().AddAnotherActionPoint());
     }
-    
-    public void Encouragement(int value)
-    {
+
+    public void Encouragement(int value) {
         setState(getState().SelectSuppliesOrMorale(value));
     }
 

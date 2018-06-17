@@ -6,6 +6,7 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import Logic.States.AwaitBoilingWaterTrackSelection;
 import Logic.States.AwaitEnemyTrackSelectionForArchersAttack;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -49,7 +50,6 @@ public class SelectEnemyDialog extends JDialog implements Constants {
         ladders = new JLabel(imageLadders);
         bT = new JLabel(imageBt);
         siegegTower = new JLabel(imageSiegeTower);
-
         options = new JPanel();
     }
 
@@ -72,7 +72,7 @@ public class SelectEnemyDialog extends JDialog implements Constants {
 
         setLayout(new GridLayout(2, 1));
         JPanel text = new JPanel();
-      
+
         JLabel t = new JLabel("Select Enemy Track:", SwingConstants.CENTER);
         t.setFont(new Font(t.getName(), Font.BOLD, 30));
         text.add(t, BorderLayout.CENTER);
@@ -88,21 +88,33 @@ public class SelectEnemyDialog extends JDialog implements Constants {
                 if (observableGame.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
                     observableGame.ArchersAttackTrackSelection(2);
                     dispose();
+                } else if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    observableGame.BoilingWaterAttackTrackSelection(2);
+                    dispose();
                 }
-
             }
 
             @Override
             public void mouseEntered(MouseEvent me) {
-                ladders.setIcon(new ImageIcon(getClass().getResource("Images/LaddersSelect.png")));
-
+                if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    if (observableGame.getEnemyCard().getLadders().getPosition() == 1) {
+                        ladders.setIcon(new ImageIcon(getClass().getResource("Images/LaddersSelect.png")));
+                    }
+                } else {
+                    ladders.setIcon(new ImageIcon(getClass().getResource("Images/LaddersSelect.png")));
+                }
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
-                ladders.setIcon(new ImageIcon(getClass().getResource("Images/Ladders.png")));
+                if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    if (observableGame.getEnemyCard().getLadders().getPosition() == 1) {
+                        ladders.setIcon(new ImageIcon(getClass().getResource("Images/Ladders.png")));
+                    }
+                } else {
+                    ladders.setIcon(new ImageIcon(getClass().getResource("Images/Ladders.png")));
+                }
             }
-
         });
 
         bT.addMouseListener(new MouseAdapter() {
@@ -111,19 +123,33 @@ public class SelectEnemyDialog extends JDialog implements Constants {
                 if (observableGame.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
                     observableGame.ArchersAttackTrackSelection(1);
                     dispose();
+                } else if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    observableGame.BoilingWaterAttackTrackSelection(1);
+                    dispose();
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    if (observableGame.getEnemyCard().getBatteringRam().getPosition() == 1) {
+                        bT.setIcon(new ImageIcon(getClass().getResource("Images/BtSelect.png")));
+                    }
+                } else {
+                    bT.setIcon(new ImageIcon(getClass().getResource("Images/BtSelect.png")));
                 }
 
             }
 
             @Override
-            public void mouseEntered(MouseEvent me) {
-                bT.setIcon(new ImageIcon(getClass().getResource("Images/BtSelect.png")));
-
-            }
-
-            @Override
             public void mouseExited(MouseEvent me) {
-                bT.setIcon(new ImageIcon(getClass().getResource("Images/Bt.png")));
+                if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    if (observableGame.getEnemyCard().getBatteringRam().getPosition() == 1) {
+                        bT.setIcon(new ImageIcon(getClass().getResource("Images/Bt.png")));
+                    }
+                } else {
+                    bT.setIcon(new ImageIcon(getClass().getResource("Images/Bt.png")));
+                }
             }
 
         });
@@ -134,19 +160,32 @@ public class SelectEnemyDialog extends JDialog implements Constants {
                 if (observableGame.getState() instanceof AwaitEnemyTrackSelectionForArchersAttack) {
                     observableGame.ArchersAttackTrackSelection(3);
                     dispose();
+                } else if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    observableGame.BoilingWaterAttackTrackSelection(3);
+                    dispose();
                 }
-
             }
 
             @Override
             public void mouseEntered(MouseEvent me) {
-                siegegTower.setIcon(new ImageIcon(getClass().getResource("Images/SiegeTowerSelect.png")));
-
+                if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    if (observableGame.getEnemyCard().getSiegeTower().getPosition() == 1) {
+                        siegegTower.setIcon(new ImageIcon(getClass().getResource("Images/SiegeTowerSelect.png")));
+                    }
+                } else {
+                    siegegTower.setIcon(new ImageIcon(getClass().getResource("Images/SiegeTowerSelect.png")));
+                }
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
-                siegegTower.setIcon(new ImageIcon(getClass().getResource("Images/SiegeTower.png")));
+                if (observableGame.getState() instanceof AwaitBoilingWaterTrackSelection) {
+                    if (observableGame.getEnemyCard().getSiegeTower().getPosition() == 1) {
+                        siegegTower.setIcon(new ImageIcon(getClass().getResource("Images/SiegeTower.png")));
+                    }
+                } else {
+                    siegegTower.setIcon(new ImageIcon(getClass().getResource("Images/SiegeTower.png")));
+                }
             }
 
         });

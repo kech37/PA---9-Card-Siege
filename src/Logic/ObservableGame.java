@@ -70,6 +70,12 @@ public class ObservableGame extends java.util.Observable {
         notifyObservers();
     }
 
+    public void BoilingWaterAttackTrackSelection(int value) {
+        game.BoilingWaterAttackTrackSelection(value);
+        setChanged();
+        notifyObservers();
+    }
+
     public void BoilingWaterAttack() {
         game.BoilingWaterAttack();
         setChanged();
@@ -153,9 +159,8 @@ public class ObservableGame extends java.util.Observable {
 
     public void checkActionPoints() {
         game.CheckActionPoints();
-        System.out.println(game.getGame().getDeck().getOnUseEventCard().getEvents().get(getDay()).getActionPointAllowance());
         if (game.getState() instanceof AwaitTopCardToBeDrawn) {
-            AwaitTopCardToBeDrawnAction();
+            game.NextTurn();
             setChanged();
             notifyObservers();
         }
@@ -168,12 +173,15 @@ public class ObservableGame extends java.util.Observable {
 
     public void tradeActionPoint() {
         game.AddAnotherActionPoint();
+
+        setChanged();
+        notifyObservers();
     }
 
     public void NextTurn() {
         game.NextTurn();
         game.getGame().getDice().setValue(0);
-        
+
         setChanged();
         notifyObservers();
     }
@@ -183,10 +191,14 @@ public class ObservableGame extends java.util.Observable {
         setChanged();
         notifyObservers();
     }
-    
-    public boolean isJustRaidSabotage()
-    {
+
+    public boolean isJustRaidSabotage() {
         return game.getGame().isJustRaidSabotage();
     }
 
+    public void Encouragement(int value) {
+        game.Encouragement(value);
+        setChanged();
+        notifyObservers();
+    }
 }

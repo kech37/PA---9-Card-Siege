@@ -27,9 +27,8 @@ public class TrebuchetAttackEvent extends Event {
             case 2:
                 getGameData().getStatus().ModifyWallStrenght(-1);
                 break;
-            case 1:
-                int roll = new Dice(6).rollDice();
-                if (roll >= 4) {
+            case 1:              
+                if (getGameData().getDice().rollDice() >= 4) {
                     getGameData().getStatus().ModifyWallStrenght(-1);
                 }
                 break;

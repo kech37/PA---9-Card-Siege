@@ -26,6 +26,10 @@ public class Dice implements Serializable {
         return value;
     }
 
+    public void setValue(int value) {
+        this.value = value;
+    }
+    
     public Dice() {
         this(6);
     }

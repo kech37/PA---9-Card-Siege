@@ -230,6 +230,10 @@ public class ObservableGame extends java.util.Observable {
         game.getGame().setJustRaidSabotage(false);
     }
 
+    public int getTurn() {
+      return game.getGame().getDeck().getTurn();
+    }
+
 
 
 }

@@ -44,7 +44,7 @@ public class DiceActionPointPanel extends JPanel implements Observer {
         dice = new DicePanel(observableGame);
       
         actionPoint = new JLabel("", SwingConstants.CENTER);
-        day = new JLabel("Day: " + (observableGame.getDay() + 1), SwingConstants.CENTER);
+        day = new JLabel("Day: " + (observableGame.getDay() + 1) + "  Turn: " + (observableGame.getTurn()), SwingConstants.CENTER);
     }
 
     private void setupLayout() {
@@ -70,6 +70,6 @@ public class DiceActionPointPanel extends JPanel implements Observer {
     public void update(Observable o, Object o1) {
         if(observableGame.getAtualCard() != null)
               actionPoint.setText("Action Points: " + observableGame.getAtualCard().getEvents().get(observableGame.getDay()).getActionPointAllowance());
-        day.setText("Day: " + (observableGame.getDay() + 1));
+        day.setText("Day: " + (observableGame.getDay() + 1) + "  Turn: " + (observableGame.getTurn()));
     }
 }

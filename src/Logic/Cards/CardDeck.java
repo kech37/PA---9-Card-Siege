@@ -20,15 +20,18 @@ public final class CardDeck implements Serializable {
     ArrayList<BaseEventCard> Cards;
     private BaseEventCard onUseEventCard;
     GameData gameData;
+    int turn;
 
     public CardDeck(GameData gameData) {
         this.Cards = new ArrayList<>();
         this.reset(gameData);
         onUseEventCard = null;
+        turn=0;
     }
 
     public void removeOneCard() {
         onUseEventCard = this.Cards.remove(0);
+        turn++;
     }
 
     public BaseEventCard getOnUseEventCard() {
@@ -47,6 +50,10 @@ public final class CardDeck implements Serializable {
         return Cards.isEmpty();
     }
 
+    public int getTurn() {
+      return turn;
+    }
+
     public void reset(GameData gameData) {
         this.Cards.clear();
 
@@ -59,7 +66,7 @@ public final class CardDeck implements Serializable {
         this.Cards.add(new EventCard7(gameData));
 
         onUseEventCard = null;
-
+        turn=0;
         Collections.shuffle(this.Cards);
     }
 
